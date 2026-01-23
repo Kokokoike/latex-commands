@@ -2,26 +2,29 @@
 const commandDatabase = {
     "alpha": {
         command: "\\alpha",
-        description: "ギリシャ文字の小文字のアルファです。数式環境が必要です。",
-        tags: ["ギリシャ文字", "ギリシャ文字（小）"],
-        package: null
+        description: "ギリシャ文字の小文字のアルファです。",
+        tags: ["数式", "ギリシャ文字", "ギリシャ文字・小文字"],
+        package: null,
+        isMathMode: true
     },
     "beta": {
         command: "\\beta",
         description: "ギリシャ文字の小文字のベータです。",
-        tags: ["ギリシャ文字", "小文字"],
-        package: null
+        tags: ["数式", "ギリシャ文字", "ギリシャ文字・小文字"],
+        package: null,
+        isMathMode: true
     },
     "gamma": {
         command: "\\gamma",
         description: "ギリシャ文字の小文字のガンマです。",
-        tags: ["ギリシャ文字", "小文字"],
-        package: null
-    },
+        tags: ["数式", "ギリシャ文字", "ギリシャ文字・小文字"],
+        package: null, 
+        isMathMode: true    },
     "mathbb_r": {
         command: "\\mathbb{R}",
         description: "実数全体の集合を表す黒板太字のRです。",
         tags: ["数式", "集合"],
-        package: "amssymb"
+        package: "amssymb", 
+        isMathMode: true
     }
 };

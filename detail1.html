@@ -85,13 +85,32 @@
         }
 
         .info-section { margin-bottom: 20px; }
+        
         .info-label {
             font-weight: bold;
             font-size: 0.9rem;
             color: #666;
             display: block;
             margin-bottom: 6px;
+            /* ▼ 追加: バッジを横並びにする設定 */
+            display: flex;
+            align-items: center;
         }
+
+        /* ▼ 追加: 「要数式環境」バッジのデザイン */
+        .badge-math {
+            display: none; /* デフォルトは非表示 */
+            background-color: #fff3cd; /* 薄いオレンジ背景 */
+            color: #856404;            /* 濃い茶色の文字 */
+            border: 1px solid #ffeeba;
+            font-size: 0.75rem;
+            padding: 2px 8px;
+            border-radius: 4px;
+            margin-left: 10px;
+            font-weight: normal;
+        }
+        .badge-math.visible { display: inline-block; }
+
 
         .code-box {
             background-color: #2d2d2d;
@@ -147,7 +166,7 @@
 <body>
 
     <header class="top-header">
-        <img src="data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' width='200' height='50' viewBox='0 0 200 50'%3e%3ctext x='0' y='50%25' dominant-baseline='middle' font-family='sans-serif' font-weight='bold' font-size='28' fill='%232c3e50'%3eLaTeX Dict%3c/text%3e%3c/svg%3e" 
+        <img src="data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' width='200' height='50' viewBox='0 0 200 50'%3e%3crect width='100%25' height='100%25' fill='%231c2e50'/%3e%3ctext x='10' y='50%25' dominant-baseline='middle' font-family='sans-serif' font-weight='bold' font-size='28' fill='white'%3eLaTeX Dict%3c/text%3e%3c/svg%3e" 
              alt="LaTeX Dict" 
              class="header-logo"
              onclick="window.location.href='index.html'">
@@ -178,7 +197,10 @@
             </div>
 
             <div class="info-section">
-                <span class="info-label">説明</span>
+                <span class="info-label">
+                    説明
+                    <span id="math-badge" class="badge-math">要数式環境</span>
+                </span>
                 <p id="disp-desc" style="color:#444; line-height:1.6;"></p>
             </div>
         </div>
@@ -224,6 +246,14 @@
                 span.innerText = tag;
                 tagContainer.appendChild(span);
             });
+
+            // ▼ 追加: data.jsのisMathModeを見てバッジを表示
+            const mathBadge = document.getElementById('math-badge');
+            if (data.isMathMode) {
+                mathBadge.classList.add('visible');
+            } else {
+                mathBadge.classList.remove('visible');
+            }
 
             document.getElementById('btn-copy-cmd').onclick = function() {
                 copyText(this, data.command);
