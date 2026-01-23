@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LaTeX Command Dictionary</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
     <script src="data.js"></script>
 
     <style>
@@ -69,6 +71,66 @@
         
         .result-cmd { font-weight: bold; font-family: monospace; font-size: 1.1rem; }
         .result-desc { font-size: 0.85rem; color: #666; }
+
+    
+        /* 検索実行時（一覧表示モード）のスタイル */
+        body.search-mode {
+            justify-content: flex-start;
+            padding-top: 40px;
+            height: auto;
+            min-height: 100vh;
+        }
+        body.search-mode .site-logo-img {
+            max-width: 150px; /* ロゴを小さく */
+            margin-bottom: 10px;
+        }
+        body.search-mode .site-desc {
+            display: none; /* 説明文は隠す */
+        }
+        
+        /* メイン結果リスト */
+        .main-results-list {
+            width: 100%;
+            margin-top: 30px;
+            display: none;
+            text-align: left;
+            padding-bottom: 40px;
+        }
+        .main-results-list.active { display: block; }
+
+        .list-item {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            display: flex;
+            align-items: center;
+        }
+        .list-item:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+
+        .list-preview {
+            flex: 0 0 100px; /* プレビュー領域の幅 */
+            text-align: center;
+            font-size: 1.5rem;
+            margin-right: 20px;
+            color: #333;
+        }
+        .list-info {
+            flex: 1;
+        }
+
+        /* リスト表示時の説明欄を2行の高さで統一 */
+        .list-info .result-desc {
+            line-height: 1.5;
+            height: 3em; /* 1.5em * 2行 */
+            overflow: hidden;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 2;
+        }
     </style>
 </head>
 <body>
@@ -82,6 +144,7 @@
             <input type="text" class="search-input" id="search-input" placeholder="コマンドやキーワードで検索..." autocomplete="off">
             <div class="search-results" id="search-results"></div>
         </div>
+        <div class="main-results-list" id="main-results-list"></div>
     </div>
 
     <script>
@@ -89,15 +152,29 @@
             const keys = Object.keys(commandDatabase);
             const input = document.getElementById('search-input');
             const results = document.getElementById('search-results');
+            const mainList = document.getElementById('main-results-list');
 
-            input.addEventListener('input', (e) => {
-                const term = e.target.value.toLowerCase();
-                if (term.length === 0) { results.classList.remove('active'); return; }
-
-                const hits = keys.filter(key => {
+            // 共通の検索ロジック
+            function getSearchResults(term) {
+                if (!term) return [];
+                return keys.filter(key => {
                     const d = commandDatabase[key];
                     return key.includes(term) || d.command.toLowerCase().includes(term) || d.description.includes(term) || d.tags.some(t => t.includes(term));
                 });
+            }
+
+            input.addEventListener('input', (e) => {
+                const term = e.target.value.toLowerCase();
+                
+                // 入力が空になったら検索モード解除
+                if (term.length === 0) { 
+                    results.classList.remove('active'); 
+                    document.body.classList.remove('search-mode');
+                    mainList.classList.remove('active');
+                    return; 
+                }
+
+                const hits = getSearchResults(term);
 
                 if (hits.length > 0) {
                     results.innerHTML = '';
@@ -111,6 +188,50 @@
                     });
                     results.classList.add('active');
                 } else { results.classList.remove('active'); }
+            });
+
+            // エンターキーで一覧表示
+            input.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter') {
+                    e.preventDefault();
+                    const term = input.value.toLowerCase();
+                    results.classList.remove('active'); // ドロップダウンは消す
+
+                    if (term.length === 0) return;
+
+                    const hits = getSearchResults(term);
+                    
+                    // 検索モードへ切り替え
+                    document.body.classList.add('search-mode');
+                    mainList.innerHTML = '';
+                    
+                    if (hits.length > 0) {
+                        hits.forEach(key => {
+                            const d = commandDatabase[key];
+                            const div = document.createElement('div');
+                            div.className = 'list-item';
+                            
+                            // プレビュー用コンテナと情報コンテナを作成
+                            div.innerHTML = `
+                                <div class="list-preview" id="preview-${key}"></div>
+                                <div class="list-info">
+                                    <div class="result-cmd">${d.command}</div>
+                                    <div class="result-desc">${d.description}</div>
+                                </div>
+                            `;
+                            div.onclick = () => { window.location.href = `detail1.html?id=${key}`; };
+                            mainList.appendChild(div);
+
+                            // KaTeXでレンダリング
+                            katex.render(d.command, document.getElementById(`preview-${key}`), {
+                                throwOnError: false
+                            });
+                        });
+                    } else {
+                        mainList.innerHTML = '<div style="color:#666; padding:20px;">該当するコマンドが見つかりませんでした。</div>';
+                    }
+                    mainList.classList.add('active');
+                }
             });
 
             document.addEventListener('click', (e) => {
