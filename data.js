@@ -31,7 +31,7 @@ const commandDatabase = {
     "xi":      createGreek("xi",      "グザイ（クシー）"),
     "omicron": {
         command: "o",
-        description: ギリシャ文字の小文字のオミクロンです。,
+        description: "ギリシャ文字の小文字のオミクロンです。",
         tags: ["数式", "ギリシャ文字", "ギリシャ文字・小文字"],
         package: null,
         isMathMode: false
