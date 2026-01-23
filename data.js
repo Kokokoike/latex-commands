@@ -2,7 +2,7 @@
 const commandDatabase = {
     "alpha": {
         command: "\\alpha",
-        description: "ギリシャ文字の小文字のアルファです。",
+        description: "ギリシャ文字の小文字のアルファです。数式モードで使用できます。",
         tags: ["ギリシャ文字", "小文字"],
         package: null
     },
