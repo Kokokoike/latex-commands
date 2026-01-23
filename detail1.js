@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LaTeX Command Dictionary</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script src="data.js"></script>
+
+    <style>
+        /* レイアウト全体 */
+        body {
+            font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding-top: 60px; /* 固定ヘッダーの高さ分を確保 */
+        }
+
+        /* 固定ヘッダー */
+        .top-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 60px;
+            background-color: #2c3e50;
+            color: white;
+            display: flex;
+            align-items: center;
+            padding: 0 20px;
+            font-weight: bold;
+            z-index: 1000;
+            box-sizing: border-box;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        /* ヘッダー内のロゴ画像 */
+        .header-logo {
+            height: 36px; /* ヘッダーの高さに合わせて調整 */
+            cursor: pointer;
+        }
+
+        /* 右メインエリア */
+        .main-content {
+            padding: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+        }
+
+        /* コマンドカード */
+        .command-card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            padding: 30px;
+            width: 100%;
+            max-width: 600px;
+        }
+
+        /* 共通パーツのスタイル */
+        .command-title {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #333;
+            font-family: monospace;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 10px;
+        }
+
+        .preview-box {
+            background-color: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            padding: 40px;
+            text-align: center;
+            font-size: 2.2rem;
+            margin-bottom: 24px;
+            min-height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .info-section { margin-bottom: 20px; }
+        .info-label {
+            font-weight: bold;
+            font-size: 0.9rem;
+            color: #666;
+            display: block;
+            margin-bottom: 6px;
+        }
+
+        .code-box {
+            background-color: #2d2d2d;
+            color: #ddd;
+            padding: 12px 16px;
+            border-radius: 6px;
+            font-family: monospace;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .code-box code {
+            word-break: break-all;
+            margin-right: 10px;
+        }
+
+        .code-box.light {
+            background-color: #f0f0f0;
+            color: #333;
+            border: 1px solid #ddd;
+        }
+
+        .copy-btn {
+            background-color: #4a90e2;
+            color: white;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            min-width: 80px; /* ここでコピー時の幅固定を実現 */
+            line-height: 1.2;
+            white-space: nowrap;
+        }
+        .copy-btn.copied { background-color: #2ecc71; cursor: default; }
+
+        .tag {
+            background-color: #e1f0ff;
+            color: #0056b3;
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            margin-right: 6px;
+            display: inline-block;
+        }
+        
+        @media (max-width: 768px) {
+            .main-content { padding: 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="top-header">
+        <img src="data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' width='200' height='50' viewBox='0 0 200 50'%3e%3ctext x='0' y='50%25' dominant-baseline='middle' font-family='sans-serif' font-weight='bold' font-size='28' fill='white'%3eLaTeX Dict%3c/text%3e%3c/svg%3e" 
+             alt="LaTeX Dict" 
+             class="header-logo"
+             onclick="window.location.href='index.html'">
+    </header>
+
+    <main class="main-content">
+        <div class="command-card" id="card-container">
+            <div class="command-title" id="disp-title"></div>
+            
+            <div class="preview-box" id="math-preview"></div>
+
+            <div class="info-section">
+                <span class="info-label">コマンド</span>
+                <div class="code-box">
+                    <code id="disp-command"></code>
+                    <button class="copy-btn" id="btn-copy-cmd">Copy</button>
+                </div>
+            </div>
+
+            <div class="info-section">
+                <span class="info-label">必要なパッケージ</span>
+                <div class="code-box light" id="pkg-box"></div>
+            </div>
+
+            <div class="info-section">
+                <span class="info-label">タグ</span>
+                <div id="disp-tags"></div>
+            </div>
+
+            <div class="info-section">
+                <span class="info-label">説明</span>
+                <p id="disp-desc" style="color:#444; line-height:1.6;"></p>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // ★重要修正: URLパラメータ (?id=alpha) を取得するように変更
+            const params = new URLSearchParams(window.location.search);
+            let currentKey = params.get('id');
+            
+            // データがない場合のフォールバック（最初のデータを表示）
+            const keys = Object.keys(commandDatabase);
+            if (!currentKey || !commandDatabase[currentKey]) {
+                currentKey = keys[0];
+            }
+
+            const data = commandDatabase[currentKey];
+
+            // --- 描画処理 ---
+            document.title = `${data.command} - LaTeX Dictionary`;
+            document.getElementById('disp-title').innerText = data.command;
+            document.getElementById('disp-command').innerText = data.command;
+            document.getElementById('disp-desc').innerText = data.description;
+
+            katex.render(data.command, document.getElementById("math-preview"), {
+                throwOnError: false, displayMode: true
+            });
+
+            const pkgBox = document.getElementById('pkg-box');
+            if (data.package) {
+                const pkgCmd = `\\usepackage{${data.package}}`;
+                pkgBox.innerHTML = `<code>${pkgCmd}</code><button class="copy-btn" onclick="copyText(this, '${pkgCmd.replace(/\\/g, '\\\\')}')">Copy</button>`;
+            } else {
+                pkgBox.innerHTML = `<span style="color:#888; font-style:italic;">なし（標準機能）</span>`;
+            }
+
+            const tagContainer = document.getElementById('disp-tags');
+            tagContainer.innerHTML = '';
+            data.tags.forEach(tag => {
+                const span = document.createElement('span');
+                span.className = 'tag';
+                span.innerText = tag;
+                tagContainer.appendChild(span);
+            });
+
+            document.getElementById('btn-copy-cmd').onclick = function() {
+                copyText(this, data.command);
+            };
+        });
+
+        // コピー機能
+        function copyText(btn, text) {
+            if (btn.classList.contains('copied')) return;
+            navigator.clipboard.writeText(text).then(() => {
+                const originalText = btn.innerText;
+                btn.innerText = "✔ Copied";
+                btn.classList.add('copied');
+                setTimeout(() => {
+                    btn.innerText = originalText;
+                    btn.classList.remove('copied');
+                }, 2000);
+            });
+        }
+    </script>
+</body>
+</html>
