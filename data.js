@@ -1,8 +1,19 @@
 /* data.js */
 
-// 1. データ生成用の便利関数
-// 引数 kana には "アルファ" や "パイの異体字" だけを渡します
-function createGreek(name, kana) {
+// ★ データ生成用の関数
+// 1.1 ギリシャ文字
+function createGreek(name, kana, kana2, isUpper = false) {
+    const type = isUpper ? "大文字" : "小文字";
+    return {
+        command: name,
+        description: `ギリシャ文字の${type}の${kana}です。アルファベットの${kana2}と同じ形です。`,
+        tags: ["数式", "ギリシャ文字", `ギリシャ文字・${type}`],
+        package: null,
+        isMathMode: false
+    };
+}
+// 1.1.1 ギリシャ文字・小文字
+function smallGreek(name, kana) {
     return {
         command: `\\${name}`,
         description: `ギリシャ文字の小文字の${kana}です。`,
@@ -11,54 +22,117 @@ function createGreek(name, kana) {
         isMathMode: true
     };
 }
-
-// 2. データベース本体
-const commandDatabase = {
-    // 基本形
-    "\\alpha":   createGreek("alpha",   "アルファ"),
-    "\\beta":    createGreek("beta",    "ベータ"),
-    "\\gamma":   createGreek("gamma",   "ガンマ"),
-    "\\delta":   createGreek("delta",   "デルタ"),
-    "\\epsilon": createGreek("epsilon", "イプシロン"),
-    "\\zeta":    createGreek("zeta",    "ゼータ（ツェータ）"),
-    "\\eta":     createGreek("eta",     "イータ（エータ）"),
-    "\\theta":   createGreek("theta",   "シータ（テータ）"),
-    "\\iota":    createGreek("iota",    "イオタ"),
-    "\\kappa":   createGreek("kappa",   "カッパ"),
-    "\\lambda":  createGreek("lambda",  "ラムダ"),
-    "\\mu":      createGreek("mu",      "ミュー"),
-    "\\nu":      createGreek("nu",      "ニュー"),
-    "\\xi":      createGreek("xi",      "グザイ（クシー）"),
-    "o": {
-        command: "o",
-        description: "ギリシャ文字の小文字のオミクロンです。アルファベットのo(オー)と同じ形です。",
-        tags: ["数式", "ギリシャ文字", "ギリシャ文字・小文字"],
+// 1.1.2 ギリシャ文字・小文字・異体字
+function smallGreek2(name, kana) {
+    return {
+        command: `\\${name}`,
+        description: `ギリシャ文字の小文字の${kana}の異体字です。`,
+        tags: ["数式", "ギリシャ文字", "ギリシャ文字・小文字", "ギリシャ文字・異体字"],
         package: null,
-        isMathMode: false
-    }, 
-    "\\pi":      createGreek("pi",      "パイ"),
-    "\\rho":     createGreek("rho",     "ロー"),
-    "\\sigma":   createGreek("sigma",   "シグマ"),
-    "\\tau":     createGreek("tau",     "タウ"),
-    "\\upsilon": createGreek("upsilon", "ユプシロン"),
-    "\\phi":     createGreek("phi",     "ファイ"),
-    "\\chi":     createGreek("chi",     "カイ"),
-    "\\psi":     createGreek("psi",     "プサイ（プシー）"),
-    "\\omega":   createGreek("omega",   "オメガ"),
+        isMathMode: true
+    };
+}
+// 1.1.3 ギリシャ文字・大文字
+function bigGreek(name, kana) {
+    return {
+        command: `\\${name}`,
+        description: `ギリシャ文字の大文字の${kana}です。`,
+        tags: ["数式", "ギリシャ文字", "ギリシャ文字・大文字"],
+        package: null,
+        isMathMode: true
+    };
+}
+// 1.1.4 ギリシャ文字・大文字・異体字
+function bigGreek2(name, kana) {
+    return {
+        command: `\\${name}`,
+        description: `ギリシャ文字の大文字の${kana}の異体字です。`,
+        tags: ["数式", "ギリシャ文字", "ギリシャ文字・大文字", "ギリシャ文字・異体字"],
+        package: null,
+        isMathMode: true
+    };
+}
 
-    // 異体字（説明文にうまくつながるように記述）
-    "\\varepsilon": createGreek("varepsilon", "イプシロンの異体字"),
-    "\\vartheta":   createGreek("vartheta",   "シータの異体字"),
-    "\\varpi":      createGreek("varpi",      "パイの異体字"),
-    "\\varrho":     createGreek("varrho",     "ローの異体字"),
-    "\\varsigma":   createGreek("varsigma",   "シグマの語末形"),
-    "\\varphi":     createGreek("varphi",     "ファイの異体字"),
+// ★ データベース
+const commandDatabase = {
+    // 1.1.1 ギリシャ文字・小文字
+    "\\alpha":  smallGreek("alpha",   "アルファ"),
+    "\\beta":   smallGreek("beta",    "ベータ"),
+    "\\gamma":  smallGreek("gamma",   "ガンマ"),
+    "\\delta":  smallGreek("delta",   "デルタ"),
+    "\\epsilon":smallGreek("epsilon", "イプシロン"),
+    "\\zeta":   smallGreek("zeta",    "ゼータ（ツェータ）"),
+    "\\eta":    smallGreek("eta",     "イータ（エータ）"),
+    "\\theta":  smallGreek("theta",   "シータ（テータ）"),
+    "\\iota":   smallGreek("iota",    "イオタ"),
+    "\\kappa":  smallGreek("kappa",   "カッパ"),
+    "\\lambda": smallGreek("lambda",  "ラムダ"),
+    "\\mu":     smallGreek("mu",      "ミュー"),
+    "\\nu":     smallGreek("nu",      "ニュー"),
+    "\\xi":     smallGreek("xi",      "グザイ（クシー）"),
+    "o":        createGreek("o", "オミクロン", "o(オー)"),
+    "\\pi":     smallGreek("pi",      "パイ"),
+    "\\rho":    smallGreek("rho",     "ロー"),
+    "\\sigma":  smallGreek("sigma",   "シグマ"),
+    "\\tau":    smallGreek("tau",     "タウ"),
+    "\\upsilon":smallGreek("upsilon", "ユプシロン"),
+    "\\phi":    smallGreek("phi",     "ファイ"),
+    "\\chi":    smallGreek("chi",     "カイ"),
+    "\\psi":    smallGreek("psi",     "プサイ（プシー）"),
+    "\\omega":  smallGreek("omega",   "オメガ"),
 
-    // その他のコマンド（関数を使わず個別に書く）
+    // 1.1.2 ギリシャ文字・小文字・異体字
+    "\\varepsilon": smallGreek2("varepsilon", "イプシロン"),
+    "\\vartheta":   smallGreek2("vartheta",   "シータ（テータ）"),
+    "\\varkappa":   smallGreek2("varkappa",   "カッパ"),
+    "\\varpi":      smallGreek2("varpi",      "パイ"),
+    "\\varrho":     smallGreek2("varrho",     "ロー"),
+    "\\varsigma":   smallGreek2("varsigma",   "シグマ"),
+    "\\varphi":     smallGreek2("varphi",     "ファイ"),
+
+    // 1.1.3 ギリシャ文字・大文字
+    "A":        createGreek("A", "アルファ", "A(エー)", true),
+    "B":        createGreek("B", "ベータ", "B(ビー)", true),
+    "\\Gamma":  bigGreek("Gamma", "ガンマ"),
+    "\\Delta":  bigGreek("Delta", "デルタ"),
+    "E":        createGreek("E", "イプシロン", "E(イー)", true),
+    "Z":        createGreek("Z", "ゼータ（ツェータ）", "Z(ゼット)", true),
+    "H":        createGreek("H", "イータ（エータ）", "H(エイチ)", true),
+    "\\Theta":  bigGreek("Theta", "シータ（テータ）"),
+    "I":        createGreek("I", "イオタ", "I(アイ)", true),
+    "K":        createGreek("K", "カッパ", "K(ケー)", true),
+    "\\Lambda": bigGreek("Lambda", "ラムダ"),
+    "M":        createGreek("M", "ミュー", "M(エム)", true),
+    "N":        createGreek("N", "ニュー", "N(エヌ)", true),
+    "\\Xi":     bigGreek("Xi", "グザイ（クシー）"),
+    "O":        createGreek("O", "オミクロン", "O(オー)", true),
+    "\\Pi":     bigGreek("Pi", "パイ"),
+    "P":        createGreek("P", "ロー", "P(ピー)", true),
+    "\\Sigma":  bigGreek("Sigma", "シグマ"),
+    "T":        createGreek("T", "タウ", "T(ティー)", true),
+    "\\Upsilon":bigGreek("Upsilon", "ユプシロン"),
+    "\\Phi":    bigGreek("Phi", "ファイ"),
+    "X":        createGreek("X", "カイ", "X(エックス)", true),
+    "\\Psi":    bigGreek("Psi", "プサイ（プシー）"),
+    "\\Omega":  bigGreek("Omega", "オメガ"),
+
+    // 1.1.4 ギリシャ文字・大文字・異体字
+    "\\varGamma":   bigGreek2("varGamma", "ガンマ"),
+    "\\varDelta":   bigGreek2("varDelta", "デルタ"),
+    "\\varTheta":   bigGreek2("varTheta", "シータ（テータ）"),
+    "\\varLambda":  bigGreek2("varLambda", "ラムダ"),
+    "\\varXi":      bigGreek2("varXi", "グザイ（クシー）"),
+    "\\varPi":      bigGreek2("varPi", "パイ"),
+    "\\varSigma":   bigGreek2("varSigma", "シグマ"),
+    "\\varUpsilon": bigGreek2("varUpsilon", "ユプシロン"),
+    "\\varPhi":     bigGreek2("varPhi", "ファイ"),
+    "\\varPsi":     bigGreek2("varPsi", "プサイ（プシー）"),
+    "\\varOmega":   bigGreek2("varOmega", "オメガ"),
+
     "\\mathbb{}": {
         command: "\\mathbb{R}",
-        description: "実数全体の集合を表す黒板太字のRです。",
-        tags: ["数式", "集合"],
+        description: "黒板太字です。例として、実数全体の集合を表すRの黒板太字を表示しています。",
+        tags: ["数式", "フォント"],
         package: "amssymb",
         isMathMode: true
     }
