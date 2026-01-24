@@ -232,9 +232,11 @@
 
             const pkgBox = document.getElementById('pkg-box');
             if (data.package) {
+                pkgBox.classList.remove('light');
                 const pkgCmd = `\\usepackage{${data.package}}`;
                 pkgBox.innerHTML = `<code>${pkgCmd}</code><button class="copy-btn" onclick="copyText(this, '${pkgCmd.replace(/\\/g, '\\\\')}')">Copy</button>`;
             } else {
+                pkgBox.classList.add('light');
                 pkgBox.innerHTML = `<span style="color:#888; font-style:italic;">なし（標準機能）</span>`;
             }
 
