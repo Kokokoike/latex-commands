@@ -146,8 +146,9 @@ const commandDatabase = {
         package: "amssymb",
         isMathMode: true, 
         examples:[
-        { title: "実数全体の集合", command: "\\sin^2 \\alpha + \\cos^2 \\alpha = 1" },
-        { title: "一次結合", command: "\\mathbf{v} = \\alpha \\mathbf{a} + \\beta \\mathbf{b}" }
-    ]
+        { title: "自然数全体の集合", command: "\\mathbb{N}" },
+        { title: "複素数全体の集合", command: "\\mathbb{C}" }
+        ], 
+        related: ["\\alpha"]
     }
 };
