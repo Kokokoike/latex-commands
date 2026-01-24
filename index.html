@@ -13,16 +13,16 @@
             font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", sans-serif;
             background-color: #ddd; 
             margin: 0;
-            height: 100vh;
+            min-height: 100vh;
             display: flex;
             flex-direction: column;
-            justify-content: center;
             align-items: center;
             text-align: center;
             color: #333;
+            padding: 20px 0;
         }
 
-        .container { width: 90%; max-width: 600px; padding: 20px; }
+        .container { width: 90%; max-width: 600px; padding: 20px; margin: auto; }
         
         .site-logo-img {
             max-width: 300px;
@@ -86,6 +86,9 @@
         }
         body.search-mode .site-desc {
             display: none; /* 説明文は隠す */
+        }
+        body.search-mode .container {
+            margin-top: 0;
         }
         
         /* メイン結果リスト */
@@ -212,8 +215,13 @@
         .main-results-list.grid-view .result-desc { display: none; } /* 説明文非表示 */
         
         .main-results-list.grid-view .cmd-row {
+            flex-direction: column;
             justify-content: center;
-            flex-wrap: wrap;
+        }
+
+        .main-results-list.grid-view .copy-btn-small {
+            margin-left: 0;
+            margin-top: 10px;
         }
 
         /* 更新履歴エリア */
@@ -236,10 +244,16 @@
             padding-bottom: 8px;
         }
         .update-list { list-style: none; padding: 0; margin: 0; }
-        .update-item { padding: 8px 0; border-bottom: 1px solid #f9f9f9; font-size: 0.9rem; }
+        .update-item { 
+            padding: 8px 0; 
+            border-bottom: 1px solid #f9f9f9; 
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+        }
         .update-item:last-child { border-bottom: none; }
         .update-date { color: #888; font-size: 0.8rem; margin-right: 10px; display: inline-block; min-width: 120px; }
-        .update-msg { color: #333; }
+        .update-msg { color: #333; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; flex: 1; }
         
         /* 検索モード時は更新履歴を隠す */
         body.search-mode .update-log-container { display: none; }
