@@ -72,158 +72,6 @@
         .result-cmd { font-weight: bold; font-family: monospace; font-size: 1.1rem; }
         .result-desc { font-size: 0.85rem; color: #666; }
 
-    
-        /* 検索実行時（一覧表示モード）のスタイル */
-        body.search-mode {
-            justify-content: flex-start;
-            padding-top: 40px;
-            height: auto;
-            min-height: 100vh;
-        }
-        body.search-mode .site-logo-img {
-            max-width: 150px; /* ロゴを小さく */
-            margin-bottom: 10px;
-        }
-        body.search-mode .site-desc {
-            display: none; /* 説明文は隠す */
-        }
-        body.search-mode .container {
-            margin-top: 0;
-        }
-        
-        /* メイン結果リスト */
-        .main-results-list {
-            width: 100%;
-            margin-top: 30px;
-            display: none;
-            text-align: left;
-            padding-bottom: 40px;
-        }
-        .main-results-list.active { display: block; }
-
-        .list-item {
-            background: white;
-            padding: 20px;
-            border-radius: 8px;
-            margin-bottom: 15px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-            cursor: pointer;
-            transition: transform 0.2s, box-shadow 0.2s;
-            display: flex;
-            align-items: center;
-        }
-        .list-item:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
-
-        .list-preview {
-            flex: 0 0 100px; /* プレビュー領域の幅 */
-            text-align: center;
-            font-size: 1.5rem;
-            margin-right: 20px;
-            color: #333;
-        }
-        .list-info {
-            flex: 1;
-        }
-
-        /* リスト表示時の説明欄を2行の高さで統一 */
-        .list-info .result-desc {
-            line-height: 1.5;
-            height: 3em; /* 1.5em * 2行 */
-            overflow: hidden;
-            display: -webkit-box;
-            -webkit-box-orient: vertical;
-            -webkit-line-clamp: 2;
-        }
-
-        /* コピーボタン用スタイル */
-        .cmd-row {
-            display: flex;
-            align-items: center;
-            margin-bottom: 4px;
-        }
-        .copy-btn-small {
-            background-color: #f0f0f0;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            padding: 2px 0;
-            width: 60px;
-            text-align: center;
-            font-size: 0.75rem;
-            cursor: pointer;
-            margin-left: 10px;
-            color: #555;
-            transition: all 0.2s;
-        }
-        .copy-btn-small:hover {
-            background-color: #e0e0e0;
-        }
-        .copy-btn-small.copied {
-            background-color: #2ecc71;
-            color: white;
-            border-color: #2ecc71;
-        }
-
-        /* 表示切り替えボタン */
-        .view-controls {
-            display: none; /* 検索モードになるまで非表示 */
-            margin-top: 20px;
-            margin-bottom: 10px;
-            justify-content: flex-end;
-            width: 100%;
-        }
-        .view-controls.active { display: flex; }
-        
-        .view-btn {
-            background: white;
-            border: 1px solid #ddd;
-            padding: 5px 15px;
-            cursor: pointer;
-            font-size: 0.9rem;
-            color: #555;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .view-btn:first-child { border-radius: 4px 0 0 4px; border-right: none; }
-        .view-btn:last-child { border-radius: 0 4px 4px 0; }
-        .view-btn.active { background-color: #4a90e2; color: white; border-color: #4a90e2; }
-
-        /* グリッド表示用スタイル */
-        .main-results-list.grid-view {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-            gap: 15px;
-        }
-        
-        .main-results-list.grid-view .list-item {
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-            padding: 15px;
-            margin-bottom: 0; /* grid gapで制御 */
-        }
-        
-        .main-results-list.grid-view .list-preview { 
-            margin-right: 0; 
-            margin-bottom: 10px; 
-            min-height: 60px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .main-results-list.grid-view .list-info { width: 100%; }
-        .main-results-list.grid-view .result-desc { display: none; } /* 説明文非表示 */
-        
-        .main-results-list.grid-view .cmd-row {
-            flex-direction: column;
-            justify-content: center;
-        }
-
-        .main-results-list.grid-view .copy-btn-small {
-            margin-left: 0;
-            margin-top: 10px;
-        }
-
         /* 更新履歴エリア */
         .update-log-container {
             width: 100%;
@@ -255,8 +103,6 @@
         .update-date { color: #888; font-size: 0.8rem; margin-right: 10px; display: inline-block; min-width: 120px; }
         .update-msg { color: #333; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; flex: 1; }
         
-        /* 検索モード時は更新履歴を隠す */
-        body.search-mode .update-log-container { display: none; }
     </style>
 </head>
 <body>
@@ -278,27 +124,6 @@
             </ul>
         </div>
 
-        <div class="view-controls" id="view-controls">
-            <button class="view-btn active" id="btn-list" title="List View">
-                <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
-                    <rect x="4" y="5" width="3" height="3" rx="1"></rect>
-                    <rect x="9" y="5" width="10" height="3" rx="1"></rect>
-                    <rect x="4" y="10" width="3" height="3" rx="1"></rect>
-                    <rect x="9" y="10" width="10" height="3" rx="1"></rect>
-                    <rect x="4" y="15" width="3" height="3" rx="1"></rect>
-                    <rect x="9" y="15" width="10" height="3" rx="1"></rect>
-                </svg>
-            </button>
-            <button class="view-btn" id="btn-grid" title="Grid View">
-                <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
-                    <rect x="4" y="4" width="7" height="7" rx="1"></rect>
-                    <rect x="13" y="4" width="7" height="7" rx="1"></rect>
-                    <rect x="4" y="13" width="7" height="7" rx="1"></rect>
-                    <rect x="13" y="13" width="7" height="7" rx="1"></rect>
-                </svg>
-            </button>
-        </div>
-        <div class="main-results-list" id="main-results-list"></div>
     </div>
 
     <script>
@@ -306,10 +131,6 @@
             const keys = Object.keys(commandDatabase);
             const input = document.getElementById('search-input');
             const results = document.getElementById('search-results');
-            const mainList = document.getElementById('main-results-list');
-            const viewControls = document.getElementById('view-controls');
-            const btnList = document.getElementById('btn-list');
-            const btnGrid = document.getElementById('btn-grid');
 
             // 共通の検索ロジック
             function getSearchResults(term) {
@@ -326,9 +147,6 @@
                 // 入力が空になったら検索モード解除
                 if (term.length === 0) { 
                     results.classList.remove('active'); 
-                    document.body.classList.remove('search-mode');
-                    mainList.classList.remove('active');
-                    viewControls.classList.remove('active');
                     return; 
                 }
 
@@ -356,72 +174,10 @@
                     results.classList.remove('active'); // ドロップダウンは消す
 
                     if (term.length === 0) return;
-
-                    const hits = getSearchResults(term);
                     
-                    // 検索モードへ切り替え
-                    document.body.classList.add('search-mode');
-                    mainList.innerHTML = '';
-                    viewControls.classList.add('active');
-                    
-                    if (hits.length > 0) {
-                        hits.forEach(key => {
-                            const d = commandDatabase[key];
-                            const div = document.createElement('div');
-                            div.className = 'list-item';
-                            
-                            // プレビュー用コンテナと情報コンテナを作成
-                            div.innerHTML = `
-                                <div class="list-preview" id="preview-${key}"></div>
-                                <div class="list-info">
-                                    <div class="cmd-row">
-                                        <div class="result-cmd">${key}</div>
-                                        <button class="copy-btn-small">Copy</button>
-                                    </div>
-                                    <div class="result-desc">${d.description}</div>
-                                </div>
-                            `;
-                            
-                            // コピーボタンのイベント設定
-                            const copyBtn = div.querySelector('.copy-btn-small');
-                            copyBtn.onclick = (e) => {
-                                e.stopPropagation(); // 親要素のクリックイベント（遷移）を阻止
-                                navigator.clipboard.writeText(key).then(() => {
-                                    copyBtn.innerText = "Copied";
-                                    copyBtn.classList.add('copied');
-                                    setTimeout(() => {
-                                        copyBtn.innerText = "Copy";
-                                        copyBtn.classList.remove('copied');
-                                    }, 1500);
-                                });
-                            };
-
-                            div.onclick = () => { window.location.href = `detail1.html?id=${key}`; };
-                            mainList.appendChild(div);
-
-                            // KaTeXでレンダリング
-                            katex.render(d.command, document.getElementById(`preview-${key}`), {
-                                throwOnError: false
-                            });
-                        });
-                    } else {
-                        mainList.innerHTML = '<div style="color:#666; padding:20px;">該当するコマンドが見つかりませんでした。</div>';
-                    }
-                    mainList.classList.add('active');
+                    // 別ページへ遷移
+                    window.location.href = `search.html?q=${encodeURIComponent(term)}`;
                 }
-            });
-
-            // 表示切り替え
-            btnList.addEventListener('click', () => {
-                mainList.classList.remove('grid-view');
-                btnList.classList.add('active');
-                btnGrid.classList.remove('active');
-            });
-
-            btnGrid.addEventListener('click', () => {
-                mainList.classList.add('grid-view');
-                btnGrid.classList.add('active');
-                btnList.classList.remove('active');
             });
 
             document.addEventListener('click', (e) => {

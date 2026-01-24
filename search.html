@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Results - LaTeX Dictionary</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script src="data.js"></script>
+
+    <style>
+        body {
+            font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", sans-serif;
+            background-color: #ddd; 
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            color: #333;
+            /* 検索結果ページ用のスタイル */
+            justify-content: flex-start;
+            padding-top: 40px;
+            padding-bottom: 40px;
+        }
+
+        .container { width: 90%; max-width: 600px; padding: 20px; margin: auto; margin-top: 0; }
+        
+        .site-logo-img {
+            max-width: 150px;
+            height: auto;
+            margin-bottom: 10px;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.08));
+            cursor: pointer;
+        }
+
+        .search-wrapper { position: relative; width: 100%; }
+
+        .search-input {
+            width: 100%;
+            padding: 20px 30px;
+            font-size: 1.2rem;
+            border: 1px solid #ddd;
+            border-radius: 50px;
+            background-color: white;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            outline: none;
+            box-sizing: border-box;
+        }
+
+        .search-input:focus {
+            border-color: #4a90e2;
+            box-shadow: 0 4px 10px rgba(74, 144, 226, 0.1);
+        }
+
+        /* メイン結果リスト */
+        .main-results-list {
+            width: 100%;
+            margin-top: 30px;
+            text-align: left;
+        }
+
+        .list-item {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            display: flex;
+            align-items: center;
+        }
+        .list-item:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+
+        .list-preview {
+            flex: 0 0 100px;
+            text-align: center;
+            font-size: 1.5rem;
+            margin-right: 20px;
+            color: #333;
+        }
+        .list-info { flex: 1; }
+
+        .result-cmd { font-weight: bold; font-family: monospace; font-size: 1.1rem; }
+        .result-desc { font-size: 0.85rem; color: #666; }
+
+        .list-info .result-desc {
+            line-height: 1.5;
+            height: 3em;
+            overflow: hidden;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 2;
+        }
+
+        /* コピーボタン */
+        .cmd-row {
+            display: flex;
+            align-items: center;
+            margin-bottom: 4px;
+        }
+        .copy-btn-small {
+            background-color: #f0f0f0;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            padding: 2px 0;
+            width: 60px;
+            text-align: center;
+            font-size: 0.75rem;
+            cursor: pointer;
+            margin-left: 10px;
+            color: #555;
+            transition: all 0.2s;
+        }
+        .copy-btn-small:hover { background-color: #e0e0e0; }
+        .copy-btn-small.copied { background-color: #2ecc71; color: white; border-color: #2ecc71; }
+
+        /* 表示切り替えボタン */
+        .view-controls {
+            display: flex;
+            margin-top: 20px;
+            margin-bottom: 10px;
+            justify-content: flex-end;
+            width: 100%;
+        }
+        
+        .view-btn {
+            background: white;
+            border: 1px solid #ddd;
+            padding: 5px 15px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            color: #555;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .view-btn:first-child { border-radius: 4px 0 0 4px; border-right: none; }
+        .view-btn:last-child { border-radius: 0 4px 4px 0; }
+        .view-btn.active { background-color: #4a90e2; color: white; border-color: #4a90e2; }
+
+        /* グリッド表示用スタイル */
+        .main-results-list.grid-view {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+            gap: 15px;
+        }
+        
+        .main-results-list.grid-view .list-item {
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            padding: 15px;
+            margin-bottom: 0;
+        }
+        
+        .main-results-list.grid-view .list-preview { 
+            margin-right: 0; 
+            margin-bottom: 10px; 
+            min-height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .main-results-list.grid-view .list-info { width: 100%; }
+        .main-results-list.grid-view .result-desc { display: none; }
+        
+        .main-results-list.grid-view .cmd-row {
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .main-results-list.grid-view .copy-btn-small {
+            margin-left: 0;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <img src="data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' width='300' height='80' viewBox='0 0 300 80'%3e%3ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='sans-serif' font-weight='bold' font-size='40' fill='%232c3e50'%3eLaTeX Dict%3c/text%3e%3c/svg%3e" 
+             alt="LaTeX Dict" class="site-logo-img" onclick="window.location.href='index.html'">
+        
+        <div class="search-wrapper">
+            <input type="text" class="search-input" id="search-input" placeholder="コマンドやキーワードで検索..." autocomplete="off">
+        </div>
+
+        <div class="view-controls" id="view-controls">
+            <button class="view-btn active" id="btn-list" title="List View">
+                <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+                    <rect x="4" y="5" width="3" height="3" rx="1"></rect>
+                    <rect x="9" y="5" width="10" height="3" rx="1"></rect>
+                    <rect x="4" y="10" width="3" height="3" rx="1"></rect>
+                    <rect x="9" y="10" width="10" height="3" rx="1"></rect>
+                    <rect x="4" y="15" width="3" height="3" rx="1"></rect>
+                    <rect x="9" y="15" width="10" height="3" rx="1"></rect>
+                </svg>
+            </button>
+            <button class="view-btn" id="btn-grid" title="Grid View">
+                <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+                    <rect x="4" y="4" width="7" height="7" rx="1"></rect>
+                    <rect x="13" y="4" width="7" height="7" rx="1"></rect>
+                    <rect x="4" y="13" width="7" height="7" rx="1"></rect>
+                    <rect x="13" y="13" width="7" height="7" rx="1"></rect>
+                </svg>
+            </button>
+        </div>
+        <div class="main-results-list" id="main-results-list"></div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const params = new URLSearchParams(window.location.search);
+            const query = params.get('q') || '';
+            const input = document.getElementById('search-input');
+            input.value = query;
+
+            const mainList = document.getElementById('main-results-list');
+            const btnList = document.getElementById('btn-list');
+            const btnGrid = document.getElementById('btn-grid');
+            const keys = Object.keys(commandDatabase);
+
+            // 検索実行
+            if (query) {
+                const term = query.toLowerCase();
+                const hits = keys.filter(key => {
+                    const d = commandDatabase[key];
+                    return key.includes(term) || d.command.toLowerCase().includes(term) || d.description.includes(term) || d.tags.some(t => t.includes(term));
+                });
+
+                if (hits.length > 0) {
+                    hits.forEach(key => {
+                        const d = commandDatabase[key];
+                        const div = document.createElement('div');
+                        div.className = 'list-item';
+                        div.innerHTML = `
+                            <div class="list-preview" id="preview-${key}"></div>
+                            <div class="list-info">
+                                <div class="cmd-row">
+                                    <div class="result-cmd">${key}</div>
+                                    <button class="copy-btn-small">Copy</button>
+                                </div>
+                                <div class="result-desc">${d.description}</div>
+                            </div>
+                        `;
+                        
+                        const copyBtn = div.querySelector('.copy-btn-small');
+                        copyBtn.onclick = (e) => {
+                            e.stopPropagation();
+                            navigator.clipboard.writeText(key).then(() => {
+                                copyBtn.innerText = "Copied";
+                                copyBtn.classList.add('copied');
+                                setTimeout(() => { copyBtn.innerText = "Copy"; copyBtn.classList.remove('copied'); }, 1500);
+                            });
+                        };
+
+                        div.onclick = () => { window.location.href = `detail1.html?id=${key}`; };
+                        mainList.appendChild(div);
+
+                        katex.render(d.command, document.getElementById(`preview-${key}`), { throwOnError: false });
+                    });
+                } else {
+                    mainList.innerHTML = '<div style="color:#666; padding:20px;">該当するコマンドが見つかりませんでした。</div>';
+                }
+            }
+
+            // 再検索
+            input.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter') {
+                    e.preventDefault();
+                    window.location.href = `search.html?q=${encodeURIComponent(input.value)}`;
+                }
+            });
+
+            // 表示切り替え
+            btnList.addEventListener('click', () => { mainList.classList.remove('grid-view'); btnList.classList.add('active'); btnGrid.classList.remove('active'); });
+            btnGrid.addEventListener('click', () => { mainList.classList.add('grid-view'); btnGrid.classList.add('active'); btnList.classList.remove('active'); });
+        });
+    </script>
+</body>
+</html>
