@@ -168,7 +168,7 @@
         .related-container {
             width: 100%;
             max-width: 600px;
-            margin-top: 40px;
+            margin-top: 0px;
         }
         .related-title {
             font-size: 1.2rem;
@@ -235,6 +235,40 @@
         }
         .copy-btn-small:hover { background-color: #e0e0e0; }
         .copy-btn-small.copied { background-color: #2ecc71; color: white; border-color: #2ecc71; }
+
+        /* 使用例エリア */
+        .examples-section {
+            width: 100%;
+            max-width: 600px;
+            margin-top: 20px;
+        }
+        .section-label {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #555;
+            margin-bottom: 15px;
+            padding-left: 5px;
+        }
+        .example-card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            padding: 20px;
+            margin-bottom: 20px;
+            box-sizing: border-box;
+        }
+        .example-title {
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 10px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 8px;
+        }
+        .example-preview {
+            margin: 15px 0;
+            text-align: center;
+            font-size: 1.3rem;
+        }
     </style>
 </head>
 <body>
@@ -277,6 +311,11 @@
                 </span>
                 <p id="disp-desc" style="color:#444; line-height:1.6;"></p>
             </div>
+        </div>
+
+        <div class="examples-section" id="examples-section" style="display:none;">
+            <div class="section-label">使用例</div>
+            <div id="examples-list"></div>
         </div>
 
         <div class="related-container" id="related-container" style="display:none;">
@@ -334,6 +373,61 @@
                 mathBadge.classList.add('visible');
             } else {
                 mathBadge.classList.remove('visible');
+            }
+
+            // --- 使用例の表示 ---
+            const examplesSection = document.getElementById('examples-section');
+            const examplesList = document.getElementById('examples-list');
+
+            if (data.examples && data.examples.length > 0) {
+                examplesSection.style.display = 'block';
+                
+                const exCard = document.createElement('div');
+                exCard.className = 'example-card';
+
+                data.examples.forEach((ex, index) => {
+                    const exContainer = document.createElement('div');
+                    if (index > 0) {
+                        exContainer.style.marginTop = '30px';
+                        exContainer.style.paddingTop = '20px';
+                    }
+                    
+                    // タイトル
+                    const exTitle = document.createElement('div');
+                    exTitle.className = 'example-title';
+                    exTitle.innerText = ex.title;
+                    exContainer.appendChild(exTitle);
+
+                    // KaTeXプレビュー
+                    const exPreview = document.createElement('div');
+                    exPreview.className = 'example-preview';
+                    katex.render(ex.command, exPreview, { throwOnError: false, displayMode: true });
+                    exContainer.appendChild(exPreview);
+
+                    // コマンド情報
+                    const cmdSection = document.createElement('div');
+                    cmdSection.className = 'info-section';
+                    cmdSection.innerHTML = '<span class="info-label">コマンド</span>';
+
+                    const exCodeBox = document.createElement('div');
+                    exCodeBox.className = 'code-box';
+                    
+                    const code = document.createElement('code');
+                    code.innerText = ex.command;
+                    exCodeBox.appendChild(code);
+
+                    const copyBtn = document.createElement('button');
+                    copyBtn.className = 'copy-btn';
+                    copyBtn.innerText = 'Copy';
+                    copyBtn.onclick = function() { copyText(this, ex.command); };
+                    exCodeBox.appendChild(copyBtn);
+
+                    cmdSection.appendChild(exCodeBox);
+                    exContainer.appendChild(cmdSection);
+
+                    exCard.appendChild(exContainer);
+                });
+                examplesList.appendChild(exCard);
             }
 
             // --- 関連コマンドの表示 ---

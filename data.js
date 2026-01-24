@@ -2,7 +2,7 @@
 
 // ★ データ生成用の関数
 // 1.1 ギリシャ文字
-function createGreek(name, kana, kana2, isUpper = false, related = []) {
+function createGreek(name, kana, kana2, isUpper = false, related = [], examples = []) {
     const type = isUpper ? "大文字" : "小文字";
     return {
         command: name,
@@ -10,51 +10,56 @@ function createGreek(name, kana, kana2, isUpper = false, related = []) {
         tags: ["数式", "ギリシャ文字", `ギリシャ文字・${type}`],
         package: null,
         isMathMode: false,
-        related: related
+        related: related,
+        examples: examples
     };
 }
 // 1.1.1 ギリシャ文字・大文字
-function bigGreek(name, kana, related = []) {
+function bigGreek(name, kana, related = [], examples = []) {
     return {
         command: `\\${name}`,
         description: `ギリシャ文字の大文字の${kana}です。`,
         tags: ["数式", "ギリシャ文字", "ギリシャ文字・大文字"],
         package: null,
         isMathMode: true,
-        related: related
+        related: related,
+        examples: examples
     };
 }
 // 1.1.2 ギリシャ文字・小文字
-function smallGreek(name, kana, related = []) {
+function smallGreek(name, kana, related = [], examples = []) {
     return {
         command: `\\${name}`,
         description: `ギリシャ文字の小文字の${kana}です。`,
         tags: ["数式", "ギリシャ文字", "ギリシャ文字・小文字"],
         package: null,
         isMathMode: true,
-        related: related
+        related: related,
+        examples: examples
     };
 }
 // 1.1.3 ギリシャ文字・大文字・異体字
-function bigGreek2(name, kana, related = []) {
+function bigGreek2(name, kana, related = [], examples = []) {
     return {
         command: `\\${name}`,
         description: `ギリシャ文字の大文字の${kana}の異体字です。`,
         tags: ["数式", "ギリシャ文字", "ギリシャ文字・大文字", "ギリシャ文字・異体字"],
         package: null,
         isMathMode: true,
-        related: related
+        related: related,
+        examples: examples
     };
 }
 // 1.1.4 ギリシャ文字・小文字・異体字
-function smallGreek2(name, kana, related = []) {
+function smallGreek2(name, kana, related = [], examples = []) {
     return {
         command: `\\${name}`,
         description: `ギリシャ文字の小文字の${kana}の異体字です。`,
         tags: ["数式", "ギリシャ文字", "ギリシャ文字・小文字", "ギリシャ文字・異体字"],
         package: null,
         isMathMode: true,
-        related: related
+        related: related,
+        examples: examples
     };
 }
 
@@ -139,6 +144,10 @@ const commandDatabase = {
         description: "黒板太字です。例として、実数全体の集合を表すRの黒板太字を表示しています。",
         tags: ["数式", "フォント"],
         package: "amssymb",
-        isMathMode: true
+        isMathMode: true, 
+        examples:[
+        { title: "実数全体の集合", command: "\\sin^2 \\alpha + \\cos^2 \\alpha = 1" },
+        { title: "一次結合", command: "\\mathbf{v} = \\alpha \\mathbf{a} + \\beta \\mathbf{b}" }
+    ]
     }
 };
