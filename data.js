@@ -2,61 +2,66 @@
 
 // ★ データ生成用の関数
 // 1.1 ギリシャ文字
-function createGreek(name, kana, kana2, isUpper = false) {
+function createGreek(name, kana, kana2, isUpper = false, related = []) {
     const type = isUpper ? "大文字" : "小文字";
     return {
         command: name,
         description: `ギリシャ文字の${type}の${kana}です。アルファベットの${kana2}と同じ形です。`,
         tags: ["数式", "ギリシャ文字", `ギリシャ文字・${type}`],
         package: null,
-        isMathMode: false
+        isMathMode: false,
+        related: related
     };
 }
 // 1.1.1 ギリシャ文字・小文字
-function smallGreek(name, kana) {
+function smallGreek(name, kana, related = []) {
     return {
         command: `\\${name}`,
         description: `ギリシャ文字の小文字の${kana}です。`,
         tags: ["数式", "ギリシャ文字", "ギリシャ文字・小文字"],
         package: null,
-        isMathMode: true
+        isMathMode: true,
+        related: related
     };
 }
 // 1.1.2 ギリシャ文字・小文字・異体字
-function smallGreek2(name, kana) {
+function smallGreek2(name, kana, related = []) {
     return {
         command: `\\${name}`,
         description: `ギリシャ文字の小文字の${kana}の異体字です。`,
         tags: ["数式", "ギリシャ文字", "ギリシャ文字・小文字", "ギリシャ文字・異体字"],
         package: null,
-        isMathMode: true
+        isMathMode: true,
+        related: related
     };
 }
 // 1.1.3 ギリシャ文字・大文字
-function bigGreek(name, kana) {
+function bigGreek(name, kana, related = []) {
     return {
         command: `\\${name}`,
         description: `ギリシャ文字の大文字の${kana}です。`,
         tags: ["数式", "ギリシャ文字", "ギリシャ文字・大文字"],
         package: null,
-        isMathMode: true
+        isMathMode: true,
+        related: related
     };
 }
 // 1.1.4 ギリシャ文字・大文字・異体字
-function bigGreek2(name, kana) {
+function bigGreek2(name, kana, related = []) {
     return {
         command: `\\${name}`,
         description: `ギリシャ文字の大文字の${kana}の異体字です。`,
         tags: ["数式", "ギリシャ文字", "ギリシャ文字・大文字", "ギリシャ文字・異体字"],
         package: null,
-        isMathMode: true
+        isMathMode: true,
+        related: related
     };
 }
 
 // ★ データベース
 const commandDatabase = {
     // 1.1.1 ギリシャ文字・小文字
-    "\\alpha":  smallGreek("alpha",   "アルファ"),
+    "\\alpha":  smallGreek("alpha",   "アルファ", ["\\beta", "\\gamma"]),
     "\\beta":   smallGreek("beta",    "ベータ"),
     "\\gamma":  smallGreek("gamma",   "ガンマ"),
     "\\delta":  smallGreek("delta",   "デルタ"),
