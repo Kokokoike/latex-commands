@@ -142,7 +142,8 @@
             border-radius: 4px;
             cursor: pointer;
             font-size: 0.8rem;
-            min-width: 80px; /* ここでコピー時の幅固定を実現 */
+            width: 80px; /* ここでコピー時の幅固定を実現 */
+            text-align: center;
             line-height: 1.2;
             white-space: nowrap;
         }
@@ -221,8 +222,8 @@
             const data = commandDatabase[currentKey];
 
             // --- 描画処理 ---
-            document.title = `${data.command} - LaTeX Dictionary`;
-            document.getElementById('disp-title').innerText = data.command;
+            document.title = `${currentKey} - LaTeX Dictionary`;
+            document.getElementById('disp-title').innerText = currentKey;
             document.getElementById('disp-command').innerText = data.command;
             document.getElementById('disp-desc').innerText = data.description;
 
@@ -267,12 +268,12 @@
             if (btn.classList.contains('copied')) return;
             navigator.clipboard.writeText(text).then(() => {
                 const originalText = btn.innerText;
-                btn.innerText = "✔ Copied";
+                btn.innerText = "Copied";
                 btn.classList.add('copied');
                 setTimeout(() => {
                     btn.innerText = originalText;
                     btn.classList.remove('copied');
-                }, 2000);
+                }, 1500);
             });
         }
     </script>
