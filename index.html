@@ -7,7 +7,6 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
     <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
     <script src="utils.js"></script>
-    <script src="data_greek.js"></script>
     <link rel="stylesheet" href="style.css">
 
     <style>
@@ -73,8 +72,7 @@
         <div class="site-desc">シンプルでわかりやすい LaTeX 数式コマンド集</div>
         
         <div class="category-links">
-            <a href="category.html?id=greek" class="cat-card">ギリシャ文字</a>
-            <!-- 新しいカテゴリを追加したらここにリンクを追記 -->
+            <a href="bigCategory.html?file=data_root.js" class="cat-card">スタート</a>
         </div>
 
         <div class="search-wrapper">
@@ -95,8 +93,8 @@
         document.addEventListener("DOMContentLoaded", function() {
             const input = document.getElementById('search-input');
 
-            // オートコンプリートのセットアップ
-            setupAutocomplete('search-input', 'search-results', commandDatabase);
+            // 検索機能は一時的に無効化（または後日実装）
+            // setupAutocomplete('search-input', 'search-results', commandDatabase);
 
             // エンターキーで一覧表示
             input.addEventListener('keydown', (e) => {

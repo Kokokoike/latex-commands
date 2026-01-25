@@ -7,7 +7,6 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
     <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
     <script src="utils.js"></script>
-    <script src="data_greek.js"></script>
     <link rel="stylesheet" href="style.css">
 
     <style>
@@ -230,152 +229,161 @@
 
     <script>
         document.addEventListener("DOMContentLoaded", function() {
-            // ★重要修正: URLパラメータ (?id=alpha) を取得するように変更
+            // URLパラメータ (?file=...&id=...) を取得
             const params = new URLSearchParams(window.location.search);
-            let currentKey = params.get('id');
+            const file = params.get('file');
+            const currentKey = params.get('id');
             
-            // データがない場合のフォールバック（最初のデータを表示）
-            const keys = Object.keys(commandDatabase);
-            if (!currentKey || !commandDatabase[currentKey]) {
-                currentKey = keys[0];
+            if (!file || !currentKey) {
+                document.getElementById('disp-title').innerText = "Error";
+                document.getElementById('disp-desc').innerText = "ファイルまたはIDが指定されていません。";
+                return;
             }
 
-            const data = commandDatabase[currentKey];
+            // データを動的に読み込む
+            loadDataFile(file, function(pageData) {
+                const data = pageData.commands[currentKey];
+                if (!data) {
+                    document.getElementById('disp-title').innerText = "Not Found";
+                    return;
+                }
 
-            // --- 描画処理 ---
-            document.title = `${currentKey} - LaTeX Dictionary`;
-            document.getElementById('disp-title').innerText = currentKey;
-            document.getElementById('disp-command').innerText = data.command;
-            document.getElementById('disp-desc').innerText = data.description;
+                // --- 描画処理 ---
+                document.title = `${currentKey} - LaTeX Dictionary`;
+                document.getElementById('disp-title').innerText = currentKey;
+                document.getElementById('disp-command').innerText = data.command;
+                document.getElementById('disp-desc').innerText = data.description;
 
-            katex.render(data.command, document.getElementById("math-preview"), {
-                throwOnError: false, displayMode: true
-            });
-
-            const pkgBox = document.getElementById('pkg-box');
-            if (data.package) {
-                pkgBox.classList.remove('light');
-                const pkgCmd = `\\usepackage{${data.package}}`;
-                pkgBox.innerHTML = `<code>${pkgCmd}</code><button class="copy-btn" onclick="copyText(this, '${pkgCmd.replace(/\\/g, '\\\\')}')">Copy</button>`;
-            } else {
-                pkgBox.classList.add('light');
-                pkgBox.innerHTML = `<span style="color:#888; font-style:italic;">なし（標準機能）</span>`;
-            }
-
-            const tagContainer = document.getElementById('disp-tags');
-            tagContainer.innerHTML = '';
-            data.tags.forEach(tag => {
-                const span = document.createElement('span');
-                span.className = 'tag';
-                span.innerText = tag;
-                tagContainer.appendChild(span);
-            });
-
-            // ▼ 追加: data.jsのisMathModeを見てバッジを表示
-            const mathBadge = document.getElementById('math-badge');
-            if (data.isMathMode) {
-                mathBadge.classList.add('visible');
-            } else {
-                mathBadge.classList.remove('visible');
-            }
-
-            // --- 使用例の表示 ---
-            const examplesSection = document.getElementById('examples-section');
-            const examplesList = document.getElementById('examples-list');
-
-            if (data.examples && data.examples.length > 0) {
-                examplesSection.style.display = 'block';
-                
-                const exCard = document.createElement('div');
-                exCard.className = 'example-card';
-
-                data.examples.forEach((ex, index) => {
-                    const exContainer = document.createElement('div');
-                    if (index > 0) {
-                        exContainer.style.marginTop = '30px';
-                        exContainer.style.paddingTop = '20px';
-                    }
-                    
-                    // タイトル
-                    const exTitle = document.createElement('div');
-                    exTitle.className = 'example-title';
-                    exTitle.innerText = `${index + 1}. ${ex.title}`;
-                    exContainer.appendChild(exTitle);
-
-                    // KaTeXプレビュー
-                    const exPreview = document.createElement('div');
-                    exPreview.className = 'example-preview';
-                    katex.render(ex.command, exPreview, { throwOnError: false, displayMode: true });
-                    exContainer.appendChild(exPreview);
-
-                    // コマンド情報
-                    const cmdSection = document.createElement('div');
-                    cmdSection.className = 'info-section';
-                    cmdSection.innerHTML = '<span class="info-label">コマンド</span>';
-
-                    const exCodeBox = document.createElement('div');
-                    exCodeBox.className = 'code-box';
-                    
-                    const code = document.createElement('code');
-                    code.innerText = ex.command;
-                    exCodeBox.appendChild(code);
-
-                    const copyBtn = document.createElement('button');
-                    copyBtn.className = 'copy-btn';
-                    copyBtn.innerText = 'Copy';
-                    copyBtn.onclick = function() { copyText(this, ex.command); };
-                    exCodeBox.appendChild(copyBtn);
-
-                    cmdSection.appendChild(exCodeBox);
-                    exContainer.appendChild(cmdSection);
-
-                    exCard.appendChild(exContainer);
+                katex.render(data.command, document.getElementById("math-preview"), {
+                    throwOnError: false, displayMode: true
                 });
-                examplesList.appendChild(exCard);
-            }
 
-            // --- 関連コマンドの表示 ---
-            const relatedContainer = document.getElementById('related-container');
-            const relatedGrid = document.getElementById('related-grid');
-            
-            if (data.related && data.related.length > 0) {
-                relatedContainer.style.display = 'block';
-                data.related.forEach(relKey => {
-                    const relData = commandDatabase[relKey];
-                    if (!relData) return;
+                const pkgBox = document.getElementById('pkg-box');
+                if (data.package) {
+                    pkgBox.classList.remove('light');
+                    const pkgCmd = `\\usepackage{${data.package}}`;
+                    pkgBox.innerHTML = `<code>${pkgCmd}</code><button class="copy-btn" onclick="copyText(this, '${pkgCmd.replace(/\\/g, '\\\\')}')">Copy</button>`;
+                } else {
+                    pkgBox.classList.add('light');
+                    pkgBox.innerHTML = `<span style="color:#888; font-style:italic;">なし（標準機能）</span>`;
+                }
 
-                    const card = document.createElement('div');
-                    card.className = 'list-item';
-                    card.innerHTML = `
-                        <div class="list-preview"></div>
-                        <div class="list-info">
-                            <div class="cmd-row">
-                                <div class="result-cmd">${relKey}</div>
-                                <button class="copy-btn-small">Copy</button>
-                            </div>
-                        </div>
-                    `;
+                const tagContainer = document.getElementById('disp-tags');
+                tagContainer.innerHTML = '';
+                data.tags.forEach(tag => {
+                    const span = document.createElement('span');
+                    span.className = 'tag';
+                    span.innerText = tag;
+                    tagContainer.appendChild(span);
+                });
+
+                // バッジ表示
+                const mathBadge = document.getElementById('math-badge');
+                if (data.isMathMode) {
+                    mathBadge.classList.add('visible');
+                } else {
+                    mathBadge.classList.remove('visible');
+                }
+
+                // --- 使用例の表示 ---
+                const examplesSection = document.getElementById('examples-section');
+                const examplesList = document.getElementById('examples-list');
+
+                if (data.examples && data.examples.length > 0) {
+                    examplesSection.style.display = 'block';
                     
-                    card.onclick = () => { window.location.href = `detail1.html?id=${relKey}`; };
+                    const exCard = document.createElement('div');
+                    exCard.className = 'example-card';
 
-                    const copyBtn = card.querySelector('.copy-btn-small');
-                    copyBtn.onclick = (e) => {
-                        e.stopPropagation();
-                        copyText(copyBtn, relKey);
-                    };
+                    data.examples.forEach((ex, index) => {
+                        const exContainer = document.createElement('div');
+                        if (index > 0) {
+                            exContainer.style.marginTop = '30px';
+                            exContainer.style.paddingTop = '20px';
+                        }
+                        
+                        // タイトル
+                        const exTitle = document.createElement('div');
+                        exTitle.className = 'example-title';
+                        exTitle.innerText = `${index + 1}. ${ex.title}`;
+                        exContainer.appendChild(exTitle);
 
-                    relatedGrid.appendChild(card);
+                        // KaTeXプレビュー
+                        const exPreview = document.createElement('div');
+                        exPreview.className = 'example-preview';
+                        katex.render(ex.command, exPreview, { throwOnError: false, displayMode: true });
+                        exContainer.appendChild(exPreview);
 
-                    // KaTeXレンダリング
-                    katex.render(relData.command, card.querySelector('.list-preview'), {
-                        throwOnError: false
+                        // コマンド情報
+                        const cmdSection = document.createElement('div');
+                        cmdSection.className = 'info-section';
+                        cmdSection.innerHTML = '<span class="info-label">コマンド</span>';
+
+                        const exCodeBox = document.createElement('div');
+                        exCodeBox.className = 'code-box';
+                        
+                        const code = document.createElement('code');
+                        code.innerText = ex.command;
+                        exCodeBox.appendChild(code);
+
+                        const copyBtn = document.createElement('button');
+                        copyBtn.className = 'copy-btn';
+                        copyBtn.innerText = 'Copy';
+                        copyBtn.onclick = function() { copyText(this, ex.command); };
+                        exCodeBox.appendChild(copyBtn);
+
+                        cmdSection.appendChild(exCodeBox);
+                        exContainer.appendChild(cmdSection);
+
+                        exCard.appendChild(exContainer);
                     });
-                });
-            }
+                    examplesList.appendChild(exCard);
+                }
 
-            document.getElementById('btn-copy-cmd').onclick = function() {
-                copyText(this, data.command);
-            };
+                // --- 関連コマンドの表示 ---
+                const relatedContainer = document.getElementById('related-container');
+                const relatedGrid = document.getElementById('related-grid');
+                
+                if (data.related && data.related.length > 0) {
+                    relatedContainer.style.display = 'block';
+                    data.related.forEach(relKey => {
+                        // 関連コマンドも同じファイル内にあると仮定
+                        const relData = pageData.commands[relKey];
+                        if (!relData) return;
+
+                        const card = document.createElement('div');
+                        card.className = 'list-item';
+                        card.innerHTML = `
+                            <div class="list-preview"></div>
+                            <div class="list-info">
+                                <div class="cmd-row">
+                                    <div class="result-cmd">${relKey}</div>
+                                    <button class="copy-btn-small">Copy</button>
+                                </div>
+                            </div>
+                        `;
+                        
+                        card.onclick = () => { window.location.href = `detail1.html?file=${file}&id=${relKey}`; };
+
+                        const copyBtn = card.querySelector('.copy-btn-small');
+                        copyBtn.onclick = (e) => {
+                            e.stopPropagation();
+                            copyText(copyBtn, relKey);
+                        };
+
+                        relatedGrid.appendChild(card);
+
+                        // KaTeXレンダリング
+                        katex.render(relData.command, card.querySelector('.list-preview'), {
+                            throwOnError: false
+                        });
+                    });
+                }
+
+                document.getElementById('btn-copy-cmd').onclick = function() {
+                    copyText(this, data.command);
+                };
+            });
         });
     </script>
 </body>

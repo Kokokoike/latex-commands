@@ -7,7 +7,6 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
     <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
     <script src="utils.js"></script>
-    <script src="data_greek.js"></script>
     <link rel="stylesheet" href="style.css">
 
     <style>
@@ -60,29 +59,32 @@
 
     <script>
         document.addEventListener("DOMContentLoaded", function() {
-            // URLパラメータ (?id=greek) を取得
+            // URLパラメータ (?file=...) を取得
             const params = new URLSearchParams(window.location.search);
-            const catId = params.get('id');
+            const file = params.get('file');
 
-            // カテゴリ情報の取得
-            const categoryData = window.LaTeXDict.categories[catId];
-
-            if (!categoryData) {
-                document.getElementById('page-title').innerText = "Category Not Found";
-                document.getElementById('category-desc').innerText = "指定されたカテゴリが見つかりません。";
+            if (!file) {
+                document.getElementById('page-title').innerText = "File Not Specified";
                 return;
             }
 
-            document.title = `${categoryData.title} - LaTeX Dictionary`;
-            document.getElementById('page-title').innerText = categoryData.title;
-            document.getElementById('category-desc').innerText = categoryData.description;
+            // データを動的に読み込む
+            loadDataFile(file, function(data) {
+                if (data.type !== 'leaf') {
+                    document.getElementById('category-list').innerHTML = '<div style="color:red;">このファイルはコマンド一覧用ではありません。</div>';
+                    return;
+                }
 
-            const listContainer = document.getElementById('category-list');
-            const keys = Object.keys(commandDatabase);
+                document.title = `${data.title} - LaTeX Dictionary`;
+                document.getElementById('page-title').innerText = data.title;
+                document.getElementById('category-desc').innerText = data.description;
 
-            // アイテム生成関数
-            function createItem(key, container) {
-                const d = commandDatabase[key];
+                const listContainer = document.getElementById('category-list');
+                const keys = Object.keys(data.commands);
+
+                // アイテム生成関数
+                function createItem(key, container) {
+                    const d = data.commands[key];
                 const div = document.createElement('div');
                 div.className = 'list-item';
                 div.innerHTML = `
@@ -101,24 +103,24 @@
                     copyText(copyBtn, key);
                 };
 
-                div.onclick = () => { window.location.href = `detail1.html?id=${key}`; };
+                    div.onclick = () => { window.location.href = `detail1.html?file=${file}&id=${key}`; };
                 container.appendChild(div);
 
                 katex.render(d.command, document.getElementById(`preview-${key}`), { throwOnError: false });
-            }
+                }
 
-            // セクション定義がある場合の表示処理
-            if (categoryData.sections && Array.isArray(categoryData.sections)) {
-                // 親コンテナのグリッドクラスを削除（セクションごとにグリッドを作るため）
-                listContainer.className = '';
-                
-                let hasItems = false;
-                let displayedSectionCount = 0;
+                // セクション定義がある場合の表示処理
+                if (data.sections && Array.isArray(data.sections)) {
+                    // 親コンテナのグリッドクラスを削除
+                    listContainer.className = '';
+                    
+                    let hasItems = false;
+                    let displayedSectionCount = 0;
 
-                categoryData.sections.forEach(sec => {
-                    // タグによるフィルタリング
-                    const secKeys = keys.filter(key => {
-                        const tags = commandDatabase[key].tags || [];
+                    data.sections.forEach(sec => {
+                        // タグによるフィルタリング
+                        const secKeys = keys.filter(key => {
+                            const tags = data.commands[key].tags || [];
                         const hasRequired = sec.requiredTags.every(t => tags.includes(t));
                         const hasExcluded = sec.excludedTags ? sec.excludedTags.some(t => tags.includes(t)) : false;
                         return hasRequired && !hasExcluded;
@@ -149,17 +151,18 @@
                     }
                 });
 
-                if (!hasItems) {
-                    listContainer.innerHTML = '<div style="color:#666;">該当するコマンドが見つかりませんでした。</div>';
-                }
-            } else {
-                // セクション定義がない場合（全表示）
-                if (keys.length > 0) {
-                    keys.forEach(key => createItem(key, listContainer));
+                    if (!hasItems) {
+                        listContainer.innerHTML = '<div style="color:#666;">該当するコマンドが見つかりませんでした。</div>';
+                    }
                 } else {
-                    listContainer.innerHTML = '<div style="color:#666;">コマンドが見つかりませんでした。</div>';
+                    // セクション定義がない場合（全表示）
+                    if (keys.length > 0) {
+                        keys.forEach(key => createItem(key, listContainer));
+                    } else {
+                        listContainer.innerHTML = '<div style="color:#666;">コマンドが見つかりませんでした。</div>';
+                    }
                 }
-            }
+            });
         });
     </script>
 </body>
