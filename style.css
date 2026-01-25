@@ -99,3 +99,71 @@ body {
 
 .result-cmd { font-weight: bold; font-family: monospace; font-size: 1.1rem; }
 .result-desc { font-size: 0.85rem; color: #666; }
+
+/* --- 検索結果・一覧リスト共通スタイル --- */
+.main-results-list {
+    width: 100%;
+    margin-top: 30px;
+    text-align: left;
+}
+
+.list-item {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    display: flex;
+    align-items: center;
+}
+.list-item:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+
+.list-preview {
+    flex: 0 0 100px;
+    text-align: center;
+    font-size: 1.5rem;
+    margin-right: 20px;
+    color: #333;
+}
+.list-info { flex: 1; }
+
+.list-info .result-desc {
+    line-height: 1.5;
+    height: 3em;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+}
+
+.cmd-row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 4px;
+}
+
+/* グリッド表示用スタイル */
+.main-results-list.grid-view {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 15px;
+}
+
+.main-results-list.grid-view .list-item {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 15px;
+    margin-bottom: 0;
+}
+
+.main-results-list.grid-view .list-preview { 
+    margin-right: 0; margin-bottom: 10px; min-height: 60px;
+    display: flex; align-items: center; justify-content: center;
+}
+.main-results-list.grid-view .list-info { width: 100%; }
+.main-results-list.grid-view .result-desc { display: none; }
+.main-results-list.grid-view .cmd-row { flex-direction: column; justify-content: center; }
+.main-results-list.grid-view .copy-btn-small { margin-left: 0; margin-top: 10px; }
