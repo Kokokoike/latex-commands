@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LaTeX Dictionary</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script src="data_greek.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <script src="utils.js"></script>
+
+    <style>
+        body {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            padding-top: 40px;
+            padding-bottom: 40px;
+        }
+
+        .container { width: 90%; max-width: 800px; padding: 20px; margin: auto; margin-top: 0; }
+        
+        .site-logo-img {
+            max-width: 150px;
+            height: auto;
+            margin-bottom: 10px;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.08));
+            cursor: pointer;
+        }
+
+        .page-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #333;
+            margin: 20px 0 30px 0;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #eee;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <img src="data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' width='300' height='80' viewBox='0 0 300 80'%3e%3ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='sans-serif' font-weight='bold' font-size='40' fill='%232c3e50'%3eLaTeX Dict%3c/text%3e%3c/svg%3e" 
+             alt="LaTeX Dict" class="site-logo-img" onclick="window.location.href='index.html'">
+        
+        <h1 class="page-title" id="page-title">一覧</h1>
+
+        <!-- グリッド表示を強制するために grid-view クラスを付与 -->
+        <div class="main-results-list grid-view" id="category-list"></div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // タイトルの設定
+            if (typeof categoryTitle !== 'undefined') {
+                document.title = `${categoryTitle} - LaTeX Dictionary`;
+                document.getElementById('page-title').innerText = categoryTitle;
+            }
+
+            const listContainer = document.getElementById('category-list');
+            const keys = Object.keys(commandDatabase);
+
+            // ファイル内の全コマンドを表示
+            if (keys.length > 0) {
+                keys.forEach(key => {
+                    const d = commandDatabase[key];
+                    const div = document.createElement('div');
+                    div.className = 'list-item';
+                    div.innerHTML = `
+                        <div class="list-preview" id="preview-${key}"></div>
+                        <div class="list-info">
+                            <div class="cmd-row">
+                                <div class="result-cmd">${key}</div>
+                                <button class="copy-btn-small">Copy</button>
+                            </div>
+                        </div>
+                    `;
+                    
+                    const copyBtn = div.querySelector('.copy-btn-small');
+                    copyBtn.onclick = (e) => {
+                        e.stopPropagation();
+                        copyText(copyBtn, key);
+                    };
+
+                    div.onclick = () => { window.location.href = `detail1.html?id=${key}`; };
+                    listContainer.appendChild(div);
+
+                    katex.render(d.command, document.getElementById(`preview-${key}`), { throwOnError: false });
+                });
+            } else {
+                listContainer.innerHTML = '<div style="color:#666;">コマンドが見つかりませんでした。</div>';
+            }
+        });
+    </script>
+</body>
+</html>

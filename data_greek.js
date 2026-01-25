@@ -1,4 +1,6 @@
-/* data.js */
+/* data_greek.js */
+
+const categoryTitle = "ギリシャ文字";
 
 // ★ データ生成用の関数
 // 1.1 ギリシャ文字
