@@ -139,6 +139,15 @@ body {
     -webkit-line-clamp: 2;
 }
 
+/* 追加: 説明文を全文表示する場合のクラス（カテゴリ一覧などで使用） */
+.list-info .result-desc.full-text {
+    height: auto;
+    overflow: visible;
+    display: block;
+    -webkit-line-clamp: unset;
+    white-space: pre-line;
+}
+
 .cmd-row {
     display: flex;
     align-items: center;
@@ -158,6 +167,11 @@ body {
     text-align: center;
     padding: 15px;
     margin-bottom: 0;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+.main-results-list.grid-view .list-item:hover {
+    box-shadow: 0 8px 24px rgba(0,0,0,0.12);
 }
 
 .main-results-list.grid-view .list-preview { 
@@ -184,4 +198,29 @@ body {
 /* セクションタイトルの直後のリストはマージンを詰める */
 .section-title + .main-results-list {
     margin-top: 0;
+}
+
+/* カテゴリリンク（トップページ用） */
+.category-links {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+    margin-bottom: 40px;
+}
+.cat-card {
+    display: block;
+    background: white;
+    padding: 15px 25px;
+    border-radius: 8px;
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+.cat-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    color: #4a90e2;
 }

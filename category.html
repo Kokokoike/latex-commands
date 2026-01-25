@@ -6,9 +6,9 @@
     <title>LaTeX Dictionary</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
     <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script src="utils.js"></script>
     <script src="data_greek.js"></script>
     <link rel="stylesheet" href="style.css">
-    <script src="utils.js"></script>
 
     <style>
         body {
@@ -60,15 +60,22 @@
 
     <script>
         document.addEventListener("DOMContentLoaded", function() {
-            // タイトルの設定
-            if (typeof categoryTitle !== 'undefined') {
-                document.title = `${categoryTitle} - LaTeX Dictionary`;
-                document.getElementById('page-title').innerText = categoryTitle;
+            // URLパラメータ (?id=greek) を取得
+            const params = new URLSearchParams(window.location.search);
+            const catId = params.get('id');
+
+            // カテゴリ情報の取得
+            const categoryData = window.LaTeXDict.categories[catId];
+
+            if (!categoryData) {
+                document.getElementById('page-title').innerText = "Category Not Found";
+                document.getElementById('category-desc').innerText = "指定されたカテゴリが見つかりません。";
+                return;
             }
-            // 説明の設定
-            if (typeof categoryDescription !== 'undefined') {
-                document.getElementById('category-desc').innerText = categoryDescription;
-            }
+
+            document.title = `${categoryData.title} - LaTeX Dictionary`;
+            document.getElementById('page-title').innerText = categoryData.title;
+            document.getElementById('category-desc').innerText = categoryData.description;
 
             const listContainer = document.getElementById('category-list');
             const keys = Object.keys(commandDatabase);
@@ -101,14 +108,14 @@
             }
 
             // セクション定義がある場合の表示処理
-            if (typeof categorySections !== 'undefined' && Array.isArray(categorySections)) {
+            if (categoryData.sections && Array.isArray(categoryData.sections)) {
                 // 親コンテナのグリッドクラスを削除（セクションごとにグリッドを作るため）
                 listContainer.className = '';
                 
                 let hasItems = false;
                 let displayedSectionCount = 0;
 
-                categorySections.forEach(sec => {
+                categoryData.sections.forEach(sec => {
                     // タグによるフィルタリング
                     const secKeys = keys.filter(key => {
                         const tags = commandDatabase[key].tags || [];

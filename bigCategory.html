@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>カテゴリー一覧 - LaTeX Dictionary</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script src="utils.js"></script>
+    <script src="data_greek.js"></script>
+    <script src="data_letters.js"></script>
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        body {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            padding-top: 40px;
+            padding-bottom: 40px;
+        }
+
+        .container { width: 90%; max-width: 800px; padding: 20px; margin: auto; margin-top: 0; }
+        
+        .site-logo-img {
+            max-width: 150px;
+            height: auto;
+            margin-bottom: 10px;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.08));
+            cursor: pointer;
+        }
+
+        .page-title {
+            font-size: var(--main-title-size);
+            font-weight: bold;
+            color: #333;
+            margin: 20px 0 10px 0;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <img src="data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' width='300' height='80' viewBox='0 0 300 80'%3e%3ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='sans-serif' font-weight='bold' font-size='40' fill='%232c3e50'%3eLaTeX Dict%3c/text%3e%3c/svg%3e" 
+             alt="LaTeX Dict" class="site-logo-img" onclick="window.location.href='index.html'">
+        
+        <h1 class="page-title">カテゴリー一覧</h1>
+        <p id="big-cat-desc" style="color:#444; line-height:1.6; margin-bottom: 30px; padding-bottom: 15px; border-bottom: 2px solid #eee;">
+            登録されているカテゴリーの一覧です。
+        </p>
+
+        <div id="big-category-list"></div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const listContainer = document.getElementById('big-category-list');
+            
+            // URLパラメータでID指定がなければ 'letters' をデフォルトとする
+            const params = new URLSearchParams(window.location.search);
+            const bigCatId = params.get('id') || 'letters';
+            
+            const bigCat = window.LaTeXDict.bigCategories[bigCatId];
+
+            if (bigCat) {
+                // タイトルと説明の更新
+                document.title = `${bigCat.title} - LaTeX Dictionary`;
+                document.querySelector('.page-title').innerText = bigCat.title;
+                const descEl = document.getElementById('big-cat-desc');
+                if (descEl) descEl.innerText = bigCat.description;
+
+                // セクションごとの表示
+                if (bigCat.sections && bigCat.sections.length > 0) {
+                    bigCat.sections.forEach(sec => {
+                        // セクションタイトル
+                        const secTitle = document.createElement('div');
+                        secTitle.className = 'section-title';
+                        secTitle.innerText = sec.title;
+                        listContainer.appendChild(secTitle);
+
+                        // リストコンテナ
+                        const listWrapper = document.createElement('div');
+                        listWrapper.className = 'main-results-list';
+                        listContainer.appendChild(listWrapper);
+
+                        // カテゴリ表示
+                        sec.categories.forEach(catId => {
+                            const cat = window.LaTeXDict.categories[catId];
+                            if (cat) {
+                                const div = document.createElement('div');
+                                div.className = 'list-item';
+                                div.innerHTML = `
+                                    <div class="list-preview" id="icon-${catId}"></div>
+                                    <div class="list-info">
+                                        <div class="cmd-row">
+                                            <div class="result-cmd">${cat.title}</div>
+                                        </div>
+                                        <div class="result-desc">${cat.description.replace(/\n/g, '')}</div>
+                                    </div>
+                                `;
+                                div.onclick = () => { window.location.href = `category.html?id=${catId}`; };
+                                listWrapper.appendChild(div);
+
+                                if (cat.icon) {
+                                    katex.render(cat.icon, document.getElementById(`icon-${catId}`), { throwOnError: false });
+                                }
+                            }
+                        });
+                    });
+                }
+            } else {
+                listContainer.innerHTML = '<div style="color:#666;">カテゴリーグループが見つかりませんでした。</div>';
+            }
+        });
+    </script>
+</body>
+</html>

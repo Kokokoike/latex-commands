@@ -1,3 +1,38 @@
+// グローバルなデータ保管場所
+window.LaTeXDict = {
+    categories: {}, // カテゴリごとのメタデータ (title, sectionsなど)
+    bigCategories: {}, // 大カテゴリ（カテゴリグループ）のメタデータ
+    database: {}    // すべてのコマンド定義 (検索・詳細ページ用)
+};
+
+// データを登録するための関数
+window.registerCategory = function(id, data) {
+    // カテゴリ情報を保存
+    window.LaTeXDict.categories[id] = {
+        title: data.title,
+        icon: data.icon, // カテゴリアイコン
+        description: data.description,
+        sections: data.sections || null
+    };
+
+    // コマンド定義を統合データベースにマージ
+    if (data.commands) {
+        Object.assign(window.LaTeXDict.database, data.commands);
+    }
+};
+
+// 大カテゴリ（カテゴリグループ）を登録するための関数
+window.registerBigCategory = function(id, data) {
+    window.LaTeXDict.bigCategories[id] = {
+        title: data.title,
+        description: data.description,
+        sections: data.sections || []
+    };
+};
+
+// 既存のコードの下位互換性のためにエイリアスを設定
+window.commandDatabase = window.LaTeXDict.database;
+
 // 検索ロジック
 function getSearchResults(term, db) {
     if (!term) return [];

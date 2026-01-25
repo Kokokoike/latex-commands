@@ -1,15 +1,5 @@
 /* data_greek.js */
 
-const categoryTitle = "ギリシャ文字";
-const categoryDescription = "ギリシャ文字専用のコマンドを使用する場合、数式環境が必要です。";
-
-const categorySections = [
-    { title: "大文字", requiredTags: ["ギリシャ文字・大文字"], excludedTags: ["ギリシャ文字・異体字"] },
-    { title: "小文字", requiredTags: ["ギリシャ文字・小文字"], excludedTags: ["ギリシャ文字・異体字"] },
-    { title: "大文字（異体字）", requiredTags: ["ギリシャ文字・大文字", "ギリシャ文字・異体字"] },
-    { title: "小文字（異体字）", requiredTags: ["ギリシャ文字・小文字", "ギリシャ文字・異体字"] }
-];
-
 // ★ データ生成用の関数
 // 1.1 ギリシャ文字
 function createGreek(name, kana, kana2, isUpper = false, related = [], examples = []) {
@@ -74,7 +64,19 @@ function smallGreek2(name, kana, related = [], examples = []) {
 }
 
 // ★ データベース
-const commandDatabase = {
+registerCategory("greek", {
+    title: "ギリシャ文字",
+    icon: "\\alpha",
+    description: "ギリシャ文字の大文字・小文字と、異体字の表示方法一覧です。\n アルファベットと同形でない場合、数式環境が必要です。",
+    
+    sections: [
+        { title: "大文字", requiredTags: ["ギリシャ文字・大文字"], excludedTags: ["ギリシャ文字・異体字"] },
+        { title: "小文字", requiredTags: ["ギリシャ文字・小文字"], excludedTags: ["ギリシャ文字・異体字"] },
+        { title: "大文字（異体字）", requiredTags: ["ギリシャ文字・大文字", "ギリシャ文字・異体字"] },
+        { title: "小文字（異体字）", requiredTags: ["ギリシャ文字・小文字", "ギリシャ文字・異体字"] }
+    ],
+
+    commands: {
     // 1.1.1 ギリシャ文字・大文字
     "A":        createGreek("A", "アルファ", "A(エー)", true, ["\\alpha"]),
     "B":        createGreek("B", "ベータ", "B(ビー)", true, ["\\beta"]),
@@ -161,4 +163,5 @@ const commandDatabase = {
         ], 
         related: ["\\alpha"]
     }
-};
+    }
+});
