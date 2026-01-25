@@ -13,6 +13,13 @@ setData({
                     file: "data/letters/greek/data_greek.js",
                     type: "leaf",
                     icon: "\\alpha"
+                }, 
+                {
+                    title: "太字",
+                    description: "太字フォントの表示方法一覧です。",
+                    file: "data/letters/bold/data_bold.js",
+                    type: "leaf",
+                    icon: "\\mathbb{R}"
                 }
             ]
         }

@@ -61,6 +61,36 @@
         .update-item:last-child { border-bottom: none; }
         .update-date { color: #888; font-size: 0.8rem; margin-right: 10px; display: inline-block; min-width: 120px; }
         .update-msg { color: #333; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; flex: 1; }
+
+        /* トップナビゲーション */
+        .nav-grid {
+            display: flex;
+            gap: 30px;
+            width: 100%;
+            max-width: 350px;
+            margin: 20px auto;
+        }
+        .nav-card {
+            flex: 1;
+            background: #f4f4f9;
+            padding: 10px;
+            border-radius: 8px;
+            text-decoration: none;
+            color: #2c3e50;
+            font-weight: bold;
+            font-size: 0.9rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            border: 1px solid #eee;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .nav-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+            border-color: #ddd;
+        }
         
     </style>
 </head>
@@ -71,13 +101,14 @@
         
         <div class="site-desc">シンプルでわかりやすい LaTeX 数式コマンド集</div>
         
-        <div class="category-links">
-            <a href="bigCategory.html?file=data_root.js" class="cat-card">スタート</a>
-        </div>
-
         <div class="search-wrapper">
             <input type="text" class="search-input" id="search-input" placeholder="コマンドやキーワードで検索..." autocomplete="off">
             <div class="search-results" id="search-results"></div>
+        </div>
+
+        <div class="nav-grid">
+            <a href="bigCategory.html?file=data_root.js" class="nav-card">主なカテゴリー</a>
+            <a href="#" class="nav-card">トピック</a>
         </div>
 
         <div class="update-log-container" id="update-log-container">

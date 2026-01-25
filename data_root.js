@@ -1,11 +1,11 @@
 /* data_root.js */
 setData({
-    title: "LaTeX Command Dictionary",
-    description: "シンプルでわかりやすい LaTeX 数式コマンド集",
+    title: "主なカテゴリー",
+    description: "",
     type: "big",
     sections: [
         {
-            title: "カテゴリー",
+            title: "フォント",
             items: [
                 {
                     title: "文字",

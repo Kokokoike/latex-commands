@@ -26,6 +26,7 @@
             display: flex;
             align-items: center;
             padding: 0 20px;
+            justify-content: space-between; /* ロゴと検索を左右に配置 */
             z-index: 1000;
             box-sizing: border-box;
             box-shadow: none;
@@ -181,10 +182,26 @@
              alt="LaTeX Dict" 
              class="header-logo"
              onclick="window.location.href='index.html'">
+
+        <div class="header-search-container">
+            <input type="text" id="header-search-input" placeholder="Search..." autocomplete="off">
+            <button id="header-search-toggle" class="search-icon-btn">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                </svg>
+            </button>
+        </div>
     </header>
 
     <main class="main-content">
         <div class="command-card" id="card-container">
+            <nav class="breadcrumbs">
+                <a href="index.html">TOP</a> &gt; 
+                <a href="#" id="breadcrumb-category">カテゴリー</a> &gt; 
+                <span class="current-page-name" id="breadcrumb-current"></span>
+            </nav>
+
             <div class="command-title" id="disp-title"></div>
             
             <div class="preview-box" id="math-preview"></div>
@@ -229,6 +246,28 @@
 
     <script>
         document.addEventListener("DOMContentLoaded", function() {
+            // --- ヘッダー検索機能 ---
+            const searchContainer = document.querySelector('.header-search-container');
+            const searchInput = document.getElementById('header-search-input');
+            const searchToggle = document.getElementById('header-search-toggle');
+
+            searchToggle.addEventListener('click', () => {
+                searchContainer.classList.toggle('active');
+                if (searchContainer.classList.contains('active')) {
+                    searchInput.focus();
+                }
+            });
+
+            searchInput.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter') {
+                    e.preventDefault();
+                    const term = searchInput.value.trim();
+                    if (term) {
+                        window.location.href = `search.html?q=${encodeURIComponent(term)}`;
+                    }
+                }
+            });
+
             // URLパラメータ (?file=...&id=...) を取得
             const params = new URLSearchParams(window.location.search);
             const file = params.get('file');
@@ -247,6 +286,11 @@
                     document.getElementById('disp-title').innerText = "Not Found";
                     return;
                 }
+
+                // --- パンくずリストの更新 ---
+                document.getElementById('breadcrumb-category').innerText = pageData.title;
+                document.getElementById('breadcrumb-category').href = `category.html?file=${file}`;
+                document.getElementById('breadcrumb-current').innerText = currentKey;
 
                 // --- 描画処理 ---
                 document.title = `${currentKey} - LaTeX Dictionary`;

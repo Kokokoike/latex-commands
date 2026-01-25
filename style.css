@@ -219,3 +219,66 @@ body {
     box-shadow: 0 8px 24px rgba(0,0,0,0.12);
     color: #4a90e2;
 }
+
+/* --- ヘッダー検索 (On-demand UI) --- */
+.header-search-container {
+    display: flex;
+    align-items: center;
+    background: white;
+    border-radius: 20px;
+    padding: 5px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    pointer-events: auto; /* ヘッダーのクリック透過を無効化 */
+    margin-left: auto;
+}
+
+#header-search-input {
+    width: 0;
+    border: none;
+    outline: none;
+    background: transparent;
+    opacity: 0;
+    transition: width 0.3s ease, opacity 0.3s ease;
+    padding: 0;
+    font-size: 0.9rem;
+}
+
+.header-search-container.active #header-search-input {
+    width: 200px;
+    opacity: 1;
+    padding-left: 10px;
+}
+
+.search-icon-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #555;
+    display: flex;
+    align-items: center;
+    padding: 5px;
+}
+
+/* --- パンくずリスト --- */
+.breadcrumbs {
+    font-size: 0.8rem;
+    color: #999;
+    margin-bottom: 15px;
+    width: 100%;
+    text-align: left;
+}
+
+.breadcrumbs a {
+    color: #999;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.breadcrumbs a:hover {
+    color: #4a90e2;
+}
+
+.current-page-name {
+    color: #555;
+    font-weight: normal;
+}
