@@ -12,7 +12,6 @@
 
     <style>
         body {
-            background-color: #ddd; 
             min-height: 100vh;
             display: flex;
             flex-direction: column;
@@ -155,6 +154,7 @@
         
         <div class="search-wrapper">
             <input type="text" class="search-input" id="search-input" placeholder="コマンドやキーワードで検索..." autocomplete="off">
+            <div class="search-results" id="search-results"></div>
         </div>
 
         <div class="view-controls" id="view-controls">
@@ -191,6 +191,9 @@
             const btnList = document.getElementById('btn-list');
             const btnGrid = document.getElementById('btn-grid');
             const keys = Object.keys(commandDatabase);
+
+            // オートコンプリートのセットアップ
+            setupAutocomplete('search-input', 'search-results', commandDatabase);
 
             // 検索実行
             if (query) {

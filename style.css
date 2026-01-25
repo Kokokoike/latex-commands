@@ -13,6 +13,7 @@
 
 body {
     font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", sans-serif;
+    background-color: #f4f4f9;
     margin: 0;
     color: #333;
 }
@@ -78,3 +79,23 @@ body {
     margin-right: 6px;
     display: inline-block;
 }
+
+/* 検索候補ドロップダウン */
+.search-results {
+    position: absolute; top: 75px; left: 0; right: 0;
+    background: white; border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    overflow: hidden; z-index: 100; display: none;
+    max-height: 300px; overflow-y: auto;
+    border: 1px solid #eee;
+}
+.search-results.active { display: block; }
+
+.result-item {
+    padding: 15px 25px; cursor: pointer; border-bottom: 1px solid #eee;
+    text-align: left; display: flex; justify-content: space-between; align-items: center;
+}
+.result-item:hover { background-color: #f0f8ff; }
+
+.result-cmd { font-weight: bold; font-family: monospace; font-size: 1.1rem; }
+.result-desc { font-size: 0.85rem; color: #666; }
