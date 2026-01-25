@@ -7,18 +7,17 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
     <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
     <script src="data.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <script src="utils.js"></script>
 
     <style>
         body {
-            font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", sans-serif;
             background-color: #ddd; 
-            margin: 0;
             min-height: 100vh;
             display: flex;
             flex-direction: column;
             align-items: center;
             text-align: center;
-            color: #333;
             padding: 20px 0;
         }
 
@@ -33,25 +32,6 @@
         }
 
         .site-desc { font-size: 1.2rem; color: #555; margin-bottom: 50px; }
-
-        .search-wrapper { position: relative; width: 100%; }
-
-        .search-input {
-            width: 100%;
-            padding: 20px 30px;
-            font-size: 1.2rem;
-            border: 1px solid #ddd;
-            border-radius: 50px;
-            background-color: white;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-            outline: none;
-            box-sizing: border-box;
-        }
-
-        .search-input:focus {
-            border-color: #4a90e2;
-            box-shadow: 0 4px 10px rgba(74, 144, 226, 0.1);
-        }
 
         .search-results {
             position: absolute; top: 75px; left: 0; right: 0;
@@ -132,15 +112,6 @@
             const input = document.getElementById('search-input');
             const results = document.getElementById('search-results');
 
-            // 共通の検索ロジック
-            function getSearchResults(term) {
-                if (!term) return [];
-                return keys.filter(key => {
-                    const d = commandDatabase[key];
-                    return key.includes(term) || d.command.toLowerCase().includes(term) || d.description.includes(term) || d.tags.some(t => t.includes(term));
-                });
-            }
-
             input.addEventListener('input', (e) => {
                 const term = e.target.value.toLowerCase();
                 
@@ -150,7 +121,7 @@
                     return; 
                 }
 
-                const hits = getSearchResults(term);
+                const hits = getSearchResults(term, commandDatabase);
 
                 if (hits.length > 0) {
                     results.innerHTML = '';

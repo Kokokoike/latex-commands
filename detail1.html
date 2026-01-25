@@ -7,14 +7,14 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
     <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
     <script src="data.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <script src="utils.js"></script>
 
     <style>
         /* レイアウト全体 */
         body {
-            font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", sans-serif;
             background-color: #f4f4f9;
-            margin: 0;
-            padding-top: 60px; /* 固定ヘッダーの高さ分を確保 */
+            padding-top: 60px; /* 固定ヘッダーの高さ*/
         }
 
         /* 固定ヘッダー */
@@ -41,7 +41,7 @@
             pointer-events: auto;
         }
 
-        /* 右メインエリア */
+        /* メインエリア */
         .main-content {
             padding: 40px;
             display: flex;
@@ -62,7 +62,7 @@
 
         /* 共通パーツのスタイル */
         .command-title {
-            font-size: 1.8rem;
+            font-size: var(--main-title-size);
             font-weight: bold;
             color: #333;
             font-family: monospace;
@@ -77,7 +77,7 @@
             border-radius: 8px;
             padding: 40px;
             text-align: center;
-            font-size: 2.2rem;
+            font-size: var(--main-preview-size);
             margin-bottom: 24px;
             min-height: 80px;
             display: flex;
@@ -89,7 +89,7 @@
         
         .info-label {
             font-weight: bold;
-            font-size: 0.9rem;
+            font-size: var(--label-font-size);
             color: #666;
             display: block;
             margin-bottom: 6px;
@@ -98,13 +98,13 @@
             align-items: center;
         }
 
-        /* ▼ 追加: 「要数式環境」バッジのデザイン */
+        /* 「要数式環境」バッジのデザイン */
         .badge-math {
             display: none; /* デフォルトは非表示 */
             background-color: #fff3cd; /* 薄いオレンジ背景 */
             color: #856404;            /* 濃い茶色の文字 */
             border: 1px solid #ffeeba;
-            font-size: 0.75rem;
+            font-size: var(--small-ui-font-size);
             padding: 2px 8px;
             border-radius: 4px;
             margin-left: 10px;
@@ -135,30 +135,6 @@
             border: 1px solid #ddd;
         }
 
-        .copy-btn {
-            background-color: #4a90e2;
-            color: white;
-            border: none;
-            padding: 6px 12px;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 0.8rem;
-            width: 80px; /* ここでコピー時の幅固定を実現 */
-            text-align: center;
-            line-height: 1.2;
-            white-space: nowrap;
-        }
-        .copy-btn.copied { background-color: #2ecc71; cursor: default; }
-
-        .tag {
-            background-color: #e1f0ff;
-            color: #0056b3;
-            padding: 4px 10px;
-            border-radius: 12px;
-            font-size: 0.8rem;
-            margin-right: 6px;
-            display: inline-block;
-        }
         
         @media (max-width: 768px) {
             .main-content { padding: 20px; }
@@ -171,7 +147,7 @@
             margin-top: 20px;
         }
         .related-title {
-            font-size: 1.2rem;
+            font-size: var(--section-title-size);
             font-weight: bold;
             color: #555;
             margin-bottom: 15px;
@@ -204,7 +180,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.5rem;
+            font-size: var(--related-preview-size);
             color: #333;
         }
         .related-cmd-row {
@@ -216,25 +192,13 @@
         .related-cmd {
             font-weight: bold;
             font-family: monospace;
-            font-size: 1.1rem;
+            font-size: var(--related-cmd-size);
             margin-bottom: 5px;
             word-break: break-all;
         }
         .copy-btn-small {
-            background-color: #f0f0f0;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            padding: 2px 0;
-            width: 60px;
-            text-align: center;
-            font-size: 0.75rem;
-            cursor: pointer;
-            color: #555;
-            transition: all 0.2s;
             margin-top: 5px;
         }
-        .copy-btn-small:hover { background-color: #e0e0e0; }
-        .copy-btn-small.copied { background-color: #2ecc71; color: white; border-color: #2ecc71; }
 
         /* 使用例エリア */
         .examples-section {
@@ -243,7 +207,7 @@
             margin-top: 20px;
         }
         .section-label {
-            font-size: 1.2rem;
+            font-size: var(--section-title-size);
             font-weight: bold;
             color: #555;
             margin-bottom: 15px;
@@ -260,6 +224,7 @@
         .example-title {
             font-weight: bold;
             color: #333;
+            font-size: var(--section-title-size);
             margin-bottom: 10px;
             border-bottom: 1px solid #eee;
             padding-bottom: 8px;
@@ -267,7 +232,7 @@
         .example-preview {
             margin: 15px 0;
             text-align: center;
-            font-size: 1.3rem;
+            font-size: var(--example-preview-size);
         }
     </style>
 </head>
@@ -395,7 +360,7 @@
                     // タイトル
                     const exTitle = document.createElement('div');
                     exTitle.className = 'example-title';
-                    exTitle.innerText = ex.title;
+                    exTitle.innerText = `${index + 1}. ${ex.title}`;
                     exContainer.appendChild(exTitle);
 
                     // KaTeXプレビュー
@@ -471,20 +436,6 @@
                 copyText(this, data.command);
             };
         });
-
-        // コピー機能
-        function copyText(btn, text) {
-            if (btn.classList.contains('copied')) return;
-            navigator.clipboard.writeText(text).then(() => {
-                const originalText = btn.innerText;
-                btn.innerText = "Copied";
-                btn.classList.add('copied');
-                setTimeout(() => {
-                    btn.innerText = originalText;
-                    btn.classList.remove('copied');
-                }, 1500);
-            });
-        }
     </script>
 </body>
 </html>

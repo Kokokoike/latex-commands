@@ -1,0 +1,80 @@
+:root {
+    /* フォントサイズ定義 */
+    --main-title-size: 1.8rem;
+    --main-preview-size: 2.2rem;
+    --section-title-size: 1.2rem;
+    --related-preview-size: 1.5rem;
+    --related-cmd-size: 1.1rem;
+    --example-preview-size: 1.3rem;
+    --label-font-size: 0.9rem;
+    --ui-font-size: 0.8rem;
+    --small-ui-font-size: 0.75rem;
+}
+
+body {
+    font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", sans-serif;
+    margin: 0;
+    color: #333;
+}
+
+/* 検索ボックス共通 */
+.search-wrapper { position: relative; width: 100%; }
+
+.search-input {
+    width: 100%;
+    padding: 20px 30px;
+    font-size: 1.2rem;
+    border: 1px solid #ddd;
+    border-radius: 50px;
+    background-color: white;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    outline: none;
+    box-sizing: border-box;
+}
+
+.search-input:focus {
+    border-color: #4a90e2;
+    box-shadow: 0 4px 10px rgba(74, 144, 226, 0.1);
+}
+
+/* ボタン共通 */
+.copy-btn {
+    background-color: #4a90e2;
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: var(--ui-font-size, 0.8rem);
+    width: 80px;
+    text-align: center;
+    line-height: 1.2;
+    white-space: nowrap;
+}
+.copy-btn.copied { background-color: #2ecc71; cursor: default; }
+
+.copy-btn-small {
+    background-color: #f0f0f0;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 2px 0;
+    width: 60px;
+    text-align: center;
+    font-size: var(--small-ui-font-size, 0.75rem);
+    cursor: pointer;
+    color: #555;
+    transition: all 0.2s;
+}
+.copy-btn-small:hover { background-color: #e0e0e0; }
+.copy-btn-small.copied { background-color: #2ecc71; color: white; border-color: #2ecc71; }
+
+/* タグ */
+.tag {
+    background-color: #e1f0ff;
+    color: #0056b3;
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: var(--ui-font-size, 0.8rem);
+    margin-right: 6px;
+    display: inline-block;
+}

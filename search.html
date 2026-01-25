@@ -7,18 +7,17 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
     <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
     <script src="data.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <script src="utils.js"></script>
 
     <style>
         body {
-            font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", sans-serif;
             background-color: #ddd; 
-            margin: 0;
             min-height: 100vh;
             display: flex;
             flex-direction: column;
             align-items: center;
             text-align: center;
-            color: #333;
             /* 検索結果ページ用のスタイル */
             justify-content: flex-start;
             padding-top: 40px;
@@ -33,25 +32,6 @@
             margin-bottom: 10px;
             filter: drop-shadow(0 2px 4px rgba(0,0,0,0.08));
             cursor: pointer;
-        }
-
-        .search-wrapper { position: relative; width: 100%; }
-
-        .search-input {
-            width: 100%;
-            padding: 20px 30px;
-            font-size: 1.2rem;
-            border: 1px solid #ddd;
-            border-radius: 50px;
-            background-color: white;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-            outline: none;
-            box-sizing: border-box;
-        }
-
-        .search-input:focus {
-            border-color: #4a90e2;
-            box-shadow: 0 4px 10px rgba(74, 144, 226, 0.1);
         }
 
         /* メイン結果リスト */
@@ -101,21 +81,10 @@
             align-items: center;
             margin-bottom: 4px;
         }
+        /* copy-btn-small は style.css に移動しましたが、ここでのマージン調整は残すか、style.cssで対応 */
         .copy-btn-small {
-            background-color: #f0f0f0;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            padding: 2px 0;
-            width: 60px;
-            text-align: center;
-            font-size: 0.75rem;
-            cursor: pointer;
             margin-left: 10px;
-            color: #555;
-            transition: all 0.2s;
         }
-        .copy-btn-small:hover { background-color: #e0e0e0; }
-        .copy-btn-small.copied { background-color: #2ecc71; color: white; border-color: #2ecc71; }
 
         /* 表示切り替えボタン */
         .view-controls {
@@ -226,10 +195,7 @@
             // 検索実行
             if (query) {
                 const term = query.toLowerCase();
-                const hits = keys.filter(key => {
-                    const d = commandDatabase[key];
-                    return key.includes(term) || d.command.toLowerCase().includes(term) || d.description.includes(term) || d.tags.some(t => t.includes(term));
-                });
+                const hits = getSearchResults(term, commandDatabase);
 
                 if (hits.length > 0) {
                     hits.forEach(key => {
@@ -250,11 +216,7 @@
                         const copyBtn = div.querySelector('.copy-btn-small');
                         copyBtn.onclick = (e) => {
                             e.stopPropagation();
-                            navigator.clipboard.writeText(key).then(() => {
-                                copyBtn.innerText = "Copied";
-                                copyBtn.classList.add('copied');
-                                setTimeout(() => { copyBtn.innerText = "Copy"; copyBtn.classList.remove('copied'); }, 1500);
-                            });
+                            copyText(copyBtn, key);
                         };
 
                         div.onclick = () => { window.location.href = `detail1.html?id=${key}`; };
