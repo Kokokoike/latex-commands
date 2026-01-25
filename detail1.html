@@ -10,36 +10,6 @@
     <link rel="stylesheet" href="style.css">
 
     <style>
-        /* レイアウト全体 */
-        body {
-            padding-top: 60px; /* 固定ヘッダーの高さ*/
-        }
-
-        /* 固定ヘッダー */
-        .top-header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 60px;
-            background-color: transparent;
-            display: flex;
-            align-items: center;
-            padding: 0 20px;
-            justify-content: space-between; /* ロゴと検索を左右に配置 */
-            z-index: 1000;
-            box-sizing: border-box;
-            box-shadow: none;
-            pointer-events: none;
-        }
-
-        /* ヘッダー内のロゴ画像 */
-        .header-logo {
-            height: 36px; /* ヘッダーの高さに合わせて調整 */
-            cursor: pointer;
-            pointer-events: auto;
-        }
-
         /* メインエリア */
         .main-content {
             padding: 40px;
@@ -178,7 +148,7 @@
 <body>
 
     <header class="top-header">
-        <img src="data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' width='200' height='50' viewBox='0 0 200 50'%3e%3crect width='100%25' height='100%25' fill='%231c2e50'/%3e%3ctext x='10' y='50%25' dominant-baseline='middle' font-family='sans-serif' font-weight='bold' font-size='28' fill='white'%3eLaTeX Dict%3c/text%3e%3c/svg%3e" 
+        <img src="data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' width='300' height='80' viewBox='0 0 300 80'%3e%3ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='sans-serif' font-weight='bold' font-size='40' fill='%232c3e50'%3eLaTeX Dict%3c/text%3e%3c/svg%3e" 
              alt="LaTeX Dict" 
              class="header-logo"
              onclick="window.location.href='index.html'">
@@ -197,9 +167,7 @@
     <main class="main-content">
         <div class="command-card" id="card-container">
             <nav class="breadcrumbs">
-                <a href="index.html">TOP</a> &gt; 
-                <a href="#" id="breadcrumb-category">カテゴリー</a> &gt; 
-                <span class="current-page-name" id="breadcrumb-current"></span>
+                <!-- JavaScriptで動的に生成されます -->
             </nav>
 
             <div class="command-title" id="disp-title"></div>
@@ -287,10 +255,8 @@
                     return;
                 }
 
-                // --- パンくずリストの更新 ---
-                document.getElementById('breadcrumb-category').innerText = pageData.title;
-                document.getElementById('breadcrumb-category').href = `category.html?file=${file}`;
-                document.getElementById('breadcrumb-current').innerText = currentKey;
+                // --- パンくずリストの構築 (非同期) ---
+                buildBreadcrumbs(file, currentKey, pageData);
 
                 // --- 描画処理 ---
                 document.title = `${currentKey} - LaTeX Dictionary`;
@@ -428,6 +394,83 @@
                     copyText(this, data.command);
                 };
             });
+
+            // --- パンくずリスト生成関数 ---
+            async function buildBreadcrumbs(currentFile, currentKey, currentPageData) {
+                const nav = document.querySelector('.breadcrumbs');
+                nav.innerHTML = ''; // 初期化
+
+                // ヘルパー: リンク追加
+                const addLink = (text, href) => {
+                    const a = document.createElement('a');
+                    a.href = href;
+                    a.innerText = text;
+                    nav.appendChild(a);
+                    nav.appendChild(document.createTextNode(' > '));
+                };
+
+                // 1. TOP
+                addLink('TOP', 'index.html');
+
+                // 2. パスから親ファイルを推測してロード
+                // 例: "data/letters/greek/data_greek.js" -> ["data", "letters", "greek", "data_greek.js"]
+                const parts = currentFile.split('/');
+                const parents = [];
+
+                // 中間ディレクトリの解析
+                let pathAcc = '';
+                for (let i = 0; i < parts.length - 1; i++) {
+                    const part = parts[i];
+                    if (pathAcc) pathAcc += '/';
+                    pathAcc += part;
+                    
+                    if (part === 'data') continue; // dataフォルダ自体はスキップ
+
+                    // 命名規則: フォルダ名 "letters" -> "data_letters.js"
+                    const jsFile = `${pathAcc}/data_${part}.js`;
+                    
+                    // 自分自身でなければリストに追加
+                    if (jsFile !== currentFile) {
+                        parents.push(jsFile);
+                    }
+                }
+
+                // 親ファイルを順次ロードしてパンくずに追加
+                for (const file of parents) {
+                    try {
+                        const data = await loadDataFilePromise(file);
+                        const title = data.title || file;
+                        // typeがbigならbigCategoryへ、それ以外はcategoryへ
+                        const href = (data.type === 'big') ? `bigCategory.html?file=${file}` : `category.html?file=${file}`;
+                        addLink(title, href);
+                    } catch (e) {
+                        // ファイルが存在しない、またはロード失敗時はスキップ
+                        console.log(`Breadcrumb skip: ${file}`);
+                    }
+                }
+
+                // 3. 現在のカテゴリ（ファイル）
+                const currentHref = (currentPageData.type === 'big') ? `bigCategory.html?file=${currentFile}` : `category.html?file=${currentFile}`;
+                addLink(currentPageData.title, currentHref);
+
+                // 4. 現在のコマンド
+                const span = document.createElement('span');
+                span.className = 'current-page-name';
+                span.innerText = currentKey;
+                nav.appendChild(span);
+            }
+
+            // loadDataFileをPromise化（直列実行用）
+            function loadDataFilePromise(file) {
+                return new Promise((resolve, reject) => {
+                    const timer = setTimeout(() => reject('timeout'), 1000); // 1秒でタイムアウト
+                    // utils.jsのloadDataFileを利用
+                    loadDataFile(file, (data) => {
+                        clearTimeout(timer);
+                        resolve(data);
+                    });
+                });
+            }
         });
     </script>
 </body>

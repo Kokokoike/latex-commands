@@ -16,20 +16,11 @@
             flex-direction: column;
             align-items: center;
             text-align: center;
-            padding-top: 40px;
             padding-bottom: 40px;
         }
 
         .container { width: 90%; max-width: 800px; padding: 20px; margin: auto; margin-top: 0; }
         
-        .site-logo-img {
-            max-width: 150px;
-            height: auto;
-            margin-bottom: 10px;
-            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.08));
-            cursor: pointer;
-        }
-
         .page-title {
             font-size: var(--main-title-size);
             font-weight: bold;
@@ -39,11 +30,25 @@
     </style>
 </head>
 <body>
+    <header class="top-header">
+        <img src="data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' width='300' height='80' viewBox='0 0 300 80'%3e%3ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='sans-serif' font-weight='bold' font-size='40' fill='%232c3e50'%3eLaTeX Dict%3c/text%3e%3c/svg%3e" 
+             alt="LaTeX Dict" 
+             class="header-logo"
+             onclick="window.location.href='index.html'">
+
+        <div class="header-search-container">
+            <input type="text" id="header-search-input" placeholder="Search..." autocomplete="off">
+            <button id="header-search-toggle" class="search-icon-btn">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                </svg>
+            </button>
+        </div>
+    </header>
 
     <div class="container">
-        <img src="data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' width='300' height='80' viewBox='0 0 300 80'%3e%3ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='sans-serif' font-weight='bold' font-size='40' fill='%232c3e50'%3eLaTeX Dict%3c/text%3e%3c/svg%3e" 
-             alt="LaTeX Dict" class="site-logo-img" onclick="window.location.href='index.html'">
-        
+        <nav class="breadcrumbs"></nav>
         <h1 class="page-title">カテゴリー一覧</h1>
         <p id="big-cat-desc" style="color:#444; line-height:1.6; margin-bottom: 30px; padding-bottom: 15px; border-bottom: 2px solid #eee;">
             登録されているカテゴリーの一覧です。
@@ -54,6 +59,28 @@
 
     <script>
         document.addEventListener("DOMContentLoaded", function() {
+            // --- ヘッダー検索機能 ---
+            const searchContainer = document.querySelector('.header-search-container');
+            const searchInput = document.getElementById('header-search-input');
+            const searchToggle = document.getElementById('header-search-toggle');
+
+            searchToggle.addEventListener('click', () => {
+                searchContainer.classList.toggle('active');
+                if (searchContainer.classList.contains('active')) {
+                    searchInput.focus();
+                }
+            });
+
+            searchInput.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter') {
+                    e.preventDefault();
+                    const term = searchInput.value.trim();
+                    if (term) {
+                        window.location.href = `search.html?q=${encodeURIComponent(term)}`;
+                    }
+                }
+            });
+
             const listContainer = document.getElementById('big-category-list');
 
             // URLパラメータ (?file=...) を取得
@@ -72,6 +99,9 @@
                 document.querySelector('.page-title').innerText = data.title;
                 const descEl = document.getElementById('big-cat-desc');
                 if (descEl) descEl.innerText = data.description;
+
+                // パンくずリスト生成
+                buildBreadcrumbs(file, data.title);
 
                 // セクションごとの表示
                 if (data.sections && data.sections.length > 0) {
@@ -114,6 +144,58 @@
                     });
                 }
             });
+
+            // --- パンくずリスト生成関数 ---
+            async function buildBreadcrumbs(currentFile, currentTitle) {
+                const nav = document.querySelector('.breadcrumbs');
+                nav.innerHTML = ''; 
+
+                const addLink = (text, href) => {
+                    const a = document.createElement('a');
+                    a.href = href;
+                    a.innerText = text;
+                    nav.appendChild(a);
+                    nav.appendChild(document.createTextNode(' > '));
+                };
+
+                // 1. TOP
+                addLink('TOP', 'index.html');
+
+                // 2. 親階層の推測
+                const parts = currentFile.split('/');
+                const parents = [];
+                let pathAcc = '';
+                for (let i = 0; i < parts.length - 1; i++) {
+                    const part = parts[i];
+                    if (pathAcc) pathAcc += '/';
+                    pathAcc += part;
+                    if (part === 'data') continue; 
+                    const jsFile = `${pathAcc}/data_${part}.js`;
+                    if (jsFile !== currentFile) parents.push(jsFile);
+                }
+
+                for (const file of parents) {
+                    try {
+                        const data = await loadDataFilePromise(file);
+                        const title = data.title || file;
+                        const href = (data.type === 'big') ? `bigCategory.html?file=${file}` : `category.html?file=${file}`;
+                        addLink(title, href);
+                    } catch (e) { console.log(`Breadcrumb skip: ${file}`); }
+                }
+
+                // 3. 現在のページ
+                const span = document.createElement('span');
+                span.className = 'current-page-name';
+                span.innerText = currentTitle;
+                nav.appendChild(span);
+            }
+
+            function loadDataFilePromise(file) {
+                return new Promise((resolve, reject) => {
+                    const timer = setTimeout(() => reject('timeout'), 1000);
+                    loadDataFile(file, (data) => { clearTimeout(timer); resolve(data); });
+                });
+            }
         });
     </script>
 </body>
