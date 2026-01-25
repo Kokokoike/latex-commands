@@ -168,3 +168,20 @@ body {
 .main-results-list.grid-view .result-desc { display: none; }
 .main-results-list.grid-view .cmd-row { flex-direction: column; justify-content: center; }
 .main-results-list.grid-view .copy-btn-small { margin-left: 0; margin-top: 10px; }
+
+/* セクションタイトル（共通） */
+.section-title {
+    font-size: var(--section-title-size);
+    font-weight: bold;
+    color: #555;
+    margin: 30px 0 15px 10px;
+    text-align: left;
+    border-bottom: 2px solid transparent;
+    border-left: 10px solid #4a90e2;
+    padding-left: 10px;
+}
+
+/* セクションタイトルの直後のリストはマージンを詰める */
+.section-title + .main-results-list {
+    margin-top: 0;
+}

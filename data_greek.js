@@ -1,6 +1,14 @@
 /* data_greek.js */
 
 const categoryTitle = "ギリシャ文字";
+const categoryDescription = "ギリシャ文字専用のコマンドを使用する場合、数式環境が必要です。";
+
+const categorySections = [
+    { title: "大文字", requiredTags: ["ギリシャ文字・大文字"], excludedTags: ["ギリシャ文字・異体字"] },
+    { title: "小文字", requiredTags: ["ギリシャ文字・小文字"], excludedTags: ["ギリシャ文字・異体字"] },
+    { title: "大文字（異体字）", requiredTags: ["ギリシャ文字・大文字", "ギリシャ文字・異体字"] },
+    { title: "小文字（異体字）", requiredTags: ["ギリシャ文字・小文字", "ギリシャ文字・異体字"] }
+];
 
 // ★ データ生成用の関数
 // 1.1 ギリシャ文字
