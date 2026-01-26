@@ -303,6 +303,7 @@ body {
 .header-logo {
     height: 50px;
     cursor: pointer;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.08));
 }
 
 /* --- ヘッダーアイコンの一括変更 --- */
