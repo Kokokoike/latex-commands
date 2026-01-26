@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 395 84" width="395" height="84">
+  <g transform="scale(0.65625)">
+    <polygon points="0,0 64,0 96,32 96,128 0,128" fill="#4a90e2"/>
+    <polygon points="64,0 64,32 96,32" fill="#357abd"/>
+    <text x="48" y="75" font-family="serif" font-weight="bold" font-size="80" fill="#ffffff" text-anchor="middle">\</text>
+    <text x="48" y="112" font-family="sans-serif" font-weight="bold" font-size="26" fill="#ffffff" text-anchor="middle">Dict</text>
+ </g>
+  <text x="85" y="81" font-family="sans-serif" font-weight="bold" font-size="56" fill="#2c3e50">LaTeX Dict</text>
+</svg>

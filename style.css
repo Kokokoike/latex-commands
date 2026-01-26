@@ -302,3 +302,14 @@ body {
     height: 32px;
     cursor: pointer;
 }
+
+/* --- ヘッダーアイコンの一括変更 --- */
+.header-logo,
+.site-logo-img:not(.original-logo) {
+    content: url("icon.svg");
+}
+
+.site-logo-img {
+    max-height: 120px; /* 正方形アイコン用に高さを制限 */
+    width: auto;
+}
