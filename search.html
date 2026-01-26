@@ -19,7 +19,6 @@
             text-align: center;
             /* 検索結果ページ用のスタイル */
             justify-content: flex-start;
-            padding-top: 40px;
             padding-bottom: 40px;
         }
 
@@ -79,11 +78,24 @@
     </style>
 </head>
 <body>
+    <header class="top-header">
+        <img src="data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' width='300' height='80' viewBox='0 0 300 80'%3e%3ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='sans-serif' font-weight='bold' font-size='40' fill='%232c3e50'%3eLaTeX Dict%3c/text%3e%3c/svg%3e" 
+             alt="LaTeX Dict" 
+             class="header-logo"
+             onclick="window.location.href='index.html'">
+
+        <div class="header-search-container">
+            <input type="text" id="header-search-input" placeholder="Search..." autocomplete="off">
+            <button id="header-search-toggle" class="search-icon-btn">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                </svg>
+            </button>
+        </div>
+    </header>
 
     <div class="container">
-        <img src="data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' width='300' height='80' viewBox='0 0 300 80'%3e%3ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='sans-serif' font-weight='bold' font-size='40' fill='%232c3e50'%3eLaTeX Dict%3c/text%3e%3c/svg%3e" 
-             alt="LaTeX Dict" class="site-logo-img" onclick="window.location.href='index.html'">
-        
         <div class="search-wrapper">
             <input type="text" class="search-input" id="search-input" placeholder="コマンドやキーワードで検索..." autocomplete="off">
             <div class="search-results" id="search-results"></div>
@@ -114,6 +126,28 @@
 
     <script>
         document.addEventListener("DOMContentLoaded", function() {
+            // --- ヘッダー検索機能 ---
+            const searchContainer = document.querySelector('.header-search-container');
+            const headerSearchInput = document.getElementById('header-search-input');
+            const searchToggle = document.getElementById('header-search-toggle');
+
+            searchToggle.addEventListener('click', () => {
+                searchContainer.classList.toggle('active');
+                if (searchContainer.classList.contains('active')) {
+                    headerSearchInput.focus();
+                }
+            });
+
+            headerSearchInput.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter') {
+                    e.preventDefault();
+                    const term = headerSearchInput.value.trim();
+                    if (term) {
+                        window.location.href = `search.html?q=${encodeURIComponent(term)}`;
+                    }
+                }
+            });
+
             const params = new URLSearchParams(window.location.search);
             const query = params.get('q') || '';
             const input = document.getElementById('search-input');

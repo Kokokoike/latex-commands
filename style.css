@@ -290,16 +290,18 @@ body {
 
 .top-header {
     position: fixed;
-    top: 0; left: 0; width: 100%; height: 60px;
-    background-color: rgba(255,255,255,0.95);
-    backdrop-filter: blur(5px);
+    top: 5%; left: 0; width: 100%; height: 60px;
+    background-color: transparent;
     display: flex; align-items: center; justify-content: space-between;
-    padding: 0 20px; z-index: 1000; box-sizing: border-box;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    padding: 0 30px; z-index: 1000; box-sizing: border-box;
+    pointer-events: none;
+}
+.top-header > * {
+    pointer-events: auto;
 }
 
 .header-logo {
-    height: 32px;
+    height: 50px;
     cursor: pointer;
 }
 
