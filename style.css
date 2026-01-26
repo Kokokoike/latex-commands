@@ -225,11 +225,13 @@ body {
     display: flex;
     align-items: center;
     background: white;
-    border-radius: 20px;
-    padding: 5px;
+    border-radius: 25px;
+    padding: 0 10px;
+    height: 50px;
     box-shadow: 0 2px 5px rgba(0,0,0,0.05);
     pointer-events: auto; /* ヘッダーのクリック透過を無効化 */
     margin-left: auto;
+    box-sizing: border-box;
 }
 
 #header-search-input {
@@ -240,13 +242,15 @@ body {
     opacity: 0;
     transition: width 0.3s ease, opacity 0.3s ease;
     padding: 0;
-    font-size: 0.9rem;
+    font-size: 1.1rem;
+    height: 100%;
 }
 
 .header-search-container.active #header-search-input {
-    width: 200px;
+    width: 240px;
     opacity: 1;
-    padding-left: 10px;
+    padding-left: 5px;
+    padding-right: 5px;
 }
 
 .search-icon-btn {
@@ -256,7 +260,14 @@ body {
     color: #555;
     display: flex;
     align-items: center;
-    padding: 5px;
+    justify-content: center;
+    padding: 0 5px;
+    height: 100%;
+}
+
+.search-icon-btn svg {
+    width: 26px;
+    height: 26px;
 }
 
 /* --- パンくずリスト --- */
@@ -285,31 +296,45 @@ body {
 
 /* --- ヘッダー共通スタイル --- */
 body {
-    padding-top: 80px; /* ヘッダーの高さ分確保 */
+    padding-top: 100px; /* ヘッダーの高さ分確保 */
 }
 
 .top-header {
     position: fixed;
-    top: 2.5%; left: 0; width: 100%; height: 60px;
+    top: 2.5%; left: 0; width: 100%; height: 80px;
     background-color: transparent;
     display: flex; align-items: center; justify-content: space-between;
-    padding: 0 30px; z-index: 1000; box-sizing: border-box;
+    padding: 0 20px; z-index: 1000; box-sizing: border-box;
     pointer-events: none;
 }
 .top-header > * {
     pointer-events: auto;
 }
 
-.header-logo {
-    height: 50px;
+.header-logo-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 0;
     cursor: pointer;
+    pointer-events: auto;
+}
+
+.header-icon {
+    height: 63px;
+    width: auto;
     filter: drop-shadow(0 2px 4px rgba(0,0,0,0.08));
 }
 
+.header-text {
+    height: 60px;
+    width: auto;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.08));
+    margin-left: 10px;
+}
+
 /* --- ヘッダーアイコンの一括変更 --- */
-.header-logo,
 .site-logo-img:not(.original-logo) {
-    content: url("icon.svg");
+    content: url("icon.png");
 }
 
 .site-logo-img {

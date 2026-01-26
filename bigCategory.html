@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>カテゴリー一覧 - LaTeX Dictionary</title>
+    <link rel="icon" href="icon.png" type="image/png">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
     <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
     <script src="utils.js"></script>
@@ -31,10 +32,10 @@
 </head>
 <body>
     <header class="top-header">
-        <img src="data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' width='300' height='80' viewBox='0 0 300 80'%3e%3ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='sans-serif' font-weight='bold' font-size='40' fill='%232c3e50'%3eLaTeX Dict%3c/text%3e%3c/svg%3e" 
-             alt="LaTeX Dict" 
-             class="header-logo"
-             onclick="window.location.href='index.html'">
+        <div class="header-logo-wrapper" onclick="window.location.href='index.html'">
+            <img src="icon.png" alt="" class="header-icon">
+            <img src="data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' width='250' height='80' viewBox='0 0 250 80'%3e%3ctext x='0' y='50%25' dominant-baseline='middle' text-anchor='start' font-family='sans-serif' font-weight='bold' font-size='40' fill='%232c3e50'%3eLaTeX Dict%3c/text%3e%3c/svg%3e" alt="LaTeX Dict" class="header-text">
+        </div>
 
         <div class="header-search-container">
             <input type="text" id="header-search-input" placeholder="Search..." autocomplete="off">
