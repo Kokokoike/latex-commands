@@ -330,9 +330,16 @@ body {
     width: auto;
     filter: drop-shadow(0 2px 4px rgba(0,0,0,0.08));
     margin-left: 10px;
+    transition: opacity 0.1s ease;
+    opacity: 1;
 }
 
 /* --- ヘッダーアイコンの一括変更 --- */
+.top-header.scrolled .header-text {
+    opacity: 0;
+    pointer-events: none;
+}
+
 .site-logo-img:not(.original-logo) {
     content: url("icon.png");
 }

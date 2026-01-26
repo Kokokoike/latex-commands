@@ -218,6 +218,16 @@
 
     <script>
         document.addEventListener("DOMContentLoaded", function() {
+            // --- ヘッダーのスクロール制御 ---
+            const header = document.querySelector('.top-header');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 20) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+            });
+
             // --- ヘッダー検索機能 ---
             const searchContainer = document.querySelector('.header-search-container');
             const searchInput = document.getElementById('header-search-input');
