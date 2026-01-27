@@ -88,57 +88,7 @@
 
     <script>
         document.addEventListener("DOMContentLoaded", function() {
-            // --- ヘッダーのスクロール制御 ---
-            const header = document.querySelector('.top-header');
-            window.addEventListener('scroll', () => {
-                if (window.scrollY > 20) {
-                    header.classList.add('scrolled');
-                } else {
-                    header.classList.remove('scrolled');
-                }
-            });
-
-            // --- ヘッダー検索機能 ---
-            const searchContainer = document.querySelector('.header-search-container');
-            const searchInput = document.getElementById('header-search-input');
-            const searchToggle = document.getElementById('header-search-toggle');
-            const headerText = document.querySelector('.header-text');
-
-            // --- 重なり判定 (Overlap Detection) ---
-            function checkOverlap() {
-                if (!headerText || !searchContainer) return;
-                const textRect = headerText.getBoundingClientRect();
-                const searchRect = searchContainer.getBoundingClientRect();
-                
-                // テキストの右端が検索バーの左端に接触(余裕10px)したら隠す
-                if (textRect.right > searchRect.left - 10) {
-                    headerText.classList.add('top_scrolled');
-                } else {
-                    headerText.classList.remove('top_scrolled');
-                }
-            }
-            window.addEventListener('resize', checkOverlap);
-            checkOverlap(); // 初期実行
-
-            searchToggle.addEventListener('click', () => {
-                searchContainer.classList.toggle('active');
-                if (searchContainer.classList.contains('active')) {
-                    searchInput.focus();
-                }
-                // アニメーション中に定期チェック
-                const interval = setInterval(checkOverlap, 50);
-                setTimeout(() => clearInterval(interval), 400);
-            });
-
-            searchInput.addEventListener('keydown', (e) => {
-                if (e.key === 'Enter') {
-                    e.preventDefault();
-                    const term = searchInput.value.trim();
-                    if (term) {
-                        window.location.href = `search.html?q=${encodeURIComponent(term)}`;
-                    }
-                }
-            });
+            setupHeader();
 
             // --- 表示切り替え機能 ---
             const btnList = document.getElementById('btn-list');
@@ -273,58 +223,6 @@
                     }
                 }
             });
-
-            // --- パンくずリスト生成関数 ---
-            async function buildBreadcrumbs(currentFile, currentTitle) {
-                const nav = document.querySelector('.breadcrumbs');
-                nav.innerHTML = ''; 
-
-                const addLink = (text, href) => {
-                    const a = document.createElement('a');
-                    a.href = href;
-                    a.innerText = text;
-                    nav.appendChild(a);
-                    nav.appendChild(document.createTextNode(' > '));
-                };
-
-                // 1. TOP
-                addLink('TOP', 'index.html');
-
-                // 2. 親階層の推測
-                const parts = currentFile.split('/');
-                const parents = [];
-                let pathAcc = '';
-                for (let i = 0; i < parts.length - 1; i++) {
-                    const part = parts[i];
-                    if (pathAcc) pathAcc += '/';
-                    pathAcc += part;
-                    if (part === 'data') continue; 
-                    const jsFile = `${pathAcc}/data_${part}.js`;
-                    if (jsFile !== currentFile) parents.push(jsFile);
-                }
-
-                for (const file of parents) {
-                    try {
-                        const data = await loadDataFilePromise(file);
-                        const title = data.title || file;
-                        const href = (data.type === 'big') ? `bigCategory.html?file=${file}` : `category.html?file=${file}`;
-                        addLink(title, href);
-                    } catch (e) { console.log(`Breadcrumb skip: ${file}`); }
-                }
-
-                // 3. 現在のページ
-                const span = document.createElement('span');
-                span.className = 'current-page-name';
-                span.innerText = currentTitle;
-                nav.appendChild(span);
-            }
-
-            function loadDataFilePromise(file) {
-                return new Promise((resolve, reject) => {
-                    const timer = setTimeout(() => reject('timeout'), 1000);
-                    loadDataFile(file, (data) => { clearTimeout(timer); resolve(data); });
-                });
-            }
         });
     </script>
 </body>
