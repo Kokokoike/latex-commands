@@ -52,7 +52,7 @@ window.renderCommonHeader = function() {
     const headerHtml = `
         <div class="header-logo-wrapper" onclick="window.location.href='index.html'">
             <img src="icon.svg" alt="" class="header-icon">
-            <img src="data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' width='250' height='80' viewBox='0 0 250 80'%3e%3ctext x='60' y='38' text-anchor='middle' font-family='sans-serif' font-weight='bold' font-size='34' fill='%232c3e50'%3eLaTeX%3c/text%3e%3ctext x='60' y='75' text-anchor='middle' font-family='sans-serif' font-weight='bold' font-size='34' fill='%232c3e50'%3eCmds%3c/text%3e%3c/svg%3e" alt="LaTeX Cmds" class="header-text">
+            <img src="logo_text.svg" alt="LaTeX Cmds" class="header-text">
         </div>
 
         <div class="header-search-container">
@@ -82,14 +82,8 @@ window.setupHeader = function() {
     const searchInput = document.getElementById('header-search-input');
     const searchToggle = document.getElementById('header-search-toggle');
     const headerText = document.querySelector('.header-text');
-
-    // スクロール検知
-    window.addEventListener('scroll', () => {
-        if (window.scrollY > 20) header.classList.add('scrolled');
-        else header.classList.remove('scrolled');
-    });
-
-    // 重なり判定
+    
+    // 重なり判定関数
     function checkOverlap() {
         if (!headerText || !searchContainer) return;
         const textRect = headerText.getBoundingClientRect();
@@ -100,8 +94,6 @@ window.setupHeader = function() {
             headerText.classList.remove('top_scrolled');
         }
     }
-    window.addEventListener('resize', checkOverlap);
-    checkOverlap();
 
     // 検索トグル
     if (searchToggle) {
@@ -110,8 +102,6 @@ window.setupHeader = function() {
             if (searchContainer.classList.contains('active')) {
                 searchInput.focus();
             }
-            const interval = setInterval(checkOverlap, 50);
-            setTimeout(() => clearInterval(interval), 400);
         });
     }
 

@@ -16,7 +16,6 @@ body {
     background-color: #f4f4f9;
     margin: 0;
     color: #333;
-    padding-top: 100px;
 }
 
 /* 検索ボックス共通 */
@@ -325,8 +324,8 @@ body {
 
 /* --- ヘッダー共通スタイル --- */
 .top-header {
-    position: fixed;
-    top: 2.5%; left: 0; width: 100%; height: 80px;
+    position: relative;
+    width: 100%; height: 80px;
     background-color: transparent;
     display: flex; align-items: center; justify-content: space-between;
     padding: 0 20px; z-index: 1000; box-sizing: border-box;
@@ -339,7 +338,7 @@ body {
 .header-logo-wrapper {
     display: flex;
     align-items: center;
-    gap: 0;
+    gap: 10px;
     cursor: pointer;
     pointer-events: auto;
 }
@@ -354,7 +353,6 @@ body {
     height: 60px;
     width: auto;
     filter: drop-shadow(0 2px 4px rgba(0,0,0,0.08));
-    margin-left: 2.5px;
     transition: opacity 0.1s ease;
     opacity: 1;
 }
