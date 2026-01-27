@@ -341,7 +341,7 @@ body {
 }
 
 .site-logo-img:not(.original-logo) {
-    content: url("icon.png");
+    content: url("icon.svg");
 }
 
 .site-logo-img {

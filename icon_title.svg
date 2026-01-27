@@ -1,5 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 405 84" width="405" height="84">
-  <!-- 以下の href="" の中に、icon.png をBase64変換した文字列を貼り付けてください (例: href="data:image/png;base64,iVBORw0KGgo...") -->
-  <image href="data:image/png;base64,ここにBase64文字列を貼り付けてください" x="0" y="0" width="84" height="84" />
-  <text x="94" y="62" font-family="sans-serif" font-weight="bold" font-size="56" fill="#2c3e50">LaTeX Dict</text>
-</svg>
