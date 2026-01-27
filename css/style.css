@@ -365,7 +365,7 @@ body {
 }
 
 .site-logo-img:not(.original-logo) {
-    content: url("icon.svg");
+    content: url("../images/icon.svg");
 }
 
 .site-logo-img {

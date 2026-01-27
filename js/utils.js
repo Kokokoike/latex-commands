@@ -51,8 +51,8 @@ window.copyText = function(btn, text) {
 window.renderCommonHeader = function() {
     const headerHtml = `
         <div class="header-logo-wrapper" onclick="window.location.href='index.html'">
-            <img src="icon.svg" alt="" class="header-icon">
-            <img src="logo_text.svg" alt="LaTeX Cmds" class="header-text">
+            <img src="images/icon.svg" alt="" class="header-icon">
+            <img src="images/logo_text.svg" alt="LaTeX Cmds" class="header-text">
         </div>
 
         <div class="header-search-container">
