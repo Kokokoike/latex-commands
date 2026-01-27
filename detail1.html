@@ -152,22 +152,7 @@
 </head>
 <body>
 
-    <header class="top-header">
-        <div class="header-logo-wrapper" onclick="window.location.href='index.html'">
-            <img src="icon.svg" alt="" class="header-icon">
-            <img src="data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' width='250' height='80' viewBox='0 0 250 80'%3e%3ctext x='60' y='38' text-anchor='middle' font-family='sans-serif' font-weight='bold' font-size='34' fill='%232c3e50'%3eLaTeX%3c/text%3e%3ctext x='60' y='75' text-anchor='middle' font-family='sans-serif' font-weight='bold' font-size='34' fill='%232c3e50'%3eCmds%3c/text%3e%3c/svg%3e" alt="LaTeX Cmds" class="header-text">
-        </div>
-
-        <div class="header-search-container">
-            <input type="text" id="header-search-input" placeholder="Search..." autocomplete="off">
-            <button id="header-search-toggle" class="search-icon-btn">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <circle cx="11" cy="11" r="8"></circle>
-                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-                </svg>
-            </button>
-        </div>
-    </header>
+    <header class="top-header"></header>
 
     <main class="main-content">
         <div class="command-card" id="card-container">
@@ -219,7 +204,7 @@
 
     <script>
         document.addEventListener("DOMContentLoaded", function() {
-            setupHeader();
+            renderCommonHeader();
 
             // URLパラメータ (?file=...&id=...) を取得
             const params = new URLSearchParams(window.location.search);
@@ -249,9 +234,7 @@
                 document.getElementById('disp-command').innerText = data.command;
                 document.getElementById('disp-desc').innerText = data.description;
 
-                katex.render(data.command, document.getElementById("math-preview"), {
-                    throwOnError: false, displayMode: true
-                });
+                renderMath("math-preview", data.command, { displayMode: true });
 
                 const pkgBox = document.getElementById('pkg-box');
                 if (data.package) {
@@ -306,8 +289,11 @@
                         // KaTeXプレビュー
                         const exPreview = document.createElement('div');
                         exPreview.className = 'example-preview';
-                        katex.render(ex.command, exPreview, { throwOnError: false, displayMode: true });
+                        // renderMathはID指定が必要だが、ここでは動的要素なので直接katexを使うか、IDを振る
+                        // ここではIDを振ってrenderMathを使う形に統一
+                        exPreview.id = `ex-preview-${index}`;
                         exContainer.appendChild(exPreview);
+                        renderMath(exPreview.id, ex.command, { displayMode: true });
 
                         // コマンド情報
                         const cmdSection = document.createElement('div');
@@ -369,9 +355,11 @@
                         relatedGrid.appendChild(card);
 
                         // KaTeXレンダリング
-                        katex.render(relData.command, card.querySelector('.list-preview'), {
-                            throwOnError: false
-                        });
+                        // 要素にIDがないため、一時的にIDを付与してrenderMathを呼ぶ
+                        const previewEl = card.querySelector('.list-preview');
+                        const uniqueId = `rel-preview-${relKey.replace(/[^a-zA-Z0-9]/g, '')}`;
+                        previewEl.id = uniqueId;
+                        renderMath(uniqueId, relData.command);
                     });
                 }
 

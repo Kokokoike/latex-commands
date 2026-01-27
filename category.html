@@ -38,22 +38,7 @@
     </style>
 </head>
 <body>
-    <header class="top-header">
-        <div class="header-logo-wrapper" onclick="window.location.href='index.html'">
-            <img src="icon.svg" alt="" class="header-icon">
-            <img src="data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' width='250' height='80' viewBox='0 0 250 80'%3e%3ctext x='60' y='38' text-anchor='middle' font-family='sans-serif' font-weight='bold' font-size='34' fill='%232c3e50'%3eLaTeX%3c/text%3e%3ctext x='60' y='75' text-anchor='middle' font-family='sans-serif' font-weight='bold' font-size='34' fill='%232c3e50'%3eCmds%3c/text%3e%3c/svg%3e" alt="LaTeX Cmds" class="header-text">
-        </div>
-
-        <div class="header-search-container">
-            <input type="text" id="header-search-input" placeholder="Search..." autocomplete="off">
-            <button id="header-search-toggle" class="search-icon-btn">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <circle cx="11" cy="11" r="8"></circle>
-                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-                </svg>
-            </button>
-        </div>
-    </header>
+    <header class="top-header"></header>
 
     <div class="container">
         <nav class="breadcrumbs"></nav>
@@ -61,7 +46,7 @@
         <p id="category-desc" style="color:#444; line-height:1.6; margin-bottom: 30px; padding-bottom: 15px; border-bottom: 2px solid #eee;"></p>
 
         <!-- 表示切り替えボタン -->
-        <div class="view-controls">
+        <div class="view-controls" id="view-controls">
             <button class="view-btn" id="btn-list" title="List View">
                 <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
                     <rect x="4" y="5" width="3" height="3" rx="1"></rect>
@@ -88,7 +73,7 @@
 
     <script>
         document.addEventListener("DOMContentLoaded", function() {
-            setupHeader();
+            renderCommonHeader();
 
             // --- 表示切り替え機能 ---
             const btnList = document.getElementById('btn-list');
@@ -123,11 +108,6 @@
 
             // データを動的に読み込む
             loadDataFile(file, function(data) {
-                if (data.type !== 'leaf') {
-                    document.getElementById('category-list').innerHTML = '<div style="color:red;">このファイルはコマンド一覧用ではありません。</div>';
-                    return;
-                }
-
                 document.title = `${data.title} - LaTeX Dictionary`;
                 document.getElementById('page-title').innerText = data.title;
                 document.getElementById('category-desc').innerText = data.description;
@@ -136,6 +116,47 @@
                 buildBreadcrumbs(file, data.title);
 
                 const listContainer = document.getElementById('category-list');
+
+                // --- 分岐: 目次(big) か コマンド一覧(leaf) か ---
+                if (data.type === 'big') {
+                    // 目次モード: グリッド切り替えボタンは隠す
+                    document.getElementById('view-controls').style.display = 'none';
+                    listContainer.classList.remove('grid-view');
+
+                    if (data.sections && data.sections.length > 0) {
+                        data.sections.forEach((sec, secIdx) => {
+                            const secTitle = document.createElement('div');
+                            secTitle.className = 'section-title';
+                            secTitle.innerText = sec.title;
+                            listContainer.appendChild(secTitle);
+
+                            const listWrapper = document.createElement('div');
+                            listWrapper.className = 'main-results-list';
+                            listContainer.appendChild(listWrapper);
+
+                            sec.items.forEach((item, itemIdx) => {
+                                const div = document.createElement('div');
+                                div.className = 'list-item';
+                                div.innerHTML = `
+                                    <div class="list-preview" id="icon-${secIdx}-${itemIdx}"></div>
+                                    <div class="list-info">
+                                        <div class="cmd-row"><div class="result-cmd">${item.title}</div></div>
+                                        <div class="result-desc">${item.description ? item.description.replace(/\n/g, '') : ''}</div>
+                                    </div>
+                                `;
+                                div.onclick = () => { window.location.href = `category.html?file=${item.file}`; };
+                                listWrapper.appendChild(div);
+
+                                if (item.icon) {
+                                    renderMath(`icon-${secIdx}-${itemIdx}`, item.icon);
+                                }
+                            });
+                        });
+                    }
+                    return; // bigモード終了
+                }
+
+                // --- 以下、leaf (コマンド一覧) モード ---
                 const keys = Object.keys(data.commands);
 
                 // アイテム生成関数
@@ -163,7 +184,7 @@
                     div.onclick = () => { window.location.href = `detail1.html?file=${file}&id=${key}`; };
                 container.appendChild(div);
 
-                katex.render(d.command, document.getElementById(`preview-${key}`), { throwOnError: false });
+                renderMath(`preview-${key}`, d.command);
                 }
 
                 // セクション定義がある場合の表示処理

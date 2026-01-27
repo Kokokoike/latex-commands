@@ -54,22 +54,7 @@
     </style>
 </head>
 <body>
-    <header class="top-header">
-        <div class="header-logo-wrapper" onclick="window.location.href='index.html'">
-            <img src="icon.svg" alt="" class="header-icon">
-            <img src="data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' width='250' height='80' viewBox='0 0 250 80'%3e%3ctext x='60' y='38' text-anchor='middle' font-family='sans-serif' font-weight='bold' font-size='34' fill='%232c3e50'%3eLaTeX%3c/text%3e%3ctext x='60' y='75' text-anchor='middle' font-family='sans-serif' font-weight='bold' font-size='34' fill='%232c3e50'%3eCmds%3c/text%3e%3c/svg%3e" alt="LaTeX Cmds" class="header-text">
-        </div>
-
-        <div class="header-search-container">
-            <input type="text" id="header-search-input" placeholder="Search..." autocomplete="off">
-            <button id="header-search-toggle" class="search-icon-btn">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <circle cx="11" cy="11" r="8"></circle>
-                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-                </svg>
-            </button>
-        </div>
-    </header>
+    <header class="top-header"></header>
 
     <div class="container">
         <div class="search-wrapper">
@@ -102,57 +87,7 @@
 
     <script>
         document.addEventListener("DOMContentLoaded", function() {
-            // --- ヘッダーのスクロール制御 ---
-            const header = document.querySelector('.top-header');
-            window.addEventListener('scroll', () => {
-                if (window.scrollY > 20) {
-                    header.classList.add('scrolled');
-                } else {
-                    header.classList.remove('scrolled');
-                }
-            });
-
-            // --- ヘッダー検索機能 ---
-            const searchContainer = document.querySelector('.header-search-container');
-            const headerSearchInput = document.getElementById('header-search-input');
-            const searchToggle = document.getElementById('header-search-toggle');
-            const headerText = document.querySelector('.header-text');
-
-            // --- 重なり判定 (Overlap Detection) ---
-            function checkOverlap() {
-                if (!headerText || !searchContainer) return;
-                const textRect = headerText.getBoundingClientRect();
-                const searchRect = searchContainer.getBoundingClientRect();
-                
-                // テキストの右端が検索バーの左端に接触(余裕10px)したら隠す
-                if (textRect.right > searchRect.left - 10) {
-                    headerText.classList.add('top_scrolled');
-                } else {
-                    headerText.classList.remove('top_scrolled');
-                }
-            }
-            window.addEventListener('resize', checkOverlap);
-            checkOverlap(); // 初期実行
-
-            searchToggle.addEventListener('click', () => {
-                searchContainer.classList.toggle('active');
-                if (searchContainer.classList.contains('active')) {
-                    headerSearchInput.focus();
-                }
-                // アニメーション中に定期チェック
-                const interval = setInterval(checkOverlap, 50);
-                setTimeout(() => clearInterval(interval), 400);
-            });
-
-            headerSearchInput.addEventListener('keydown', (e) => {
-                if (e.key === 'Enter') {
-                    e.preventDefault();
-                    const term = headerSearchInput.value.trim();
-                    if (term) {
-                        window.location.href = `search.html?q=${encodeURIComponent(term)}`;
-                    }
-                }
-            });
+            renderCommonHeader();
 
             const params = new URLSearchParams(window.location.search);
             const query = params.get('q') || '';
@@ -197,7 +132,7 @@
                         div.onclick = () => { window.location.href = `detail1.html?id=${key}`; };
                         mainList.appendChild(div);
 
-                        katex.render(d.command, document.getElementById(`preview-${key}`), { throwOnError: false });
+                        renderMath(`preview-${key}`, d.command);
                     });
                 } else {
                     mainList.innerHTML = '<div style="color:#666; padding:20px;">該当するコマンドが見つかりませんでした。</div>';

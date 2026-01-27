@@ -47,6 +47,32 @@ window.copyText = function(btn, text) {
 
 // --- 共通機能の追加 ---
 
+// ヘッダーのHTMLを生成して挿入する
+window.renderCommonHeader = function() {
+    const headerHtml = `
+        <div class="header-logo-wrapper" onclick="window.location.href='index.html'">
+            <img src="icon.svg" alt="" class="header-icon">
+            <img src="data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' width='250' height='80' viewBox='0 0 250 80'%3e%3ctext x='60' y='38' text-anchor='middle' font-family='sans-serif' font-weight='bold' font-size='34' fill='%232c3e50'%3eLaTeX%3c/text%3e%3ctext x='60' y='75' text-anchor='middle' font-family='sans-serif' font-weight='bold' font-size='34' fill='%232c3e50'%3eCmds%3c/text%3e%3c/svg%3e" alt="LaTeX Cmds" class="header-text">
+        </div>
+
+        <div class="header-search-container">
+            <input type="text" id="header-search-input" placeholder="Search..." autocomplete="off">
+            <button id="header-search-toggle" class="search-icon-btn">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                </svg>
+            </button>
+        </div>
+    `;
+
+    const headerEl = document.querySelector('.top-header');
+    if (headerEl) {
+        headerEl.innerHTML = headerHtml;
+        setupHeader(); // イベント登録
+    }
+};
+
 // ヘッダー機能のセットアップ
 window.setupHeader = function() {
     const header = document.querySelector('.top-header');
@@ -103,6 +129,17 @@ window.setupHeader = function() {
     }
 };
 
+// KaTeXレンダリングのヘルパー関数
+window.renderMath = function(elementId, latexCommand, options = {}) {
+    const el = document.getElementById(elementId);
+    if (!el) return;
+    
+    const defaultOptions = { throwOnError: false };
+    const finalOptions = { ...defaultOptions, ...options };
+    
+    katex.render(latexCommand, el, finalOptions);
+};
+
 // データ読み込みのPromise化
 window.loadDataFilePromise = function(file) {
     return new Promise((resolve, reject) => {
@@ -151,7 +188,8 @@ window.buildBreadcrumbs = async function(currentFile, currentTitle, isDetail = f
         try {
             const data = await loadDataFilePromise(file);
             const title = data.title || file;
-            const href = (data.type === 'big') ? `bigCategory.html?file=${file}` : `category.html?file=${file}`;
+            // 統合によりすべて category.html へ
+            const href = `category.html?file=${file}`;
             addLink(title, href);
         } catch (e) { console.log(`Breadcrumb skip: ${file}`); }
     }
