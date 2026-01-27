@@ -233,12 +233,32 @@
             const searchContainer = document.querySelector('.header-search-container');
             const searchInput = document.getElementById('header-search-input');
             const searchToggle = document.getElementById('header-search-toggle');
+            const headerText = document.querySelector('.header-text');
+
+            // --- 重なり判定 (Overlap Detection) ---
+            function checkOverlap() {
+                if (!headerText || !searchContainer) return;
+                const textRect = headerText.getBoundingClientRect();
+                const searchRect = searchContainer.getBoundingClientRect();
+                
+                // テキストの右端が検索バーの左端に接触(余裕10px)したら隠す
+                if (textRect.right > searchRect.left - 10) {
+                    headerText.classList.add('top_scrolled');
+                } else {
+                    headerText.classList.remove('top_scrolled');
+                }
+            }
+            window.addEventListener('resize', checkOverlap);
+            checkOverlap(); // 初期実行
 
             searchToggle.addEventListener('click', () => {
                 searchContainer.classList.toggle('active');
                 if (searchContainer.classList.contains('active')) {
                     searchInput.focus();
                 }
+                // アニメーション中に定期チェック
+                const interval = setInterval(checkOverlap, 50);
+                setTimeout(() => clearInterval(interval), 400);
             });
 
             searchInput.addEventListener('keydown', (e) => {

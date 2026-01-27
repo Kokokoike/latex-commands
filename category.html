@@ -60,6 +60,28 @@
         <h1 class="page-title" id="page-title">一覧</h1>
         <p id="category-desc" style="color:#444; line-height:1.6; margin-bottom: 30px; padding-bottom: 15px; border-bottom: 2px solid #eee;"></p>
 
+        <!-- 表示切り替えボタン -->
+        <div class="view-controls">
+            <button class="view-btn" id="btn-list" title="List View">
+                <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+                    <rect x="4" y="5" width="3" height="3" rx="1"></rect>
+                    <rect x="9" y="5" width="10" height="3" rx="1"></rect>
+                    <rect x="4" y="10" width="3" height="3" rx="1"></rect>
+                    <rect x="9" y="10" width="10" height="3" rx="1"></rect>
+                    <rect x="4" y="15" width="3" height="3" rx="1"></rect>
+                    <rect x="9" y="15" width="10" height="3" rx="1"></rect>
+                </svg>
+            </button>
+            <button class="view-btn active" id="btn-grid" title="Grid View">
+                <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+                    <rect x="4" y="4" width="7" height="7" rx="1"></rect>
+                    <rect x="13" y="4" width="7" height="7" rx="1"></rect>
+                    <rect x="4" y="13" width="7" height="7" rx="1"></rect>
+                    <rect x="13" y="13" width="7" height="7" rx="1"></rect>
+                </svg>
+            </button>
+        </div>
+
         <!-- グリッド表示を強制するために grid-view クラスを付与 -->
         <div class="main-results-list grid-view" id="category-list"></div>
     </div>
@@ -80,12 +102,32 @@
             const searchContainer = document.querySelector('.header-search-container');
             const searchInput = document.getElementById('header-search-input');
             const searchToggle = document.getElementById('header-search-toggle');
+            const headerText = document.querySelector('.header-text');
+
+            // --- 重なり判定 (Overlap Detection) ---
+            function checkOverlap() {
+                if (!headerText || !searchContainer) return;
+                const textRect = headerText.getBoundingClientRect();
+                const searchRect = searchContainer.getBoundingClientRect();
+                
+                // テキストの右端が検索バーの左端に接触(余裕10px)したら隠す
+                if (textRect.right > searchRect.left - 10) {
+                    headerText.classList.add('top_scrolled');
+                } else {
+                    headerText.classList.remove('top_scrolled');
+                }
+            }
+            window.addEventListener('resize', checkOverlap);
+            checkOverlap(); // 初期実行
 
             searchToggle.addEventListener('click', () => {
                 searchContainer.classList.toggle('active');
                 if (searchContainer.classList.contains('active')) {
                     searchInput.focus();
                 }
+                // アニメーション中に定期チェック
+                const interval = setInterval(checkOverlap, 50);
+                setTimeout(() => clearInterval(interval), 400);
             });
 
             searchInput.addEventListener('keydown', (e) => {
@@ -97,6 +139,28 @@
                     }
                 }
             });
+
+            // --- 表示切り替え機能 ---
+            const btnList = document.getElementById('btn-list');
+            const btnGrid = document.getElementById('btn-grid');
+            
+            function setView(mode) {
+                const lists = document.querySelectorAll('.main-results-list');
+                lists.forEach(list => {
+                    if (mode === 'grid') list.classList.add('grid-view');
+                    else list.classList.remove('grid-view');
+                });
+
+                if (mode === 'grid') {
+                    btnGrid.classList.add('active');
+                    btnList.classList.remove('active');
+                } else {
+                    btnList.classList.add('active');
+                    btnGrid.classList.remove('active');
+                }
+            }
+            btnList.addEventListener('click', () => setView('list'));
+            btnGrid.addEventListener('click', () => setView('grid'));
 
             // URLパラメータ (?file=...) を取得
             const params = new URLSearchParams(window.location.search);
@@ -136,6 +200,7 @@
                             <div class="result-cmd">${key}</div>
                             <button class="copy-btn-small">Copy</button>
                         </div>
+                        <div class="result-desc">${d.description || ''}</div>
                     </div>
                 `;
                 
@@ -186,6 +251,9 @@
                         // グリッドコンテナ
                         const gridEl = document.createElement('div');
                         gridEl.className = 'main-results-list grid-view';
+                        // 現在の表示モードに合わせてクラスを調整
+                        if (btnList.classList.contains('active')) gridEl.classList.remove('grid-view');
+                        
                         listContainer.appendChild(gridEl);
 
                         secKeys.forEach(key => createItem(key, gridEl));

@@ -195,6 +195,32 @@ body {
     margin-top: 0;
 }
 
+/* --- 表示切り替えコントロール (共通) --- */
+.view-controls {
+    display: flex;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    justify-content: flex-end;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.view-btn {
+    background: white;
+    border: 1px solid #ddd;
+    padding: 5px 15px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    color: #555;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.view-btn:first-child { border-radius: 4px 0 0 4px; border-right: none; }
+.view-btn:last-child { border-radius: 0 4px 4px 0; }
+.view-btn.active { background-color: #4a90e2; color: white; border-color: #4a90e2; }
+
 /* カテゴリリンク（トップページ用） */
 .category-links {
     display: flex;
@@ -230,7 +256,8 @@ body {
     height: 50px;
     box-shadow: 0 2px 5px rgba(0,0,0,0.05);
     pointer-events: auto; /* ヘッダーのクリック透過を無効化 */
-    margin-left: auto;
+    position: absolute;
+    right: 20px;
     box-sizing: border-box;
 }
 
@@ -335,7 +362,8 @@ body {
 }
 
 /* --- ヘッダーアイコンの一括変更 --- */
-.top-header.scrolled .header-text {
+.top-header.scrolled .header-text,
+.header-text.top_scrolled {
     opacity: 0;
     pointer-events: none;
 }
@@ -347,4 +375,10 @@ body {
 .site-logo-img {
     max-height: 120px; /* 正方形アイコン用に高さを制限 */
     width: auto;
+}
+
+/* リスト表示時は幅を制限 (Grid時は親要素いっぱいまで広げる) */
+.main-results-list:not(.grid-view) {
+    margin-left: auto;
+    margin-right: auto;
 }

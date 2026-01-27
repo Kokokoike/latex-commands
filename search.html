@@ -34,33 +34,6 @@
             cursor: pointer;
         }
 
-        /* 表示切り替えボタン */
-        .view-controls {
-            display: flex;
-            margin-top: 20px;
-            margin-bottom: 10px;
-            justify-content: flex-end;
-            width: 100%;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-        
-        .view-btn {
-            background: white;
-            border: 1px solid #ddd;
-            padding: 5px 15px;
-            cursor: pointer;
-            font-size: 0.9rem;
-            color: #555;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .view-btn:first-child { border-radius: 4px 0 0 4px; border-right: none; }
-        .view-btn:last-child { border-radius: 0 4px 4px 0; }
-        .view-btn.active { background-color: #4a90e2; color: white; border-color: #4a90e2; }
-        
         .copy-btn-small {
             margin-left: 10px;
         }
@@ -71,7 +44,8 @@
             margin-left: auto;
             margin-right: auto;
         }
-        /* リスト表示時は幅を制限、Grid時は親要素(800px)いっぱいまで広げる */
+
+        .view-controls,
         .main-results-list:not(.grid-view) {
             max-width: 600px;
             margin-left: auto;
@@ -142,12 +116,32 @@
             const searchContainer = document.querySelector('.header-search-container');
             const headerSearchInput = document.getElementById('header-search-input');
             const searchToggle = document.getElementById('header-search-toggle');
+            const headerText = document.querySelector('.header-text');
+
+            // --- 重なり判定 (Overlap Detection) ---
+            function checkOverlap() {
+                if (!headerText || !searchContainer) return;
+                const textRect = headerText.getBoundingClientRect();
+                const searchRect = searchContainer.getBoundingClientRect();
+                
+                // テキストの右端が検索バーの左端に接触(余裕10px)したら隠す
+                if (textRect.right > searchRect.left - 10) {
+                    headerText.classList.add('top_scrolled');
+                } else {
+                    headerText.classList.remove('top_scrolled');
+                }
+            }
+            window.addEventListener('resize', checkOverlap);
+            checkOverlap(); // 初期実行
 
             searchToggle.addEventListener('click', () => {
                 searchContainer.classList.toggle('active');
                 if (searchContainer.classList.contains('active')) {
                     headerSearchInput.focus();
                 }
+                // アニメーション中に定期チェック
+                const interval = setInterval(checkOverlap, 50);
+                setTimeout(() => clearInterval(interval), 400);
             });
 
             headerSearchInput.addEventListener('keydown', (e) => {
