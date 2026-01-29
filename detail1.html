@@ -230,14 +230,12 @@
 
                 // コマンドが指定されていない場合はキーを使用
                 const displayCommand = data.command || currentKey;
-                const displayDesc = data.description || currentKey.replace(/^\\/, '');
 
                 // --- 描画処理 ---
                 document.title = `${currentKey} - LaTeX Dictionary`;
                 document.getElementById('disp-title').innerText = currentKey;
                 document.getElementById('disp-command').innerText = displayCommand;
                 document.getElementById('disp-desc').innerText = data.description;
-                document.getElementById('disp-desc').innerText = displayDesc;
 
                 renderMath("math-preview", displayCommand, { displayMode: true });
 

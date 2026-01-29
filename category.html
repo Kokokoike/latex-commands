@@ -46,26 +46,7 @@
         <p id="category-desc" style="color:#444; line-height:1.6; margin-bottom: 30px; padding-bottom: 15px; border-bottom: 2px solid #eee;"></p>
 
         <!-- 表示切り替えボタン -->
-        <div class="view-controls" id="view-controls">
-            <button class="view-btn" id="btn-list" title="List View">
-                <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
-                    <rect x="4" y="5" width="3" height="3" rx="1"></rect>
-                    <rect x="9" y="5" width="10" height="3" rx="1"></rect>
-                    <rect x="4" y="10" width="3" height="3" rx="1"></rect>
-                    <rect x="9" y="10" width="10" height="3" rx="1"></rect>
-                    <rect x="4" y="15" width="3" height="3" rx="1"></rect>
-                    <rect x="9" y="15" width="10" height="3" rx="1"></rect>
-                </svg>
-            </button>
-            <button class="view-btn active" id="btn-grid" title="Grid View">
-                <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
-                    <rect x="4" y="4" width="7" height="7" rx="1"></rect>
-                    <rect x="13" y="4" width="7" height="7" rx="1"></rect>
-                    <rect x="4" y="13" width="7" height="7" rx="1"></rect>
-                    <rect x="13" y="13" width="7" height="7" rx="1"></rect>
-                </svg>
-            </button>
-        </div>
+        <div class="view-controls" id="view-controls"></div>
 
         <!-- グリッド表示を強制するために grid-view クラスを付与 -->
         <div class="main-results-list grid-view" id="category-list"></div>
@@ -76,6 +57,16 @@
             renderCommonHeader();
 
             // --- 表示切り替え機能 ---
+            // ボタンを動的に生成 (Gridデフォルト)
+            document.getElementById('view-controls').innerHTML = `
+                <button class="view-btn" id="btn-list" title="List View">
+                    <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><rect x="4" y="5" width="3" height="3" rx="1"></rect><rect x="9" y="5" width="10" height="3" rx="1"></rect><rect x="4" y="10" width="3" height="3" rx="1"></rect><rect x="9" y="10" width="10" height="3" rx="1"></rect><rect x="4" y="15" width="3" height="3" rx="1"></rect><rect x="9" y="15" width="10" height="3" rx="1"></rect></svg>
+                </button>
+                <button class="view-btn active" id="btn-grid" title="Grid View">
+                    <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><rect x="4" y="4" width="7" height="7" rx="1"></rect><rect x="13" y="4" width="7" height="7" rx="1"></rect><rect x="4" y="13" width="7" height="7" rx="1"></rect><rect x="13" y="13" width="7" height="7" rx="1"></rect></svg>
+                </button>
+            `;
+
             const btnList = document.getElementById('btn-list');
             const btnGrid = document.getElementById('btn-grid');
             

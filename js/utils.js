@@ -71,6 +71,18 @@ window.renderCommonHeader = function() {
         headerEl.innerHTML = headerHtml;
         setupHeader(); // イベント登録
     }
+
+    // renderCommonHeader関数内などで、HTML生成後に実行
+    const headerInput = document.getElementById('header-search-input');
+    if (headerInput) {
+        headerInput.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') {
+            e.preventDefault();
+            executeSearch(headerInput.value);
+        }
+    });
+}
+
 };
 
 // ヘッダー機能のセットアップ
@@ -189,3 +201,19 @@ window.buildBreadcrumbs = async function(currentFile, currentTitle, isDetail = f
     span.innerText = currentTitle;
     nav.appendChild(span);
 };
+
+/**
+ * 共通検索実行関数
+ * 入力されたクエリで検索結果ページへ遷移します
+ * @param {string} query - 検索キーワード
+ */
+function executeSearch(query) {
+    if (!query) return;
+    const term = query.trim();
+    if (term.length === 0) return;
+
+    // 検索結果ページへ遷移 (search.htmlがルートにある前提)
+    // 既に search.html にいる場合も再読み込みとして機能します
+    window.location.href = `search.html?q=${encodeURIComponent(term)}`;
+}
+

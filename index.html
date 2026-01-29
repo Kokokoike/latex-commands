@@ -147,12 +147,7 @@
             input.addEventListener('keydown', (e) => {
                 if (e.key === 'Enter') {
                     e.preventDefault();
-                    const term = input.value.toLowerCase();
-
-                    if (term.length === 0) return;
-                    
-                    // 別ページへ遷移
-                    window.location.href = `search.html?q=${encodeURIComponent(term)}`;
+                    executeSearch(input.value);
                 }
             });
 

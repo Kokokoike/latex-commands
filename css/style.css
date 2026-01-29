@@ -107,6 +107,9 @@ body {
     width: 100%;
     margin-top: 30px;
     text-align: left;
+    /* リスト表示時のデフォルト設定（中央寄せ・幅制限） */
+    max-width: 800px;
+    margin-left: auto; margin-right: auto;
 }
 
 .list-item {
@@ -160,6 +163,7 @@ body {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
     gap: 15px;
+    max-width: 100%; /* グリッド時は幅制限を解除して親要素いっぱいに */
 }
 
 .main-results-list.grid-view .list-item {
@@ -373,8 +377,5 @@ body {
     width: auto;
 }
 
-/* リスト表示時は幅を制限 (Grid時は親要素いっぱいまで広げる) */
-.main-results-list:not(.grid-view) {
-    margin-left: auto;
-    margin-right: auto;
-}
+/* --- Dark Mode Support --- 
+@media (prefers-color-scheme: dark) {*/
