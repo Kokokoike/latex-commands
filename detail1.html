@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LaTeX Command Dictionary</title>
-    <link rel="icon" href="images/icon.svg" type="image/svg+xml" sizes="any">
+    <link rel="icon" href="images/icon_site.svg" type="image/svg+xml" sizes="any">
     <link rel="apple-touch-icon" href="images/icon.png">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
     <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
@@ -228,13 +228,18 @@
                 // --- パンくずリストの構築 (非同期) ---
                 buildBreadcrumbs(file, currentKey, true);
 
+                // コマンドが指定されていない場合はキーを使用
+                const displayCommand = data.command || currentKey;
+                const displayDesc = data.description || currentKey.replace(/^\\/, '');
+
                 // --- 描画処理 ---
                 document.title = `${currentKey} - LaTeX Dictionary`;
                 document.getElementById('disp-title').innerText = currentKey;
-                document.getElementById('disp-command').innerText = data.command;
+                document.getElementById('disp-command').innerText = displayCommand;
                 document.getElementById('disp-desc').innerText = data.description;
+                document.getElementById('disp-desc').innerText = displayDesc;
 
-                renderMath("math-preview", data.command, { displayMode: true });
+                renderMath("math-preview", displayCommand, { displayMode: true });
 
                 const pkgBox = document.getElementById('pkg-box');
                 if (data.package) {
@@ -359,12 +364,12 @@
                         const previewEl = card.querySelector('.list-preview');
                         const uniqueId = `rel-preview-${relKey.replace(/[^a-zA-Z0-9]/g, '')}`;
                         previewEl.id = uniqueId;
-                        renderMath(uniqueId, relData.command);
+                        renderMath(uniqueId, relData.command || relKey);
                     });
                 }
 
                 document.getElementById('btn-copy-cmd').onclick = function() {
-                    copyText(this, data.command);
+                    copyText(this, displayCommand);
                 };
             });
         });

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Search Results - LaTeX Dictionary</title>
-    <link rel="icon" href="images/icon.svg" type="image/svg+xml" sizes="any">
+    <link rel="icon" href="images/icon_site.svg" type="image/svg+xml" sizes="any">
     <link rel="apple-touch-icon" href="images/icon.png">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
     <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
@@ -110,6 +110,9 @@
                 if (hits.length > 0) {
                     hits.forEach(key => {
                         const d = commandDatabase[key];
+                        const displayCommand = d.command || key;
+                        const displayDesc = d.description || key.replace(/^\\/, '');
+
                         const div = document.createElement('div');
                         div.className = 'list-item';
                         div.innerHTML = `
@@ -119,7 +122,7 @@
                                     <div class="result-cmd">${key}</div>
                                     <button class="copy-btn-small">Copy</button>
                                 </div>
-                                <div class="result-desc">${d.description}</div>
+                                <div class="result-desc">${displayDesc}</div>
                             </div>
                         `;
                         
@@ -132,7 +135,7 @@
                         div.onclick = () => { window.location.href = `detail1.html?id=${key}`; };
                         mainList.appendChild(div);
 
-                        renderMath(`preview-${key}`, d.command);
+                        renderMath(`preview-${key}`, displayCommand);
                     });
                 } else {
                     mainList.innerHTML = '<div style="color:#666; padding:20px;">該当するコマンドが見つかりませんでした。</div>';

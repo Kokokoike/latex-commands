@@ -8,13 +8,24 @@ setData({
             title: "フォント",
             items: [
                 {
-                    title: "文字",
-                    description: "ギリシャ文字など",
-                    file: "data/letters/data_letters.js",
-                    type: "big",
-                    icon: "A"
+                    title: "太字",
+                    description: "太字フォントの表示方法一覧です。",
+                    file: "data/bold/data_bold.js",
+                    type: "leaf",
+                    icon: "\\mathbb{R}"
                 }
-                // ここに "微積分" などを追加していく
+            ]
+        }, 
+        {
+            title: "数式",
+            items: [
+                {
+                    title: "数式",
+                    description: "LaTeXの数式環境で使われるコマンドです。",
+                    file: "data/math/data_math.js",
+                    type: "big",
+                    icon: "\\sin"
+                }
             ]
         }
     ]

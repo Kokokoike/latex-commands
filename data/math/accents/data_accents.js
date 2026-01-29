@@ -65,8 +65,8 @@ function smallGreek2(name, kana, related = [], examples = []) {
 
 // ★ データベース
 setData({
-    title: "ギリシャ文字",
-    description: "ギリシャ文字の大文字・小文字と、異体字の表示方法一覧です。\n アルファベットと同形でない場合、数式環境が必要です。",
+    title: "accents",
+    description: "accents",
     type: "leaf",
     
     sections: [
