@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LaTeX Dictionary</title>
+    <title>Category - LaTeX Cmds</title>
     <link rel="icon" href="images/icon_site.svg" type="image/svg+xml" sizes="any">
     <link rel="apple-touch-icon" href="images/icon.png">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
@@ -35,6 +35,20 @@
             border-top: 2px solid #eee;
             margin: 20px 0;
         }
+
+        /* サブカテゴリ用カードスタイル (index.htmlのnav-cardと同様) */
+        .nav-card {
+            background: #f4f4f9; padding: 20px; border-radius: 8px;
+            text-decoration: none; color: #2c3e50; font-weight: bold; font-size: 0.9rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08); border: 1px solid #eee;
+            transition: all 0.2s ease; display: flex; flex-direction: column;
+            align-items: center; justify-content: center; height: 100px;
+        }
+        .nav-card:hover {
+            transform: translateY(-2px); box-shadow: 0 8px 20px rgba(0,0,0,0.12); border-color: #ddd;
+        }
+        .nav-card-icon { font-size: 2rem; margin-bottom: 10px; }
+        .nav-card-title { font-size: 1rem; }
     </style>
 </head>
 <body>
@@ -53,8 +67,8 @@
     </div>
 
     <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            renderCommonHeader();
+        document.addEventListener("DOMContentLoaded", async function() {
+            if (window.renderCommonHeader) renderCommonHeader();
 
             // --- 表示切り替え機能 ---
             // ボタンを動的に生成 (Gridデフォルト)
@@ -88,156 +102,143 @@
             btnList.addEventListener('click', () => setView('list'));
             btnGrid.addEventListener('click', () => setView('grid'));
 
-            // URLパラメータ (?file=...) を取得
-            const params = new URLSearchParams(window.location.search);
-            const file = params.get('file');
+            // データベース読み込み
+            await window.initDatabase();
 
-            if (!file) {
-                document.getElementById('page-title').innerText = "File Not Specified";
+            const params = new URLSearchParams(window.location.search);
+            const catPath = params.get('cat');
+
+            // パンくずリスト生成
+            const nav = document.querySelector('.breadcrumbs');
+            nav.innerHTML = '<a href="index.html">TOP</a>';
+            if (catPath === 'Main') {
+                nav.appendChild(document.createTextNode(' > '));
+                const span = document.createElement('span');
+                span.className = 'current-page-name';
+                span.innerText = "主なカテゴリー";
+                nav.appendChild(span);
+            } else if (catPath) {
+                const parts = catPath.split('/');
+                let accum = "";
+                parts.forEach((p, i) => {
+                    nav.appendChild(document.createTextNode(' > '));
+                    if(i === parts.length - 1) {
+                        const span = document.createElement('span');
+                        span.className = 'current-page-name';
+                        span.innerText = p;
+                        nav.appendChild(span);
+                    } else {
+                        accum += (i>0 ? "/" : "") + p;
+                        const a = document.createElement('a');
+                        a.href = `category.html?cat=${encodeURIComponent(accum)}`;
+                        a.innerText = p;
+                        nav.appendChild(a);
+                    }
+                });
+            }
+
+            if (!catPath) {
+                document.getElementById('page-title').innerText = "Category Not Specified";
                 return;
             }
 
-            // データを動的に読み込む
-            loadDataFile(file, function(data) {
-                document.title = `${data.title} - LaTeX Dictionary`;
-                document.getElementById('page-title').innerText = data.title;
-                document.getElementById('category-desc').innerText = data.description;
+            // 階層探索
+            let pathArray = [];
+            let currentLevel = window.db.structure;
+            let currentNode = null;
 
-                // パンくずリスト生成
-                buildBreadcrumbs(file, data.title);
+            if (catPath === 'Main') {
+                pathArray = [];
+                currentLevel = window.db.structure;
+                currentNode = { title: "主なカテゴリー", description: "" };
+            } else {
+                pathArray = catPath.split('/');
+                currentNode = { title: pathArray[pathArray.length-1] }; 
 
-                const listContainer = document.getElementById('category-list');
-
-                // --- 分岐: 目次(big) か コマンド一覧(leaf) か ---
-                if (data.type === 'big') {
-                    // 目次モード: グリッド切り替えボタンは隠す
-                    document.getElementById('view-controls').style.display = 'none';
-                    listContainer.classList.remove('grid-view');
-
-                    if (data.sections && data.sections.length > 0) {
-                        data.sections.forEach((sec, secIdx) => {
-                            const secTitle = document.createElement('div');
-                            secTitle.className = 'section-title';
-                            secTitle.innerText = sec.title;
-                            listContainer.appendChild(secTitle);
-
-                            const listWrapper = document.createElement('div');
-                            listWrapper.className = 'main-results-list';
-                            listContainer.appendChild(listWrapper);
-
-                            sec.items.forEach((item, itemIdx) => {
-                                const div = document.createElement('div');
-                                div.className = 'list-item';
-                                div.innerHTML = `
-                                    <div class="list-preview" id="icon-${secIdx}-${itemIdx}"></div>
-                                    <div class="list-info">
-                                        <div class="cmd-row"><div class="result-cmd">${item.title}</div></div>
-                                        <div class="result-desc">${item.description ? item.description.replace(/\n/g, '') : ''}</div>
-                                    </div>
-                                `;
-                                div.onclick = () => { window.location.href = `category.html?file=${item.file}`; };
-                                listWrapper.appendChild(div);
-
-                                if (item.icon) {
-                                    renderMath(`icon-${secIdx}-${itemIdx}`, item.icon);
-                                }
-                            });
-                        });
-                    }
-                    return; // bigモード終了
-                }
-
-                // --- 以下、leaf (コマンド一覧) モード ---
-                const keys = Object.keys(data.commands);
-
-                // アイテム生成関数
-                function createItem(key, container) {
-                    const d = data.commands[key];
-                    const displayCommand = d.command || key;
-                    const displayDesc = d.description || key.replace(/^\\/, '');
-
-                const div = document.createElement('div');
-                div.className = 'list-item';
-                div.innerHTML = `
-                    <div class="list-preview" id="preview-${key}"></div>
-                    <div class="list-info">
-                        <div class="cmd-row">
-                            <div class="result-cmd">${key}</div>
-                            <button class="copy-btn-small">Copy</button>
-                        </div>
-                        <div class="result-desc">${displayDesc}</div>
-                    </div>
-                `;
-                
-                const copyBtn = div.querySelector('.copy-btn-small');
-                copyBtn.onclick = (e) => {
-                    e.stopPropagation();
-                    copyText(copyBtn, key);
-                };
-
-                    div.onclick = () => { window.location.href = `detail1.html?file=${file}&id=${key}`; };
-                container.appendChild(div);
-
-                renderMath(`preview-${key}`, displayCommand);
-                }
-
-                // セクション定義がある場合の表示処理
-                if (data.sections && Array.isArray(data.sections)) {
-                    // 親コンテナのグリッドクラスを削除
-                    listContainer.className = '';
-                    
-                    let hasItems = false;
-                    let displayedSectionCount = 0;
-
-                    data.sections.forEach(sec => {
-                        // タグによるフィルタリング
-                        const secKeys = keys.filter(key => {
-                            const tags = data.commands[key].tags || [];
-                        const hasRequired = sec.requiredTags.every(t => tags.includes(t));
-                        const hasExcluded = sec.excludedTags ? sec.excludedTags.some(t => tags.includes(t)) : false;
-                        return hasRequired && !hasExcluded;
-                    });
-
-                    if (secKeys.length > 0) {
-                        hasItems = true;
-
-                        if (displayedSectionCount > 0) {
-                            const divider = document.createElement('hr');
-                            divider.className = 'section-divider';
-                            listContainer.appendChild(divider);
-                        }
-
-                        // セクションタイトル
-                        const titleEl = document.createElement('div');
-                        titleEl.className = 'section-title';
-                        titleEl.innerText = sec.title;
-                        listContainer.appendChild(titleEl);
-
-                        // グリッドコンテナ
-                        const gridEl = document.createElement('div');
-                        gridEl.className = 'main-results-list grid-view';
-                        // 現在の表示モードに合わせてクラスを調整
-                        if (btnList.classList.contains('active')) gridEl.classList.remove('grid-view');
-                        
-                        listContainer.appendChild(gridEl);
-
-                        secKeys.forEach(key => createItem(key, gridEl));
-                        displayedSectionCount++;
-                    }
-                });
-
-                    if (!hasItems) {
-                        listContainer.innerHTML = '<div style="color:#666;">該当するコマンドが見つかりませんでした。</div>';
-                    }
-                } else {
-                    // セクション定義がない場合（全表示）
-                    if (keys.length > 0) {
-                        keys.forEach(key => createItem(key, listContainer));
+                // ルートから探索
+                for (const segment of pathArray) {
+                    if (!currentLevel) break;
+                    const found = currentLevel.find(c => c.title === segment);
+                    if (found) {
+                        currentNode = found;
+                        currentLevel = found.children || [];
                     } else {
-                        listContainer.innerHTML = '<div style="color:#666;">コマンドが見つかりませんでした。</div>';
+                        currentLevel = []; // 見つからない
                     }
                 }
-            });
+            }
+            
+            document.title = `${currentNode.title || 'Category'} - LaTeX Dictionary`;
+            document.getElementById('page-title').innerText = currentNode.title || "Not Found";
+            document.getElementById('category-desc').innerText = currentNode.description || "";
+
+            const listContainer = document.getElementById('category-list');
+            listContainer.innerHTML = '';
+
+            // A. サブカテゴリがある場合 (フォルダ表示)
+            if (currentLevel.length > 0) {
+                // リスト表示 (type:big)
+                document.getElementById('view-controls').style.display = 'none';
+                listContainer.classList.remove('grid-view');
+
+                currentLevel.forEach(child => {
+                    const div = document.createElement('div');
+                    div.className = 'list-item';
+                    div.onclick = () => location.href = `category.html?cat=${encodeURIComponent([...pathArray, child.title].join('/'))}`;
+                    div.innerHTML = `
+                        <div class="list-preview" style="font-size: 2rem;">📂</div>
+                        <div class="list-info">
+                            <div class="cmd-row">
+                                <div class="result-cmd" style="color: #333; font-family: inherit;">${child.title}</div>
+                            </div>
+                            <div class="result-desc"></div>
+                        </div>
+                    `;
+                    listContainer.appendChild(div);
+                });
+            } 
+            // B. 末端 (コマンド一覧表示)
+            else {
+                document.getElementById('view-controls').style.display = 'flex';
+                
+                // 逆引きキー作成 (" / "区切り)
+                const dbKey = pathArray.join(' / ');
+                const cmds = window.db.catToCmd[dbKey] || [];
+
+                if (cmds.length === 0) {
+                    listContainer.innerHTML = '<div style="color:#666;">No commands found.</div>';
+                } else {
+                    cmds.forEach(cmdKey => {
+                        const data = window.db.commands[cmdKey];
+                        if(!data) return;
+                        
+                        const div = document.createElement('div');
+                        div.className = 'list-item';
+                        const safeId = 'preview-' + cmdKey.replace(/[^a-zA-Z0-9]/g, '');
+                        
+                        div.innerHTML = `
+                            <div class="list-preview" id="${safeId}"></div>
+                            <div class="list-info">
+                                <div class="cmd-row">
+                                    <div class="result-cmd">${cmdKey}</div>
+                                    <button class="copy-btn-small">Copy</button>
+                                </div>
+                                <div class="result-desc">${data.description || cmdKey}</div>
+                            </div>
+                        `;
+                        
+                        const copyBtn = div.querySelector('.copy-btn-small');
+                        copyBtn.onclick = (e) => {
+                            e.stopPropagation();
+                            window.copyText(copyBtn, cmdKey);
+                        };
+
+                        div.onclick = () => { window.location.href = `detail1.html?id=${encodeURIComponent(cmdKey)}`; };
+                        listContainer.appendChild(div);
+                        window.renderMath(safeId, cmdKey);
+                    });
+                }
+            }
         });
     </script>
 </body>

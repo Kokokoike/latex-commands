@@ -1,0 +1,3242 @@
+{
+    "\\textrm (\\rmfamily)": {
+        "category_root": "Fonts",
+        "category_sub": "Font styles",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Font-styles.html"
+    },
+    "\\textit (\\itshape)": {
+        "category_root": "Fonts",
+        "category_sub": "Font styles",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Font-styles.html"
+    },
+    "\\textmd (\\mdseries)": {
+        "category_root": "Fonts",
+        "category_sub": "Font styles",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Font-styles.html"
+    },
+    "\\textbf (\\bfseries)": {
+        "category_root": "Fonts",
+        "category_sub": "Font styles",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Font-styles.html"
+    },
+    "\\textup (\\upshape)": {
+        "category_root": "Fonts",
+        "category_sub": "Font styles",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Font-styles.html"
+    },
+    "\\textsl (\\slshape)": {
+        "category_root": "Fonts",
+        "category_sub": "Font styles",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Font-styles.html"
+    },
+    "\\textsf (\\sffamily)": {
+        "category_root": "Fonts",
+        "category_sub": "Font styles",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Font-styles.html"
+    },
+    "\\textsc (\\scshape)": {
+        "category_root": "Fonts",
+        "category_sub": "Font styles",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Font-styles.html"
+    },
+    "\\texttt (\\ttfamily)": {
+        "category_root": "Fonts",
+        "category_sub": "Font styles",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Font-styles.html"
+    },
+    "\\textnormal (\\normalfont)": {
+        "category_root": "Fonts",
+        "category_sub": "Font styles",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Font-styles.html"
+    },
+    "\\bf": {
+        "category_root": "Fonts",
+        "category_sub": "Font styles",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Font-styles.html"
+    },
+    "\\cal": {
+        "category_root": "Fonts",
+        "category_sub": "Font styles",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Font-styles.html"
+    },
+    "\\it": {
+        "category_root": "Fonts",
+        "category_sub": "Font styles",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Font-styles.html"
+    },
+    "\\rm": {
+        "category_root": "Fonts",
+        "category_sub": "Font styles",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Font-styles.html"
+    },
+    "\\sc": {
+        "category_root": "Fonts",
+        "category_sub": "Font styles",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Font-styles.html"
+    },
+    "\\sf": {
+        "category_root": "Fonts",
+        "category_sub": "Font styles",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Font-styles.html"
+    },
+    "\\sl": {
+        "category_root": "Fonts",
+        "category_sub": "Font styles",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Font-styles.html"
+    },
+    "\\tt": {
+        "category_root": "Fonts",
+        "category_sub": "Font styles",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Font-styles.html"
+    },
+    "\\mathrm": {
+        "category_root": "Fonts",
+        "category_sub": "Font styles",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Font-styles.html"
+    },
+    "\\mathbf": {
+        "category_root": "Fonts",
+        "category_sub": "Font styles",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Font-styles.html"
+    },
+    "\\mathsf": {
+        "category_root": "Fonts",
+        "category_sub": "Font styles",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Font-styles.html"
+    },
+    "\\mathtt": {
+        "category_root": "Fonts",
+        "category_sub": "Font styles",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Font-styles.html"
+    },
+    "\\mathit": {
+        "category_root": "Fonts",
+        "category_sub": "Font styles",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Font-styles.html"
+    },
+    "\\mathnormal": {
+        "category_root": "Fonts",
+        "category_sub": "Font styles",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Font-styles.html"
+    },
+    "\\mathcal": {
+        "category_root": "Fonts",
+        "category_sub": "Font styles",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Font-styles.html"
+    },
+    "\\fontencoding{encoding}": {
+        "category_root": "Fonts",
+        "category_sub": "Low-level font commands",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Low_002dlevel-font-commands.html"
+    },
+    "\\fontfamily{family}": {
+        "category_root": "Fonts",
+        "category_sub": "Low-level font commands",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Low_002dlevel-font-commands.html"
+    },
+    "\\fontseries{series}": {
+        "category_root": "Fonts",
+        "category_sub": "Low-level font commands",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Low_002dlevel-font-commands.html"
+    },
+    "\\fontshape{shape}": {
+        "category_root": "Fonts",
+        "category_sub": "Low-level font commands",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Low_002dlevel-font-commands.html"
+    },
+    "\\fontsize{size}{skip}": {
+        "category_root": "Fonts",
+        "category_sub": "Low-level font commands",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Low_002dlevel-font-commands.html"
+    },
+    "\\linespread{factor}": {
+        "category_root": "Fonts",
+        "category_sub": "Low-level font commands",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Low_002dlevel-font-commands.html"
+    },
+    "\\selectfont": {
+        "category_root": "Fonts",
+        "category_sub": "Low-level font commands",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Low_002dlevel-font-commands.html"
+    },
+    "\\usefont{enc}{family}{series}{shape}": {
+        "category_root": "Fonts",
+        "category_sub": "Low-level font commands",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Low_002dlevel-font-commands.html"
+    },
+    "\\columnsep": {
+        "category_root": "Layout",
+        "category_sub": "\\twocolumn",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/_005ctwocolumn.html"
+    },
+    "\\columnseprule": {
+        "category_root": "Layout",
+        "category_sub": "\\twocolumn",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/_005ctwocolumn.html"
+    },
+    "\\columnwidth": {
+        "category_root": "Layout",
+        "category_sub": "\\twocolumn",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/_005ctwocolumn.html"
+    },
+    "\\dbltopfraction": {
+        "category_root": "Layout",
+        "category_sub": "\\twocolumn",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/_005ctwocolumn.html"
+    },
+    "\\dblfloatpagefraction": {
+        "category_root": "Layout",
+        "category_sub": "\\twocolumn",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/_005ctwocolumn.html"
+    },
+    "\\dblfloatsep": {
+        "category_root": "Layout",
+        "category_sub": "\\twocolumn",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/_005ctwocolumn.html"
+    },
+    "\\dbltextfloatsep": {
+        "category_root": "Layout",
+        "category_sub": "\\twocolumn",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/_005ctwocolumn.html"
+    },
+    "\\dbltopnumber": {
+        "category_root": "Layout",
+        "category_sub": "\\twocolumn",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/_005ctwocolumn.html"
+    },
+    "\\headheight": {
+        "category_root": "Layout",
+        "category_sub": "Page layout parameters",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Page-layout-parameters.html"
+    },
+    "\\headsep": {
+        "category_root": "Layout",
+        "category_sub": "Page layout parameters",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Page-layout-parameters.html"
+    },
+    "\\footskip": {
+        "category_root": "Layout",
+        "category_sub": "Page layout parameters",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Page-layout-parameters.html"
+    },
+    "\\linewidth": {
+        "category_root": "Layout",
+        "category_sub": "Page layout parameters",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Page-layout-parameters.html"
+    },
+    "\\marginparpush": {
+        "category_root": "Layout",
+        "category_sub": "Page layout parameters",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Page-layout-parameters.html"
+    },
+    "\\marginsep": {
+        "category_root": "Layout",
+        "category_sub": "Page layout parameters",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Page-layout-parameters.html"
+    },
+    "\\marginparwidth": {
+        "category_root": "Layout",
+        "category_sub": "Page layout parameters",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Page-layout-parameters.html"
+    },
+    "\\oddsidemargin": {
+        "category_root": "Layout",
+        "category_sub": "Page layout parameters",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Page-layout-parameters.html"
+    },
+    "\\evensidemargin": {
+        "category_root": "Layout",
+        "category_sub": "Page layout parameters",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Page-layout-parameters.html"
+    },
+    "\\paperheight": {
+        "category_root": "Layout",
+        "category_sub": "Page layout parameters",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Page-layout-parameters.html"
+    },
+    "\\paperwidth": {
+        "category_root": "Layout",
+        "category_sub": "Page layout parameters",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Page-layout-parameters.html"
+    },
+    "\\textheight": {
+        "category_root": "Layout",
+        "category_sub": "Page layout parameters",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Page-layout-parameters.html"
+    },
+    "\\textwidth": {
+        "category_root": "Layout",
+        "category_sub": "Page layout parameters",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Page-layout-parameters.html"
+    },
+    "\\hsize": {
+        "category_root": "Layout",
+        "category_sub": "Page layout parameters",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Page-layout-parameters.html"
+    },
+    "\\topmargin": {
+        "category_root": "Layout",
+        "category_sub": "Page layout parameters",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Page-layout-parameters.html"
+    },
+    "\\topskip": {
+        "category_root": "Layout",
+        "category_sub": "Page layout parameters",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Page-layout-parameters.html"
+    },
+    "\\bottomfraction": {
+        "category_root": "Layout",
+        "category_sub": "Floats",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Floats.html"
+    },
+    "\\floatpagefraction": {
+        "category_root": "Layout",
+        "category_sub": "Floats",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Floats.html"
+    },
+    "\\textfraction": {
+        "category_root": "Layout",
+        "category_sub": "Floats",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Floats.html"
+    },
+    "\\topfraction": {
+        "category_root": "Layout",
+        "category_sub": "Floats",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Floats.html"
+    },
+    "\\floatsep": {
+        "category_root": "Layout",
+        "category_sub": "Floats",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Floats.html"
+    },
+    "\\intextsep": {
+        "category_root": "Layout",
+        "category_sub": "Floats",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Floats.html"
+    },
+    "\\textfloatsep": {
+        "category_root": "Layout",
+        "category_sub": "Floats",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Floats.html"
+    },
+    "\\itemindent": {
+        "category_root": "Environments",
+        "category_sub": "list",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/list.html"
+    },
+    "\\itemsep": {
+        "category_root": "Environments",
+        "category_sub": "list",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/list.html"
+    },
+    "\\labelsep": {
+        "category_root": "Environments",
+        "category_sub": "list",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/list.html"
+    },
+    "\\labelwidth": {
+        "category_root": "Environments",
+        "category_sub": "list",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/list.html"
+    },
+    "\\leftmargin": {
+        "category_root": "Environments",
+        "category_sub": "list",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/list.html"
+    },
+    "\\listparindent": {
+        "category_root": "Environments",
+        "category_sub": "list",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/list.html"
+    },
+    "\\parsep": {
+        "category_root": "Environments",
+        "category_sub": "list",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/list.html"
+    },
+    "\\partopsep": {
+        "category_root": "Environments",
+        "category_sub": "list",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/list.html"
+    },
+    "\\rightmargin": {
+        "category_root": "Environments",
+        "category_sub": "list",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/list.html"
+    },
+    "\\topsep": {
+        "category_root": "Environments",
+        "category_sub": "list",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/list.html"
+    },
+    "\\@beginparpenalty": {
+        "category_root": "Environments",
+        "category_sub": "list",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/list.html"
+    },
+    "\\@itempenalty": {
+        "category_root": "Environments",
+        "category_sub": "list",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/list.html"
+    },
+    "\\@endparpenalty": {
+        "category_root": "Environments",
+        "category_sub": "list",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/list.html"
+    },
+    "\\\\(tabbing)": {
+        "category_root": "Environments",
+        "category_sub": "tabbing",
+        "category_subsub": "tabbing commands",
+        "source_url": "https://latexref.xyz/tabbing-commands.html"
+    },
+    "\\=(tabbing)": {
+        "category_root": "Environments",
+        "category_sub": "tabbing",
+        "category_subsub": "tabbing commands",
+        "source_url": "https://latexref.xyz/tabbing-commands.html"
+    },
+    "\\>(tabbing)": {
+        "category_root": "Environments",
+        "category_sub": "tabbing",
+        "category_subsub": "tabbing commands",
+        "source_url": "https://latexref.xyz/tabbing-commands.html"
+    },
+    "\\+(tabbing)": {
+        "category_root": "Environments",
+        "category_sub": "tabbing",
+        "category_subsub": "tabbing commands",
+        "source_url": "https://latexref.xyz/tabbing-commands.html"
+    },
+    "\\<(tabbing)": {
+        "category_root": "Environments",
+        "category_sub": "tabbing",
+        "category_subsub": "tabbing commands",
+        "source_url": "https://latexref.xyz/tabbing-commands.html"
+    },
+    "\\-(tabbing)": {
+        "category_root": "Environments",
+        "category_sub": "tabbing",
+        "category_subsub": "tabbing commands",
+        "source_url": "https://latexref.xyz/tabbing-commands.html"
+    },
+    "\\'(tabbing)": {
+        "category_root": "Environments",
+        "category_sub": "tabbing",
+        "category_subsub": "tabbing commands",
+        "source_url": "https://latexref.xyz/tabbing-commands.html"
+    },
+    "\\`(tabbing)": {
+        "category_root": "Environments",
+        "category_sub": "tabbing",
+        "category_subsub": "tabbing commands",
+        "source_url": "https://latexref.xyz/tabbing-commands.html"
+    },
+    "\\a(tabbing)": {
+        "category_root": "Environments",
+        "category_sub": "tabbing",
+        "category_subsub": "tabbing commands",
+        "source_url": "https://latexref.xyz/tabbing-commands.html"
+    },
+    "\\kill(tabbing)": {
+        "category_root": "Environments",
+        "category_sub": "tabbing",
+        "category_subsub": "tabbing commands",
+        "source_url": "https://latexref.xyz/tabbing-commands.html"
+    },
+    "\\poptabs": {
+        "category_root": "Environments",
+        "category_sub": "tabbing",
+        "category_subsub": "tabbing commands",
+        "source_url": "https://latexref.xyz/tabbing-commands.html"
+    },
+    "\\pushtabs": {
+        "category_root": "Environments",
+        "category_sub": "tabbing",
+        "category_subsub": "tabbing commands",
+        "source_url": "https://latexref.xyz/tabbing-commands.html"
+    },
+    "\\tabbingsep": {
+        "category_root": "Environments",
+        "category_sub": "tabbing",
+        "category_subsub": "tabbing commands",
+        "source_url": "https://latexref.xyz/tabbing-commands.html"
+    },
+    "\\arrayrulewidth": {
+        "category_root": "Environments",
+        "category_sub": "tabular",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/tabular.html"
+    },
+    "\\arraystretch": {
+        "category_root": "Environments",
+        "category_sub": "tabular",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/tabular.html"
+    },
+    "\\doublerulesep": {
+        "category_root": "Environments",
+        "category_sub": "tabular",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/tabular.html"
+    },
+    "\\tabcolsep": {
+        "category_root": "Environments",
+        "category_sub": "tabular",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/tabular.html"
+    },
+    "\\footnoterule": {
+        "category_root": "Footnotes",
+        "category_sub": "\\footnote",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/_005cfootnote.html"
+    },
+    "\\footnotesep": {
+        "category_root": "Footnotes",
+        "category_sub": "\\footnote",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/_005cfootnote.html"
+    },
+    "\\ClassError{class name}{error-text}{help-text}": {
+        "category_root": "Definitions",
+        "category_sub": "Class and package commands",
+        "category_subsub": "\\ClassError and \\PackageError and other messages",
+        "source_url": "https://latexref.xyz/_005cClassError-and-_005cPackageError-and-other-messages.html"
+    },
+    "\\ClassWarning{class name}{warning-text}": {
+        "category_root": "Definitions",
+        "category_sub": "Class and package commands",
+        "category_subsub": "\\ClassError and \\PackageError and other messages",
+        "source_url": "https://latexref.xyz/_005cClassError-and-_005cPackageError-and-other-messages.html"
+    },
+    "\\ClassWarningNoLine{class name}{warning-text}": {
+        "category_root": "Definitions",
+        "category_sub": "Class and package commands",
+        "category_subsub": "\\ClassError and \\PackageError and other messages",
+        "source_url": "https://latexref.xyz/_005cClassError-and-_005cPackageError-and-other-messages.html"
+    },
+    "\\ClassNote{class name}{note-text}": {
+        "category_root": "Definitions",
+        "category_sub": "Class and package commands",
+        "category_subsub": "\\ClassError and \\PackageError and other messages",
+        "source_url": "https://latexref.xyz/_005cClassError-and-_005cPackageError-and-other-messages.html"
+    },
+    "\\ClassNoteNoLine{class name}{note-text}": {
+        "category_root": "Definitions",
+        "category_sub": "Class and package commands",
+        "category_subsub": "\\ClassError and \\PackageError and other messages",
+        "source_url": "https://latexref.xyz/_005cClassError-and-_005cPackageError-and-other-messages.html"
+    },
+    "\\ClassInfo{class name}{log-text}": {
+        "category_root": "Definitions",
+        "category_sub": "Class and package commands",
+        "category_subsub": "\\ClassError and \\PackageError and other messages",
+        "source_url": "https://latexref.xyz/_005cClassError-and-_005cPackageError-and-other-messages.html"
+    },
+    "\\PackageError{package name}{error-text}{help-text}": {
+        "category_root": "Definitions",
+        "category_sub": "Class and package commands",
+        "category_subsub": "\\ClassError and \\PackageError and other messages",
+        "source_url": "https://latexref.xyz/_005cClassError-and-_005cPackageError-and-other-messages.html"
+    },
+    "\\PackageWarning{package name}{warning-text}": {
+        "category_root": "Definitions",
+        "category_sub": "Class and package commands",
+        "category_subsub": "\\ClassError and \\PackageError and other messages",
+        "source_url": "https://latexref.xyz/_005cClassError-and-_005cPackageError-and-other-messages.html"
+    },
+    "\\PackageWarningNoLine{package name}{warning-text}": {
+        "category_root": "Definitions",
+        "category_sub": "Class and package commands",
+        "category_subsub": "\\ClassError and \\PackageError and other messages",
+        "source_url": "https://latexref.xyz/_005cClassError-and-_005cPackageError-and-other-messages.html"
+    },
+    "\\PackageNote{package name}{note-text}": {
+        "category_root": "Definitions",
+        "category_sub": "Class and package commands",
+        "category_subsub": "\\ClassError and \\PackageError and other messages",
+        "source_url": "https://latexref.xyz/_005cClassError-and-_005cPackageError-and-other-messages.html"
+    },
+    "\\PackageNoteNoLine{package name}{note-text}": {
+        "category_root": "Definitions",
+        "category_sub": "Class and package commands",
+        "category_subsub": "\\ClassError and \\PackageError and other messages",
+        "source_url": "https://latexref.xyz/_005cClassError-and-_005cPackageError-and-other-messages.html"
+    },
+    "\\PackageInfo{package name}{log-text}": {
+        "category_root": "Definitions",
+        "category_sub": "Class and package commands",
+        "category_subsub": "\\ClassError and \\PackageError and other messages",
+        "source_url": "https://latexref.xyz/_005cClassError-and-_005cPackageError-and-other-messages.html"
+    },
+    "\\alph{counter}": {
+        "category_root": "Counters",
+        "category_sub": "\\alph \\Alph \\arabic \\roman \\Roman \\fnsymbol: Printing counters",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/_005calph-_005cAlph-_005carabic-_005croman-_005cRoman-_005cfnsymbol.html"
+    },
+    "\\Alph{counter}": {
+        "category_root": "Counters",
+        "category_sub": "\\alph \\Alph \\arabic \\roman \\Roman \\fnsymbol: Printing counters",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/_005calph-_005cAlph-_005carabic-_005croman-_005cRoman-_005cfnsymbol.html"
+    },
+    "\\arabic{counter}": {
+        "category_root": "Counters",
+        "category_sub": "\\alph \\Alph \\arabic \\roman \\Roman \\fnsymbol: Printing counters",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/_005calph-_005cAlph-_005carabic-_005croman-_005cRoman-_005cfnsymbol.html"
+    },
+    "\\roman{counter}": {
+        "category_root": "Counters",
+        "category_sub": "\\alph \\Alph \\arabic \\roman \\Roman \\fnsymbol: Printing counters",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/_005calph-_005cAlph-_005carabic-_005croman-_005cRoman-_005cfnsymbol.html"
+    },
+    "\\Roman{counter}": {
+        "category_root": "Counters",
+        "category_sub": "\\alph \\Alph \\arabic \\roman \\Roman \\fnsymbol: Printing counters",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/_005calph-_005cAlph-_005carabic-_005croman-_005cRoman-_005cfnsymbol.html"
+    },
+    "\\fnsymbol{counter}": {
+        "category_root": "Counters",
+        "category_sub": "\\alph \\Alph \\arabic \\roman \\Roman \\fnsymbol: Printing counters",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/_005calph-_005cAlph-_005carabic-_005croman-_005cRoman-_005cfnsymbol.html"
+    },
+    "\\marginparsep": {
+        "category_root": "Making paragraphs",
+        "category_sub": "Marginal notes",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Marginal-notes.html"
+    },
+    "\\|": {
+        "category_root": "Math formulas",
+        "category_sub": "Math symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-symbols.html"
+    },
+    "\\aleph": {
+        "category_root": "Math formulas",
+        "category_sub": "Math symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-symbols.html"
+    },
+    "\\alpha": {
+        "category_root": "Math formulas",
+        "category_sub": "Math symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-symbols.html"
+    },
+    "\\amalg": {
+        "category_root": "Math formulas",
+        "category_sub": "Math symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-symbols.html"
+    },
+    "\\angle": {
+        "category_root": "Math formulas",
+        "category_sub": "Math symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-symbols.html"
+    },
+    "\\approx": {
+        "category_root": "Math formulas",
+        "category_sub": "Math symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-symbols.html"
+    },
+    "\\ast": {
+        "category_root": "Math formulas",
+        "category_sub": "Math symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-symbols.html"
+    },
+    "\\asymp": {
+        "category_root": "Math formulas",
+        "category_sub": "Math symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-symbols.html"
+    },
+    "\\backslash": {
+        "category_root": "Math formulas",
+        "category_sub": "Math symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-symbols.html"
+    },
+    "\\beta": {
+        "category_root": "Math formulas",
+        "category_sub": "Math symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-symbols.html"
+    },
+    "\\bigcap": {
+        "category_root": "Math formulas",
+        "category_sub": "Math symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-symbols.html"
+    },
+    "\\bigcirc": {
+        "category_root": "Math formulas",
+        "category_sub": "Math symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-symbols.html"
+    },
+    "\\bigcup": {
+        "category_root": "Math formulas",
+        "category_sub": "Math symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-symbols.html"
+    },
+    "\\bigodot": {
+        "category_root": "Math formulas",
+        "category_sub": "Math symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-symbols.html"
+    },
+    "\\bigoplus": {
+        "category_root": "Math formulas",
+        "category_sub": "Math symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-symbols.html"
+    },
+    "\\bigotimes": {
+        "category_root": "Math formulas",
+        "category_sub": "Math symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-symbols.html"
+    },
+    "\\bigtriangledown": {
+        "category_root": "Math formulas",
+        "category_sub": "Math symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-symbols.html"
+    },
+    "\\bigtriangleup": {
+        "category_root": "Math formulas",
+        "category_sub": "Math symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-symbols.html"
+    },
+    "\\bigsqcup": {
+        "category_root": "Math formulas",
+        "category_sub": "Math symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-symbols.html"
+    },
+    "\\biguplus": {
+        "category_root": "Math formulas",
+        "category_sub": "Math symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-symbols.html"
+    },
+    "\\bigvee": {
+        "category_root": "Math formulas",
+        "category_sub": "Math symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-symbols.html"
+    },
+    "\\bigwedge": {
+        "category_root": "Math formulas",
+        "category_sub": "Math symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-symbols.html"
+    },
+    "\\bot": {
+        "category_root": "Math formulas",
+        "category_sub": "Math symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-symbols.html"
+    },
+    "\\bowtie": {
+        "category_root": "Math formulas",
+        "category_sub": "Math symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-symbols.html"
+    },
+    "\\Box": {
+        "category_root": "Math formulas",
+        "category_sub": "Math symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-symbols.html"
+    },
+    "\\bullet": {
+        "category_root": "Math formulas",
+        "category_sub": "Math symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-symbols.html"
+    },
+    "\\cap": {
+        "category_root": "Math formulas",
+        "category_sub": "Math symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-symbols.html"
+    },
+    "\\cdot": {
+        "category_root": "Math formulas",
+        "category_sub": "Math symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-symbols.html"
+    },
+    "\\chi": {
+        "category_root": "Math formulas",
+        "category_sub": "Math symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-symbols.html"
+    },
+    "\\circ": {
+        "category_root": "Math formulas",
+        "category_sub": "Math symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-symbols.html"
+    },
+    "\\clubsuit": {
+        "category_root": "Math formulas",
+        "category_sub": "Math symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-symbols.html"
+    },
+    "\\complement": {
+        "category_root": "Math formulas",
+        "category_sub": "Math symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-symbols.html"
+    },
+    "\\cong": {
+        "category_root": "Math formulas",
+        "category_sub": "Math symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-symbols.html"
+    },
+    "\\coprod": {
+        "category_root": "Math formulas",
+        "category_sub": "Math symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-symbols.html"
+    },
+    "\\cup": {
+        "category_root": "Math formulas",
+        "category_sub": "Math symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-symbols.html"
+    },
+    "\\dagger": {
+        "category_root": "Math formulas",
+        "category_sub": "Math symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-symbols.html"
+    },
+    "\\dashv": {
+        "category_root": "Math formulas",
+        "category_sub": "Math symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-symbols.html"
+    },
+    "\\ddagger": {
+        "category_root": "Math formulas",
+        "category_sub": "Math symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-symbols.html"
+    },
+    "\\Delta": {
+        "category_root": "Math formulas",
+        "category_sub": "Math symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-symbols.html"
+    },
+    "\\delta": {
+        "category_root": "Math formulas",
+        "category_sub": "Math symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-symbols.html"
+    },
+    "\\Diamond": {
+        "category_root": "Math formulas",
+        "category_sub": "Math symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-symbols.html"
+    },
+    "\\diamond": {
+        "category_root": "Math formulas",
+        "category_sub": "Math symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-symbols.html"
+    },
+    "\\diamondsuit": {
+        "category_root": "Math formulas",
+        "category_sub": "Math symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-symbols.html"
+    },
+    "\\div": {
+        "category_root": "Math formulas",
+        "category_sub": "Math symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-symbols.html"
+    },
+    "\\doteq": {
+        "category_root": "Math formulas",
+        "category_sub": "Math symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-symbols.html"
+    },
+    "\\downarrow": {
+        "category_root": "Math formulas",
+        "category_sub": "Math symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-symbols.html"
+    },
+    "\\Downarrow": {
+        "category_root": "Math formulas",
+        "category_sub": "Math symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-symbols.html"
+    },
+    "\\ell": {
+        "category_root": "Math formulas",
+        "category_sub": "Math symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-symbols.html"
+    },
+    "\\emptyset": {
+        "category_root": "Math formulas",
+        "category_sub": "Math symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-symbols.html"
+    },
+    "\\epsilon": {
+        "category_root": "Math formulas",
+        "category_sub": "Math symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-symbols.html"
+    },
+    "\\equiv": {
+        "category_root": "Math formulas",
+        "category_sub": "Math symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-symbols.html"
+    },
+    "\\eta": {
+        "category_root": "Math formulas",
+        "category_sub": "Math symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-symbols.html"
+    },
+    "\\exists": {
+        "category_root": "Math formulas",
+        "category_sub": "Math symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-symbols.html"
+    },
+    "\\flat": {
+        "category_root": "Math formulas",
+        "category_sub": "Math symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-symbols.html"
+    },
+    "\\forall": {
+        "category_root": "Math formulas",
+        "category_sub": "Math symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-symbols.html"
+    },
+    "\\frown": {
+        "category_root": "Math formulas",
+        "category_sub": "Math symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-symbols.html"
+    },
+    "\\Gamma": {
+        "category_root": "Math formulas",
+        "category_sub": "Math symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-symbols.html"
+    },
+    "\\gamma": {
+        "category_root": "Math formulas",
+        "category_sub": "Math symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-symbols.html"
+    },
+    "\\ge": {
+        "category_root": "Math formulas",
+        "category_sub": "Math symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-symbols.html"
+    },
+    "\\geq": {
+        "category_root": "Math formulas",
+        "category_sub": "Math symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-symbols.html"
+    },
+    "\\gets": {
+        "category_root": "Math formulas",
+        "category_sub": "Math symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-symbols.html"
+    },
+    "\\gg": {
+        "category_root": "Math formulas",
+        "category_sub": "Math symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-symbols.html"
+    },
+    "\\hbar": {
+        "category_root": "Math formulas",
+        "category_sub": "Math symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-symbols.html"
+    },
+    "\\heartsuit": {
+        "category_root": "Math formulas",
+        "category_sub": "Math symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-symbols.html"
+    },
+    "\\hookleftarrow": {
+        "category_root": "Math formulas",
+        "category_sub": "Math symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-symbols.html"
+    },
+    "\\hookrightarrow": {
+        "category_root": "Math formulas",
+        "category_sub": "Math symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-symbols.html"
+    },
+    "\\iff": {
+        "category_root": "Math formulas",
+        "category_sub": "Math symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-symbols.html"
+    },
+    "\\Im": {
+        "category_root": "Math formulas",
+        "category_sub": "Math symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-symbols.html"
+    },
+    "\\imath": {
+        "category_root": "Math formulas",
+        "category_sub": "Math symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-symbols.html"
+    },
+    "\\in": {
+        "category_root": "Math formulas",
+        "category_sub": "Math symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-symbols.html"
+    },
+    "\\infty": {
+        "category_root": "Math formulas",
+        "category_sub": "Math symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-symbols.html"
+    },
+    "\\int": {
+        "category_root": "Math formulas",
+        "category_sub": "Math symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-symbols.html"
+    },
+    "\\iota": {
+        "category_root": "Math formulas",
+        "category_sub": "Math symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-symbols.html"
+    },
+    "\\Join": {
+        "category_root": "Math formulas",
+        "category_sub": "Math symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-symbols.html"
+    },
+    "\\jmath": {
+        "category_root": "Math formulas",
+        "category_sub": "Math symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-symbols.html"
+    },
+    "\\kappa": {
+        "category_root": "Math formulas",
+        "category_sub": "Math symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-symbols.html"
+    },
+    "\\Lambda": {
+        "category_root": "Math formulas",
+        "category_sub": "Math symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-symbols.html"
+    },
+    "\\lambda": {
+        "category_root": "Math formulas",
+        "category_sub": "Math symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-symbols.html"
+    },
+    "\\land": {
+        "category_root": "Math formulas",
+        "category_sub": "Math symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-symbols.html"
+    },
+    "\\langle": {
+        "category_root": "Math formulas",
+        "category_sub": "Math symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-symbols.html"
+    },
+    "\\lbrace": {
+        "category_root": "Math formulas",
+        "category_sub": "Math symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-symbols.html"
+    },
+    "\\lbrack": {
+        "category_root": "Math formulas",
+        "category_sub": "Math symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-symbols.html"
+    },
+    "\\lceil": {
+        "category_root": "Math formulas",
+        "category_sub": "Math symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-symbols.html"
+    },
+    "\\le": {
+        "category_root": "Math formulas",
+        "category_sub": "Math symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-symbols.html"
+    },
+    "\\leadsto": {
+        "category_root": "Math formulas",
+        "category_sub": "Math symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-symbols.html"
+    },
+    "\\Leftarrow": {
+        "category_root": "Math formulas",
+        "category_sub": "Math symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-symbols.html"
+    },
+    "\\leftarrow": {
+        "category_root": "Math formulas",
+        "category_sub": "Math symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-symbols.html"
+    },
+    "\\leftharpoondown": {
+        "category_root": "Math formulas",
+        "category_sub": "Math symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-symbols.html"
+    },
+    "\\leftharpoonup": {
+        "category_root": "Math formulas",
+        "category_sub": "Math symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-symbols.html"
+    },
+    "\\Leftrightarrow": {
+        "category_root": "Math formulas",
+        "category_sub": "Math symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-symbols.html"
+    },
+    "\\leftrightarrow": {
+        "category_root": "Math formulas",
+        "category_sub": "Math symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-symbols.html"
+    },
+    "\\leq": {
+        "category_root": "Math formulas",
+        "category_sub": "Math symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-symbols.html"
+    },
+    "\\lfloor": {
+        "category_root": "Math formulas",
+        "category_sub": "Math symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-symbols.html"
+    },
+    "\\lhd": {
+        "category_root": "Math formulas",
+        "category_sub": "Math symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-symbols.html"
+    },
+    "\\ll": {
+        "category_root": "Math formulas",
+        "category_sub": "Math symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-symbols.html"
+    },
+    "\\lnot": {
+        "category_root": "Math formulas",
+        "category_sub": "Math symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-symbols.html"
+    },
+    "\\longleftarrow": {
+        "category_root": "Math formulas",
+        "category_sub": "Math symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-symbols.html"
+    },
+    "\\longleftrightarrow": {
+        "category_root": "Math formulas",
+        "category_sub": "Math symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-symbols.html"
+    },
+    "\\longmapsto": {
+        "category_root": "Math formulas",
+        "category_sub": "Math symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-symbols.html"
+    },
+    "\\longrightarrow": {
+        "category_root": "Math formulas",
+        "category_sub": "Math symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-symbols.html"
+    },
+    "\\lor": {
+        "category_root": "Math formulas",
+        "category_sub": "Math symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-symbols.html"
+    },
+    "\\mapsto": {
+        "category_root": "Math formulas",
+        "category_sub": "Math symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-symbols.html"
+    },
+    "\\mho": {
+        "category_root": "Math formulas",
+        "category_sub": "Math symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-symbols.html"
+    },
+    "\\mid": {
+        "category_root": "Math formulas",
+        "category_sub": "Math symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-symbols.html"
+    },
+    "\\models": {
+        "category_root": "Math formulas",
+        "category_sub": "Math symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-symbols.html"
+    },
+    "\\mp": {
+        "category_root": "Math formulas",
+        "category_sub": "Math symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-symbols.html"
+    },
+    "\\mu": {
+        "category_root": "Math formulas",
+        "category_sub": "Math symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-symbols.html"
+    },
+    "\\nabla": {
+        "category_root": "Math formulas",
+        "category_sub": "Math symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-symbols.html"
+    },
+    "\\natural": {
+        "category_root": "Math formulas",
+        "category_sub": "Math symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-symbols.html"
+    },
+    "\\ne": {
+        "category_root": "Math formulas",
+        "category_sub": "Math symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-symbols.html"
+    },
+    "\\nearrow": {
+        "category_root": "Math formulas",
+        "category_sub": "Math symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-symbols.html"
+    },
+    "\\neg": {
+        "category_root": "Math formulas",
+        "category_sub": "Math symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-symbols.html"
+    },
+    "\\neq": {
+        "category_root": "Math formulas",
+        "category_sub": "Math symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-symbols.html"
+    },
+    "\\ni": {
+        "category_root": "Math formulas",
+        "category_sub": "Math symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-symbols.html"
+    },
+    "\\not": {
+        "category_root": "Math formulas",
+        "category_sub": "Math symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-symbols.html"
+    },
+    "\\notin": {
+        "category_root": "Math formulas",
+        "category_sub": "Math symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-symbols.html"
+    },
+    "\\nu": {
+        "category_root": "Math formulas",
+        "category_sub": "Math symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-symbols.html"
+    },
+    "\\nwarrow": {
+        "category_root": "Math formulas",
+        "category_sub": "Math symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-symbols.html"
+    },
+    "\\odot": {
+        "category_root": "Math formulas",
+        "category_sub": "Math symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-symbols.html"
+    },
+    "\\oint": {
+        "category_root": "Math formulas",
+        "category_sub": "Math symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-symbols.html"
+    },
+    "\\Omega": {
+        "category_root": "Math formulas",
+        "category_sub": "Math symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-symbols.html"
+    },
+    "\\omega": {
+        "category_root": "Math formulas",
+        "category_sub": "Math symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-symbols.html"
+    },
+    "\\ominus": {
+        "category_root": "Math formulas",
+        "category_sub": "Math symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-symbols.html"
+    },
+    "\\oplus": {
+        "category_root": "Math formulas",
+        "category_sub": "Math symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-symbols.html"
+    },
+    "\\oslash": {
+        "category_root": "Math formulas",
+        "category_sub": "Math symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-symbols.html"
+    },
+    "\\otimes": {
+        "category_root": "Math formulas",
+        "category_sub": "Math symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-symbols.html"
+    },
+    "\\owns": {
+        "category_root": "Math formulas",
+        "category_sub": "Math symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-symbols.html"
+    },
+    "\\parallel": {
+        "category_root": "Math formulas",
+        "category_sub": "Math symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-symbols.html"
+    },
+    "\\partial": {
+        "category_root": "Math formulas",
+        "category_sub": "Math symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-symbols.html"
+    },
+    "\\perp": {
+        "category_root": "Math formulas",
+        "category_sub": "Math symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-symbols.html"
+    },
+    "\\Phi": {
+        "category_root": "Math formulas",
+        "category_sub": "Math symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-symbols.html"
+    },
+    "\\phi": {
+        "category_root": "Math formulas",
+        "category_sub": "Math symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-symbols.html"
+    },
+    "\\Pi": {
+        "category_root": "Math formulas",
+        "category_sub": "Math symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-symbols.html"
+    },
+    "\\pi": {
+        "category_root": "Math formulas",
+        "category_sub": "Math symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-symbols.html"
+    },
+    "\\pm": {
+        "category_root": "Math formulas",
+        "category_sub": "Math symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-symbols.html"
+    },
+    "\\prec": {
+        "category_root": "Math formulas",
+        "category_sub": "Math symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-symbols.html"
+    },
+    "\\preceq": {
+        "category_root": "Math formulas",
+        "category_sub": "Math symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-symbols.html"
+    },
+    "\\prime": {
+        "category_root": "Math formulas",
+        "category_sub": "Math symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-symbols.html"
+    },
+    "\\prod": {
+        "category_root": "Math formulas",
+        "category_sub": "Math symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-symbols.html"
+    },
+    "\\propto": {
+        "category_root": "Math formulas",
+        "category_sub": "Math symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-symbols.html"
+    },
+    "\\Psi": {
+        "category_root": "Math formulas",
+        "category_sub": "Math symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-symbols.html"
+    },
+    "\\psi": {
+        "category_root": "Math formulas",
+        "category_sub": "Math symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-symbols.html"
+    },
+    "\\rangle": {
+        "category_root": "Math formulas",
+        "category_sub": "Math symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-symbols.html"
+    },
+    "\\rbrace": {
+        "category_root": "Math formulas",
+        "category_sub": "Math symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-symbols.html"
+    },
+    "\\rbrack": {
+        "category_root": "Math formulas",
+        "category_sub": "Math symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-symbols.html"
+    },
+    "\\rceil": {
+        "category_root": "Math formulas",
+        "category_sub": "Math symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-symbols.html"
+    },
+    "\\Re": {
+        "category_root": "Math formulas",
+        "category_sub": "Math symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-symbols.html"
+    },
+    "\\restriction": {
+        "category_root": "Math formulas",
+        "category_sub": "Math symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-symbols.html"
+    },
+    "\\revemptyset": {
+        "category_root": "Math formulas",
+        "category_sub": "Math symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-symbols.html"
+    },
+    "\\rfloor": {
+        "category_root": "Math formulas",
+        "category_sub": "Math symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-symbols.html"
+    },
+    "\\rhd": {
+        "category_root": "Math formulas",
+        "category_sub": "Math symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-symbols.html"
+    },
+    "\\rho": {
+        "category_root": "Math formulas",
+        "category_sub": "Math symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-symbols.html"
+    },
+    "\\Rightarrow": {
+        "category_root": "Math formulas",
+        "category_sub": "Math symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-symbols.html"
+    },
+    "\\rightarrow": {
+        "category_root": "Math formulas",
+        "category_sub": "Math symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-symbols.html"
+    },
+    "\\rightharpoondown": {
+        "category_root": "Math formulas",
+        "category_sub": "Math symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-symbols.html"
+    },
+    "\\rightharpoonup": {
+        "category_root": "Math formulas",
+        "category_sub": "Math symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-symbols.html"
+    },
+    "\\rightleftharpoons": {
+        "category_root": "Math formulas",
+        "category_sub": "Math symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-symbols.html"
+    },
+    "\\searrow": {
+        "category_root": "Math formulas",
+        "category_sub": "Math symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-symbols.html"
+    },
+    "\\setminus": {
+        "category_root": "Math formulas",
+        "category_sub": "Math symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-symbols.html"
+    },
+    "\\sharp": {
+        "category_root": "Math formulas",
+        "category_sub": "Math symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-symbols.html"
+    },
+    "\\Sigma": {
+        "category_root": "Math formulas",
+        "category_sub": "Math symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-symbols.html"
+    },
+    "\\sigma": {
+        "category_root": "Math formulas",
+        "category_sub": "Math symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-symbols.html"
+    },
+    "\\sim": {
+        "category_root": "Math formulas",
+        "category_sub": "Math symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-symbols.html"
+    },
+    "\\simeq": {
+        "category_root": "Math formulas",
+        "category_sub": "Math symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-symbols.html"
+    },
+    "\\smallint": {
+        "category_root": "Math formulas",
+        "category_sub": "Math symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-symbols.html"
+    },
+    "\\smile": {
+        "category_root": "Math formulas",
+        "category_sub": "Math symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-symbols.html"
+    },
+    "\\spadesuit": {
+        "category_root": "Math formulas",
+        "category_sub": "Math symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-symbols.html"
+    },
+    "\\sqcap": {
+        "category_root": "Math formulas",
+        "category_sub": "Math symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-symbols.html"
+    },
+    "\\sqcup": {
+        "category_root": "Math formulas",
+        "category_sub": "Math symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-symbols.html"
+    },
+    "\\sqsubset": {
+        "category_root": "Math formulas",
+        "category_sub": "Math symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-symbols.html"
+    },
+    "\\sqsubseteq": {
+        "category_root": "Math formulas",
+        "category_sub": "Math symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-symbols.html"
+    },
+    "\\sqsupset": {
+        "category_root": "Math formulas",
+        "category_sub": "Math symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-symbols.html"
+    },
+    "\\sqsupseteq": {
+        "category_root": "Math formulas",
+        "category_sub": "Math symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-symbols.html"
+    },
+    "\\star": {
+        "category_root": "Math formulas",
+        "category_sub": "Math symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-symbols.html"
+    },
+    "\\subset": {
+        "category_root": "Math formulas",
+        "category_sub": "Math symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-symbols.html"
+    },
+    "\\subseteq": {
+        "category_root": "Math formulas",
+        "category_sub": "Math symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-symbols.html"
+    },
+    "\\succ": {
+        "category_root": "Math formulas",
+        "category_sub": "Math symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-symbols.html"
+    },
+    "\\succeq": {
+        "category_root": "Math formulas",
+        "category_sub": "Math symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-symbols.html"
+    },
+    "\\sum": {
+        "category_root": "Math formulas",
+        "category_sub": "Math symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-symbols.html"
+    },
+    "\\supset": {
+        "category_root": "Math formulas",
+        "category_sub": "Math symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-symbols.html"
+    },
+    "\\supseteq": {
+        "category_root": "Math formulas",
+        "category_sub": "Math symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-symbols.html"
+    },
+    "\\surd": {
+        "category_root": "Math formulas",
+        "category_sub": "Math symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-symbols.html"
+    },
+    "\\swarrow": {
+        "category_root": "Math formulas",
+        "category_sub": "Math symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-symbols.html"
+    },
+    "\\tau": {
+        "category_root": "Math formulas",
+        "category_sub": "Math symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-symbols.html"
+    },
+    "\\theta": {
+        "category_root": "Math formulas",
+        "category_sub": "Math symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-symbols.html"
+    },
+    "\\times": {
+        "category_root": "Math formulas",
+        "category_sub": "Math symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-symbols.html"
+    },
+    "\\to": {
+        "category_root": "Math formulas",
+        "category_sub": "Math symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-symbols.html"
+    },
+    "\\top": {
+        "category_root": "Math formulas",
+        "category_sub": "Math symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-symbols.html"
+    },
+    "\\triangle": {
+        "category_root": "Math formulas",
+        "category_sub": "Math symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-symbols.html"
+    },
+    "\\triangleleft": {
+        "category_root": "Math formulas",
+        "category_sub": "Math symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-symbols.html"
+    },
+    "\\triangleright": {
+        "category_root": "Math formulas",
+        "category_sub": "Math symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-symbols.html"
+    },
+    "\\unlhd": {
+        "category_root": "Math formulas",
+        "category_sub": "Math symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-symbols.html"
+    },
+    "\\unrhd": {
+        "category_root": "Math formulas",
+        "category_sub": "Math symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-symbols.html"
+    },
+    "\\Uparrow": {
+        "category_root": "Math formulas",
+        "category_sub": "Math symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-symbols.html"
+    },
+    "\\uparrow": {
+        "category_root": "Math formulas",
+        "category_sub": "Math symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-symbols.html"
+    },
+    "\\Updownarrow": {
+        "category_root": "Math formulas",
+        "category_sub": "Math symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-symbols.html"
+    },
+    "\\updownarrow": {
+        "category_root": "Math formulas",
+        "category_sub": "Math symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-symbols.html"
+    },
+    "\\upharpoonright": {
+        "category_root": "Math formulas",
+        "category_sub": "Math symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-symbols.html"
+    },
+    "\\uplus": {
+        "category_root": "Math formulas",
+        "category_sub": "Math symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-symbols.html"
+    },
+    "\\Upsilon": {
+        "category_root": "Math formulas",
+        "category_sub": "Math symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-symbols.html"
+    },
+    "\\upsilon": {
+        "category_root": "Math formulas",
+        "category_sub": "Math symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-symbols.html"
+    },
+    "\\varepsilon": {
+        "category_root": "Math formulas",
+        "category_sub": "Math symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-symbols.html"
+    },
+    "\\vanothing": {
+        "category_root": "Math formulas",
+        "category_sub": "Math symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-symbols.html"
+    },
+    "\\varphi": {
+        "category_root": "Math formulas",
+        "category_sub": "Math symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-symbols.html"
+    },
+    "\\varpi": {
+        "category_root": "Math formulas",
+        "category_sub": "Math symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-symbols.html"
+    },
+    "\\varrho": {
+        "category_root": "Math formulas",
+        "category_sub": "Math symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-symbols.html"
+    },
+    "\\varsigma": {
+        "category_root": "Math formulas",
+        "category_sub": "Math symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-symbols.html"
+    },
+    "\\vartheta": {
+        "category_root": "Math formulas",
+        "category_sub": "Math symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-symbols.html"
+    },
+    "\\vdash": {
+        "category_root": "Math formulas",
+        "category_sub": "Math symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-symbols.html"
+    },
+    "\\vee": {
+        "category_root": "Math formulas",
+        "category_sub": "Math symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-symbols.html"
+    },
+    "\\Vert": {
+        "category_root": "Math formulas",
+        "category_sub": "Math symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-symbols.html"
+    },
+    "\\vert": {
+        "category_root": "Math formulas",
+        "category_sub": "Math symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-symbols.html"
+    },
+    "\\wedge": {
+        "category_root": "Math formulas",
+        "category_sub": "Math symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-symbols.html"
+    },
+    "\\wp": {
+        "category_root": "Math formulas",
+        "category_sub": "Math symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-symbols.html"
+    },
+    "\\wr": {
+        "category_root": "Math formulas",
+        "category_sub": "Math symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-symbols.html"
+    },
+    "\\Xi": {
+        "category_root": "Math formulas",
+        "category_sub": "Math symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-symbols.html"
+    },
+    "\\xi": {
+        "category_root": "Math formulas",
+        "category_sub": "Math symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-symbols.html"
+    },
+    "\\zeta": {
+        "category_root": "Math formulas",
+        "category_sub": "Math symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-symbols.html"
+    },
+    "\\mathdollar": {
+        "category_root": "Math formulas",
+        "category_sub": "Math symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-symbols.html"
+    },
+    "\\mathparagraph": {
+        "category_root": "Math formulas",
+        "category_sub": "Math symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-symbols.html"
+    },
+    "\\mathsection": {
+        "category_root": "Math formulas",
+        "category_sub": "Math symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-symbols.html"
+    },
+    "\\mathsterling": {
+        "category_root": "Math formulas",
+        "category_sub": "Math symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-symbols.html"
+    },
+    "\\mathunderscore": {
+        "category_root": "Math formulas",
+        "category_sub": "Math symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-symbols.html"
+    },
+    "\\cdots": {
+        "category_root": "Math formulas",
+        "category_sub": "Math symbols",
+        "category_subsub": "Dots, horizontal or vertical",
+        "source_url": "https://latexref.xyz/Dots.html"
+    },
+    "\\ddots": {
+        "category_root": "Math formulas",
+        "category_sub": "Math symbols",
+        "category_subsub": "Dots, horizontal or vertical",
+        "source_url": "https://latexref.xyz/Dots.html"
+    },
+    "\\ldots": {
+        "category_root": "Math formulas",
+        "category_sub": "Math symbols",
+        "category_subsub": "Dots, horizontal or vertical",
+        "source_url": "https://latexref.xyz/Dots.html"
+    },
+    "\\mathellipsis": {
+        "category_root": "Math formulas",
+        "category_sub": "Math symbols",
+        "category_subsub": "Dots, horizontal or vertical",
+        "source_url": "https://latexref.xyz/Dots.html"
+    },
+    "\\dots": {
+        "category_root": "Math formulas",
+        "category_sub": "Math symbols",
+        "category_subsub": "Dots, horizontal or vertical",
+        "source_url": "https://latexref.xyz/Dots.html"
+    },
+    "\\vdots": {
+        "category_root": "Math formulas",
+        "category_sub": "Math symbols",
+        "category_subsub": "Dots, horizontal or vertical",
+        "source_url": "https://latexref.xyz/Dots.html"
+    },
+    "\\arccos": {
+        "category_root": "Math formulas",
+        "category_sub": "Math functions",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-functions.html"
+    },
+    "\\arcsin": {
+        "category_root": "Math formulas",
+        "category_sub": "Math functions",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-functions.html"
+    },
+    "\\arctan": {
+        "category_root": "Math formulas",
+        "category_sub": "Math functions",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-functions.html"
+    },
+    "\\arg": {
+        "category_root": "Math formulas",
+        "category_sub": "Math functions",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-functions.html"
+    },
+    "\\bmod": {
+        "category_root": "Math formulas",
+        "category_sub": "Math functions",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-functions.html"
+    },
+    "\\cos": {
+        "category_root": "Math formulas",
+        "category_sub": "Math functions",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-functions.html"
+    },
+    "\\cosh": {
+        "category_root": "Math formulas",
+        "category_sub": "Math functions",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-functions.html"
+    },
+    "\\cot": {
+        "category_root": "Math formulas",
+        "category_sub": "Math functions",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-functions.html"
+    },
+    "\\coth": {
+        "category_root": "Math formulas",
+        "category_sub": "Math functions",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-functions.html"
+    },
+    "\\csc": {
+        "category_root": "Math formulas",
+        "category_sub": "Math functions",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-functions.html"
+    },
+    "\\deg": {
+        "category_root": "Math formulas",
+        "category_sub": "Math functions",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-functions.html"
+    },
+    "\\det": {
+        "category_root": "Math formulas",
+        "category_sub": "Math functions",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-functions.html"
+    },
+    "\\dim": {
+        "category_root": "Math formulas",
+        "category_sub": "Math functions",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-functions.html"
+    },
+    "\\exp": {
+        "category_root": "Math formulas",
+        "category_sub": "Math functions",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-functions.html"
+    },
+    "\\gcd": {
+        "category_root": "Math formulas",
+        "category_sub": "Math functions",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-functions.html"
+    },
+    "\\hom": {
+        "category_root": "Math formulas",
+        "category_sub": "Math functions",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-functions.html"
+    },
+    "\\inf": {
+        "category_root": "Math formulas",
+        "category_sub": "Math functions",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-functions.html"
+    },
+    "\\ker": {
+        "category_root": "Math formulas",
+        "category_sub": "Math functions",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-functions.html"
+    },
+    "\\lg": {
+        "category_root": "Math formulas",
+        "category_sub": "Math functions",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-functions.html"
+    },
+    "\\lim": {
+        "category_root": "Math formulas",
+        "category_sub": "Math functions",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-functions.html"
+    },
+    "\\liminf": {
+        "category_root": "Math formulas",
+        "category_sub": "Math functions",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-functions.html"
+    },
+    "\\limsup": {
+        "category_root": "Math formulas",
+        "category_sub": "Math functions",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-functions.html"
+    },
+    "\\ln": {
+        "category_root": "Math formulas",
+        "category_sub": "Math functions",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-functions.html"
+    },
+    "\\log": {
+        "category_root": "Math formulas",
+        "category_sub": "Math functions",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-functions.html"
+    },
+    "\\max": {
+        "category_root": "Math formulas",
+        "category_sub": "Math functions",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-functions.html"
+    },
+    "\\min": {
+        "category_root": "Math formulas",
+        "category_sub": "Math functions",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-functions.html"
+    },
+    "\\pmod": {
+        "category_root": "Math formulas",
+        "category_sub": "Math functions",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-functions.html"
+    },
+    "\\Pr": {
+        "category_root": "Math formulas",
+        "category_sub": "Math functions",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-functions.html"
+    },
+    "\\sec": {
+        "category_root": "Math formulas",
+        "category_sub": "Math functions",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-functions.html"
+    },
+    "\\sin": {
+        "category_root": "Math formulas",
+        "category_sub": "Math functions",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-functions.html"
+    },
+    "\\sinh": {
+        "category_root": "Math formulas",
+        "category_sub": "Math functions",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-functions.html"
+    },
+    "\\sup": {
+        "category_root": "Math formulas",
+        "category_sub": "Math functions",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-functions.html"
+    },
+    "\\tan": {
+        "category_root": "Math formulas",
+        "category_sub": "Math functions",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-functions.html"
+    },
+    "\\tanh": {
+        "category_root": "Math formulas",
+        "category_sub": "Math functions",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-functions.html"
+    },
+    "\\acute": {
+        "category_root": "Math formulas",
+        "category_sub": "Math accents",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-accents.html"
+    },
+    "\\bar": {
+        "category_root": "Math formulas",
+        "category_sub": "Math accents",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-accents.html"
+    },
+    "\\breve": {
+        "category_root": "Math formulas",
+        "category_sub": "Math accents",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-accents.html"
+    },
+    "\\check": {
+        "category_root": "Math formulas",
+        "category_sub": "Math accents",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-accents.html"
+    },
+    "\\ddot": {
+        "category_root": "Math formulas",
+        "category_sub": "Math accents",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-accents.html"
+    },
+    "\\dot": {
+        "category_root": "Math formulas",
+        "category_sub": "Math accents",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-accents.html"
+    },
+    "\\grave": {
+        "category_root": "Math formulas",
+        "category_sub": "Math accents",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-accents.html"
+    },
+    "\\hat": {
+        "category_root": "Math formulas",
+        "category_sub": "Math accents",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-accents.html"
+    },
+    "\\mathring": {
+        "category_root": "Math formulas",
+        "category_sub": "Math accents",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-accents.html"
+    },
+    "\\tilde": {
+        "category_root": "Math formulas",
+        "category_sub": "Math accents",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-accents.html"
+    },
+    "\\vec": {
+        "category_root": "Math formulas",
+        "category_sub": "Math accents",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-accents.html"
+    },
+    "\\widehat": {
+        "category_root": "Math formulas",
+        "category_sub": "Math accents",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-accents.html"
+    },
+    "\\widetilde": {
+        "category_root": "Math formulas",
+        "category_sub": "Math accents",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Math-accents.html"
+    },
+    "\\underline{math}": {
+        "category_root": "Math formulas",
+        "category_sub": "Over- or under math",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Over_002d-or-under-math.html"
+    },
+    "\\overline{math}": {
+        "category_root": "Math formulas",
+        "category_sub": "Over- or under math",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Over_002d-or-under-math.html"
+    },
+    "\\underbrace{math}": {
+        "category_root": "Math formulas",
+        "category_sub": "Over- or under math",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Over_002d-or-under-math.html"
+    },
+    "\\overbrace{math}": {
+        "category_root": "Math formulas",
+        "category_sub": "Over- or under math",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Over_002d-or-under-math.html"
+    },
+    "\\overrightarrow{math}": {
+        "category_root": "Math formulas",
+        "category_sub": "Over- or under math",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Over_002d-or-under-math.html"
+    },
+    "\\overleftarrow{math}": {
+        "category_root": "Math formulas",
+        "category_sub": "Over- or under math",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Over_002d-or-under-math.html"
+    },
+    "\\;": {
+        "category_root": "Math formulas",
+        "category_sub": "Spacing in math mode",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Spacing-in-math-mode.html"
+    },
+    "\\negthickspace": {
+        "category_root": "Math formulas",
+        "category_sub": "Spacing in math mode",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Spacing-in-math-mode.html"
+    },
+    "\\:": {
+        "category_root": "Math formulas",
+        "category_sub": "Spacing in math mode",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Spacing-in-math-mode.html"
+    },
+    "\\>": {
+        "category_root": "Math formulas",
+        "category_sub": "Spacing in math mode",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Spacing-in-math-mode.html"
+    },
+    "\\negmedspace": {
+        "category_root": "Math formulas",
+        "category_sub": "Spacing in math mode",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Spacing-in-math-mode.html"
+    },
+    "\\,": {
+        "category_root": "Math formulas",
+        "category_sub": "Spacing in math mode",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Spacing-in-math-mode.html"
+    },
+    "\\!": {
+        "category_root": "Math formulas",
+        "category_sub": "Spacing in math mode",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Spacing-in-math-mode.html"
+    },
+    "\\quad": {
+        "category_root": "Math formulas",
+        "category_sub": "Spacing in math mode",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Spacing-in-math-mode.html"
+    },
+    "\\qquad": {
+        "category_root": "Math formulas",
+        "category_sub": "Spacing in math mode",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Spacing-in-math-mode.html"
+    },
+    "\\author{name1\\andname2\\and ...}": {
+        "category_root": "Page styles",
+        "category_sub": "\\maketitle",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/_005cmaketitle.html"
+    },
+    "\\date{text}": {
+        "category_root": "Page styles",
+        "category_sub": "\\maketitle",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/_005cmaketitle.html"
+    },
+    "\\thanks{text}": {
+        "category_root": "Page styles",
+        "category_sub": "\\maketitle",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/_005cmaketitle.html"
+    },
+    "\\title{text}": {
+        "category_root": "Page styles",
+        "category_sub": "\\maketitle",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/_005cmaketitle.html"
+    },
+    "\\markboth{left-head}{right-head}": {
+        "category_root": "Page styles",
+        "category_sub": "\\pagestyle",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/_005cpagestyle.html"
+    },
+    "\\markright{right-head}": {
+        "category_root": "Page styles",
+        "category_sub": "\\pagestyle",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/_005cpagestyle.html"
+    },
+    "\\bigskip": {
+        "category_root": "Spaces",
+        "category_sub": "\\bigskip & \\medskip & \\smallskip",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/_005cbigskip-_0026-_005cmedskip-_0026-_005csmallskip.html"
+    },
+    "\\medskip": {
+        "category_root": "Spaces",
+        "category_sub": "\\bigskip & \\medskip & \\smallskip",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/_005cbigskip-_0026-_005cmedskip-_0026-_005csmallskip.html"
+    },
+    "\\smallskip": {
+        "category_root": "Spaces",
+        "category_sub": "\\bigskip & \\medskip & \\smallskip",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/_005cbigskip-_0026-_005cmedskip-_0026-_005csmallskip.html"
+    },
+    "\\fboxrule": {
+        "category_root": "Boxes",
+        "category_sub": "\\fbox & \\framebox",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/_005cfbox-_0026-_005cframebox.html"
+    },
+    "\\fboxsep": {
+        "category_root": "Boxes",
+        "category_sub": "\\fbox & \\framebox",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/_005cfbox-_0026-_005cframebox.html"
+    },
+    "\\copyright": {
+        "category_root": "Special insertions",
+        "category_sub": "Text symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Text-symbols.html"
+    },
+    "\\textcopyright": {
+        "category_root": "Special insertions",
+        "category_sub": "Text symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Text-symbols.html"
+    },
+    "\\dag": {
+        "category_root": "Special insertions",
+        "category_sub": "Text symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Text-symbols.html"
+    },
+    "\\ddag": {
+        "category_root": "Special insertions",
+        "category_sub": "Text symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Text-symbols.html"
+    },
+    "\\LaTeX": {
+        "category_root": "Special insertions",
+        "category_sub": "Text symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Text-symbols.html"
+    },
+    "\\LaTeXe": {
+        "category_root": "Special insertions",
+        "category_sub": "Text symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Text-symbols.html"
+    },
+    "\\guillemetleft(«)": {
+        "category_root": "Special insertions",
+        "category_sub": "Text symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Text-symbols.html"
+    },
+    "\\guillemetright(»)": {
+        "category_root": "Special insertions",
+        "category_sub": "Text symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Text-symbols.html"
+    },
+    "\\guillemotleft(«)": {
+        "category_root": "Special insertions",
+        "category_sub": "Text symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Text-symbols.html"
+    },
+    "\\guillemotright(»)": {
+        "category_root": "Special insertions",
+        "category_sub": "Text symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Text-symbols.html"
+    },
+    "\\guilsinglleft(‹)": {
+        "category_root": "Special insertions",
+        "category_sub": "Text symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Text-symbols.html"
+    },
+    "\\guilsinglright(›)": {
+        "category_root": "Special insertions",
+        "category_sub": "Text symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Text-symbols.html"
+    },
+    "\\textellipsis": {
+        "category_root": "Special insertions",
+        "category_sub": "Text symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Text-symbols.html"
+    },
+    "\\lq": {
+        "category_root": "Special insertions",
+        "category_sub": "Text symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Text-symbols.html"
+    },
+    "\\P": {
+        "category_root": "Special insertions",
+        "category_sub": "Text symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Text-symbols.html"
+    },
+    "\\textparagraph": {
+        "category_root": "Special insertions",
+        "category_sub": "Text symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Text-symbols.html"
+    },
+    "\\pounds": {
+        "category_root": "Special insertions",
+        "category_sub": "Text symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Text-symbols.html"
+    },
+    "\\textsterling": {
+        "category_root": "Special insertions",
+        "category_sub": "Text symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Text-symbols.html"
+    },
+    "\\quotedblbase(„)": {
+        "category_root": "Special insertions",
+        "category_sub": "Text symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Text-symbols.html"
+    },
+    "\\quotesinglbase(‚)": {
+        "category_root": "Special insertions",
+        "category_sub": "Text symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Text-symbols.html"
+    },
+    "\\rq": {
+        "category_root": "Special insertions",
+        "category_sub": "Text symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Text-symbols.html"
+    },
+    "\\S": {
+        "category_root": "Special insertions",
+        "category_sub": "Text symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Text-symbols.html"
+    },
+    "\\textsection": {
+        "category_root": "Special insertions",
+        "category_sub": "Text symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Text-symbols.html"
+    },
+    "\\TeX": {
+        "category_root": "Special insertions",
+        "category_sub": "Text symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Text-symbols.html"
+    },
+    "\\textasciicircum": {
+        "category_root": "Special insertions",
+        "category_sub": "Text symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Text-symbols.html"
+    },
+    "\\textasciitilde": {
+        "category_root": "Special insertions",
+        "category_sub": "Text symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Text-symbols.html"
+    },
+    "\\textasteriskcentered": {
+        "category_root": "Special insertions",
+        "category_sub": "Text symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Text-symbols.html"
+    },
+    "\\textbackslash": {
+        "category_root": "Special insertions",
+        "category_sub": "Text symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Text-symbols.html"
+    },
+    "\\textbar": {
+        "category_root": "Special insertions",
+        "category_sub": "Text symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Text-symbols.html"
+    },
+    "\\textbardbl": {
+        "category_root": "Special insertions",
+        "category_sub": "Text symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Text-symbols.html"
+    },
+    "\\textbigcircle": {
+        "category_root": "Special insertions",
+        "category_sub": "Text symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Text-symbols.html"
+    },
+    "\\textbraceleft": {
+        "category_root": "Special insertions",
+        "category_sub": "Text symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Text-symbols.html"
+    },
+    "\\textbraceright": {
+        "category_root": "Special insertions",
+        "category_sub": "Text symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Text-symbols.html"
+    },
+    "\\textbullet": {
+        "category_root": "Special insertions",
+        "category_sub": "Text symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Text-symbols.html"
+    },
+    "\\textcircled{letter}": {
+        "category_root": "Special insertions",
+        "category_sub": "Text symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Text-symbols.html"
+    },
+    "\\textcompwordmark": {
+        "category_root": "Special insertions",
+        "category_sub": "Text symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Text-symbols.html"
+    },
+    "\\textcapitalcompwordmark": {
+        "category_root": "Special insertions",
+        "category_sub": "Text symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Text-symbols.html"
+    },
+    "\\textascendercompwordmark": {
+        "category_root": "Special insertions",
+        "category_sub": "Text symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Text-symbols.html"
+    },
+    "\\textdagger": {
+        "category_root": "Special insertions",
+        "category_sub": "Text symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Text-symbols.html"
+    },
+    "\\textdaggerdbl": {
+        "category_root": "Special insertions",
+        "category_sub": "Text symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Text-symbols.html"
+    },
+    "\\textdollar(or\\$)": {
+        "category_root": "Special insertions",
+        "category_sub": "Text symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Text-symbols.html"
+    },
+    "\\textemdash(or---)": {
+        "category_root": "Special insertions",
+        "category_sub": "Text symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Text-symbols.html"
+    },
+    "\\textendash(or--)": {
+        "category_root": "Special insertions",
+        "category_sub": "Text symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Text-symbols.html"
+    },
+    "\\texteuro": {
+        "category_root": "Special insertions",
+        "category_sub": "Text symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Text-symbols.html"
+    },
+    "\\textexclamdown(or!`)": {
+        "category_root": "Special insertions",
+        "category_sub": "Text symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Text-symbols.html"
+    },
+    "\\textfiguredash": {
+        "category_root": "Special insertions",
+        "category_sub": "Text symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Text-symbols.html"
+    },
+    "\\textgreater": {
+        "category_root": "Special insertions",
+        "category_sub": "Text symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Text-symbols.html"
+    },
+    "\\texthorizontalbar": {
+        "category_root": "Special insertions",
+        "category_sub": "Text symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Text-symbols.html"
+    },
+    "\\textless": {
+        "category_root": "Special insertions",
+        "category_sub": "Text symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Text-symbols.html"
+    },
+    "\\textleftarrow": {
+        "category_root": "Special insertions",
+        "category_sub": "Text symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Text-symbols.html"
+    },
+    "\\textnonbreakinghyphen": {
+        "category_root": "Special insertions",
+        "category_sub": "Text symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Text-symbols.html"
+    },
+    "\\textordfeminine": {
+        "category_root": "Special insertions",
+        "category_sub": "Text symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Text-symbols.html"
+    },
+    "\\textordmasculine": {
+        "category_root": "Special insertions",
+        "category_sub": "Text symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Text-symbols.html"
+    },
+    "\\textperiodcentered": {
+        "category_root": "Special insertions",
+        "category_sub": "Text symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Text-symbols.html"
+    },
+    "\\textquestiondown(or?`)": {
+        "category_root": "Special insertions",
+        "category_sub": "Text symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Text-symbols.html"
+    },
+    "\\textquotedblleft(or``)": {
+        "category_root": "Special insertions",
+        "category_sub": "Text symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Text-symbols.html"
+    },
+    "\\textquotedblright(or'')": {
+        "category_root": "Special insertions",
+        "category_sub": "Text symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Text-symbols.html"
+    },
+    "\\textquoteleft(or`)": {
+        "category_root": "Special insertions",
+        "category_sub": "Text symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Text-symbols.html"
+    },
+    "\\textquoteright(or')": {
+        "category_root": "Special insertions",
+        "category_sub": "Text symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Text-symbols.html"
+    },
+    "\\textquotesingle": {
+        "category_root": "Special insertions",
+        "category_sub": "Text symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Text-symbols.html"
+    },
+    "\\textquotestraightbase": {
+        "category_root": "Special insertions",
+        "category_sub": "Text symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Text-symbols.html"
+    },
+    "\\textquotestraightdblbase": {
+        "category_root": "Special insertions",
+        "category_sub": "Text symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Text-symbols.html"
+    },
+    "\\textregistered": {
+        "category_root": "Special insertions",
+        "category_sub": "Text symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Text-symbols.html"
+    },
+    "\\textrightarrow": {
+        "category_root": "Special insertions",
+        "category_sub": "Text symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Text-symbols.html"
+    },
+    "\\textthreequartersemdash": {
+        "category_root": "Special insertions",
+        "category_sub": "Text symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Text-symbols.html"
+    },
+    "\\texttrademark": {
+        "category_root": "Special insertions",
+        "category_sub": "Text symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Text-symbols.html"
+    },
+    "\\texttwelveudash": {
+        "category_root": "Special insertions",
+        "category_sub": "Text symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Text-symbols.html"
+    },
+    "\\textunderscore": {
+        "category_root": "Special insertions",
+        "category_sub": "Text symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Text-symbols.html"
+    },
+    "\\textvisiblespace": {
+        "category_root": "Special insertions",
+        "category_sub": "Text symbols",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Text-symbols.html"
+    },
+    "\\\"": {
+        "category_root": "Special insertions",
+        "category_sub": "Accents",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Accents.html"
+    },
+    "\\capitaldieresis": {
+        "category_root": "Special insertions",
+        "category_sub": "Accents",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Accents.html"
+    },
+    "\\'": {
+        "category_root": "Special insertions",
+        "category_sub": "Accents",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Accents.html"
+    },
+    "\\capitalacute": {
+        "category_root": "Special insertions",
+        "category_sub": "Accents",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Accents.html"
+    },
+    "\\.": {
+        "category_root": "Special insertions",
+        "category_sub": "Accents",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Accents.html"
+    },
+    "\\=": {
+        "category_root": "Special insertions",
+        "category_sub": "Accents",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Accents.html"
+    },
+    "\\capitalmacron": {
+        "category_root": "Special insertions",
+        "category_sub": "Accents",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Accents.html"
+    },
+    "\\^": {
+        "category_root": "Special insertions",
+        "category_sub": "Accents",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Accents.html"
+    },
+    "\\capitalcircumflex": {
+        "category_root": "Special insertions",
+        "category_sub": "Accents",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Accents.html"
+    },
+    "\\`": {
+        "category_root": "Special insertions",
+        "category_sub": "Accents",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Accents.html"
+    },
+    "\\capitalgrave": {
+        "category_root": "Special insertions",
+        "category_sub": "Accents",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Accents.html"
+    },
+    "\\~": {
+        "category_root": "Special insertions",
+        "category_sub": "Accents",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Accents.html"
+    },
+    "\\capitaltilde": {
+        "category_root": "Special insertions",
+        "category_sub": "Accents",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Accents.html"
+    },
+    "\\b": {
+        "category_root": "Special insertions",
+        "category_sub": "Accents",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Accents.html"
+    },
+    "\\c": {
+        "category_root": "Special insertions",
+        "category_sub": "Accents",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Accents.html"
+    },
+    "\\capitalcedilla": {
+        "category_root": "Special insertions",
+        "category_sub": "Accents",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Accents.html"
+    },
+    "\\d": {
+        "category_root": "Special insertions",
+        "category_sub": "Accents",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Accents.html"
+    },
+    "\\capitaldotaccent": {
+        "category_root": "Special insertions",
+        "category_sub": "Accents",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Accents.html"
+    },
+    "\\H": {
+        "category_root": "Special insertions",
+        "category_sub": "Accents",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Accents.html"
+    },
+    "\\capitalhungarumlaut": {
+        "category_root": "Special insertions",
+        "category_sub": "Accents",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Accents.html"
+    },
+    "\\k": {
+        "category_root": "Special insertions",
+        "category_sub": "Accents",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Accents.html"
+    },
+    "\\capitalogonek": {
+        "category_root": "Special insertions",
+        "category_sub": "Accents",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Accents.html"
+    },
+    "\\r": {
+        "category_root": "Special insertions",
+        "category_sub": "Accents",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Accents.html"
+    },
+    "\\capitalring": {
+        "category_root": "Special insertions",
+        "category_sub": "Accents",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Accents.html"
+    },
+    "\\t": {
+        "category_root": "Special insertions",
+        "category_sub": "Accents",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Accents.html"
+    },
+    "\\capitaltie": {
+        "category_root": "Special insertions",
+        "category_sub": "Accents",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Accents.html"
+    },
+    "\\newtie": {
+        "category_root": "Special insertions",
+        "category_sub": "Accents",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Accents.html"
+    },
+    "\\capitalnewtie": {
+        "category_root": "Special insertions",
+        "category_sub": "Accents",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Accents.html"
+    },
+    "\\u": {
+        "category_root": "Special insertions",
+        "category_sub": "Accents",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Accents.html"
+    },
+    "\\capitalbreve": {
+        "category_root": "Special insertions",
+        "category_sub": "Accents",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Accents.html"
+    },
+    "\\v": {
+        "category_root": "Special insertions",
+        "category_sub": "Accents",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Accents.html"
+    },
+    "\\capitalcaron": {
+        "category_root": "Special insertions",
+        "category_sub": "Accents",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Accents.html"
+    },
+    "\\aa": {
+        "category_root": "Special insertions",
+        "category_sub": "Additional Latin letters",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Additional-Latin-letters.html"
+    },
+    "\\AA": {
+        "category_root": "Special insertions",
+        "category_sub": "Additional Latin letters",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Additional-Latin-letters.html"
+    },
+    "\\ae": {
+        "category_root": "Special insertions",
+        "category_sub": "Additional Latin letters",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Additional-Latin-letters.html"
+    },
+    "\\AE": {
+        "category_root": "Special insertions",
+        "category_sub": "Additional Latin letters",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Additional-Latin-letters.html"
+    },
+    "\\dh": {
+        "category_root": "Special insertions",
+        "category_sub": "Additional Latin letters",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Additional-Latin-letters.html"
+    },
+    "\\DH": {
+        "category_root": "Special insertions",
+        "category_sub": "Additional Latin letters",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Additional-Latin-letters.html"
+    },
+    "\\dj": {
+        "category_root": "Special insertions",
+        "category_sub": "Additional Latin letters",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Additional-Latin-letters.html"
+    },
+    "\\DJ": {
+        "category_root": "Special insertions",
+        "category_sub": "Additional Latin letters",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Additional-Latin-letters.html"
+    },
+    "\\ij": {
+        "category_root": "Special insertions",
+        "category_sub": "Additional Latin letters",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Additional-Latin-letters.html"
+    },
+    "\\IJ": {
+        "category_root": "Special insertions",
+        "category_sub": "Additional Latin letters",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Additional-Latin-letters.html"
+    },
+    "\\l": {
+        "category_root": "Special insertions",
+        "category_sub": "Additional Latin letters",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Additional-Latin-letters.html"
+    },
+    "\\L": {
+        "category_root": "Special insertions",
+        "category_sub": "Additional Latin letters",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Additional-Latin-letters.html"
+    },
+    "\\ng": {
+        "category_root": "Special insertions",
+        "category_sub": "Additional Latin letters",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Additional-Latin-letters.html"
+    },
+    "\\NG": {
+        "category_root": "Special insertions",
+        "category_sub": "Additional Latin letters",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Additional-Latin-letters.html"
+    },
+    "\\o": {
+        "category_root": "Special insertions",
+        "category_sub": "Additional Latin letters",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Additional-Latin-letters.html"
+    },
+    "\\O": {
+        "category_root": "Special insertions",
+        "category_sub": "Additional Latin letters",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Additional-Latin-letters.html"
+    },
+    "\\oe": {
+        "category_root": "Special insertions",
+        "category_sub": "Additional Latin letters",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Additional-Latin-letters.html"
+    },
+    "\\OE": {
+        "category_root": "Special insertions",
+        "category_sub": "Additional Latin letters",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Additional-Latin-letters.html"
+    },
+    "\\ss": {
+        "category_root": "Special insertions",
+        "category_sub": "Additional Latin letters",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Additional-Latin-letters.html"
+    },
+    "\\SS": {
+        "category_root": "Special insertions",
+        "category_sub": "Additional Latin letters",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Additional-Latin-letters.html"
+    },
+    "\\th": {
+        "category_root": "Special insertions",
+        "category_sub": "Additional Latin letters",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Additional-Latin-letters.html"
+    },
+    "\\TH": {
+        "category_root": "Special insertions",
+        "category_sub": "Additional Latin letters",
+        "category_subsub": "",
+        "source_url": "https://latexref.xyz/Additional-Latin-letters.html"
+    }
+}

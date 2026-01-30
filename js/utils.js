@@ -1,34 +1,100 @@
-// 現在読み込まれているデータ
+// ==========================================
+// グローバル変数: データベース
+// ==========================================
+window.db = {
+    structure: null, // カテゴリ階層
+    commands: null,  // コマンド詳細
+    catToCmd: null,  // 逆引き
+    isLoaded: false
+};
+
+// ==========================================
+// データベース初期化
+// ==========================================
+window.initDatabase = async function() {
+    if (window.db.isLoaded) return true;
+
+    try {
+        // dataフォルダの各JSONファイルを読み込む
+        const [structRes, cmdRes, catRes] = await Promise.all([
+            fetch('data/category_structure.json'),
+            fetch('data/command_database_full.json'),
+            fetch('data/category_to_commands.json')
+        ]);
+
+        if (!structRes.ok || !cmdRes.ok || !catRes.ok) throw new Error("Data load failed");
+
+        window.db.structure = await structRes.json();
+        window.db.commands = await cmdRes.json();
+        window.db.catToCmd = await catRes.json();
+        window.db.isLoaded = true;
+        return true;
+    } catch (error) {
+        console.error("Init DB Error:", error);
+        if (window.location.protocol === 'file:') {
+            alert("エラー: ローカルセキュリティ制限によりデータを読み込めません。\nVS CodeのLive Server機能などを使って開いてください。");
+        }
+        return false;
+    }
+};
+
+// ==========================================
+// ユーティリティ & UIコンポーネント
+// ==========================================
+
+// 現在読み込まれているデータ（互換性のため保持）
 window.currentData = null;
 
-// データを登録する関数 (各データファイルから呼ばれる)
+// データを登録する関数
 window.setData = function(data) {
     window.currentData = data;
 };
 
-// JSファイルを動的に読み込む関数
+// データファイルを読み込む関数 (JSON対応版)
 window.loadDataFile = function(filePath, callback) {
-    window.currentData = null; // リセット
+    window.currentData = null;
     
-    const script = document.createElement('script');
-    script.src = filePath;
+    // .js を .json に置換して読み込む
+    let targetPath = filePath;
+    if (targetPath.endsWith('.js')) {
+        targetPath = targetPath.replace(/\.js$/, '.json');
+    }
     
-    script.onload = () => {
-        if (window.currentData) {
-            callback(window.currentData);
-        } else {
-            console.error("Data not found in " + filePath);
-            alert("データの形式が正しくありません: " + filePath);
-        }
-        document.head.removeChild(script);
-    };
-    
-    script.onerror = () => {
-        console.error("Failed to load script: " + filePath);
-        alert("ファイルの読み込みに失敗しました。\nパスが正しいか確認してください: " + filePath);
-    };
-    
-    document.head.appendChild(script);
+    // パスの調整（必要に応じて dat/ を付与するなど）
+    // ここではfilePathがそのまま使えると仮定
+
+    fetch(targetPath)
+        .then(response => {
+            if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+            return response.json();
+        })
+        .then(data => {
+            window.currentData = data;
+            callback(data);
+        })
+        .catch(e => {
+            console.error("Data load error:", e);
+            // エラー時はcallbackしない、またはエラー処理
+        });
+};
+
+// データキャッシュ
+window.fileCache = {};
+
+// データ読み込みのPromise化
+window.loadDataFilePromise = function(file) {
+    if (window.fileCache[file]) {
+        return Promise.resolve(window.fileCache[file]);
+    }
+    return new Promise((resolve, reject) => {
+        // タイムアウト設定
+        const timer = setTimeout(() => reject('timeout'), 2000);
+        loadDataFile(file, (data) => {
+            clearTimeout(timer);
+            window.fileCache[file] = data;
+            resolve(data);
+        });
+    });
 };
 
 // コピー機能
@@ -45,9 +111,23 @@ window.copyText = function(btn, text) {
     });
 };
 
-// --- 共通機能の追加 ---
+// KaTeXレンダリングのヘルパー関数
+window.renderMath = function(target, latexCommand, options = {}) {
+    const el = (typeof target === 'string') ? document.getElementById(target) : target;
+    if (!el) return;
+    
+    const defaultOptions = { throwOnError: false };
+    const finalOptions = { ...defaultOptions, ...options };
+    
+    // window.katexが存在する場合のみ実行
+    if (window.katex) {
+        katex.render(latexCommand, el, finalOptions);
+    }
+};
 
-// ヘッダーのHTMLを生成して挿入する
+// ==========================================
+// 共通ヘッダーレンダリング
+// ==========================================
 window.renderCommonHeader = function() {
     const headerHtml = `
         <div class="header-logo-wrapper" onclick="window.location.href='index.html'">
@@ -71,18 +151,6 @@ window.renderCommonHeader = function() {
         headerEl.innerHTML = headerHtml;
         setupHeader(); // イベント登録
     }
-
-    // renderCommonHeader関数内などで、HTML生成後に実行
-    const headerInput = document.getElementById('header-search-input');
-    if (headerInput) {
-        headerInput.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter') {
-            e.preventDefault();
-            executeSearch(headerInput.value);
-        }
-    });
-}
-
 };
 
 // ヘッダー機能のセットアップ
@@ -107,6 +175,10 @@ window.setupHeader = function() {
         }
     }
 
+    // リサイズ時などに重なりをチェック
+    window.addEventListener('resize', checkOverlap);
+    checkOverlap(); // 初期実行
+
     // 検索トグル
     if (searchToggle) {
         searchToggle.addEventListener('click', () => {
@@ -117,43 +189,31 @@ window.setupHeader = function() {
         });
     }
 
-    // 検索実行
+    // 検索実行 (Enterキー)
     if (searchInput) {
         searchInput.addEventListener('keydown', (e) => {
             if (e.key === 'Enter') {
                 e.preventDefault();
-                const term = searchInput.value.trim();
-                if (term) {
-                    window.location.href = `search.html?q=${encodeURIComponent(term)}`;
-                }
+                executeSearch(searchInput.value);
             }
         });
     }
 };
 
-// KaTeXレンダリングのヘルパー関数
-window.renderMath = function(elementId, latexCommand, options = {}) {
-    const el = document.getElementById(elementId);
-    if (!el) return;
-    
-    const defaultOptions = { throwOnError: false };
-    const finalOptions = { ...defaultOptions, ...options };
-    
-    katex.render(latexCommand, el, finalOptions);
-};
+/**
+ * 共通検索実行関数
+ */
+function executeSearch(query) {
+    if (!query) return;
+    const term = query.trim();
+    if (term.length === 0) return;
 
-// データ読み込みのPromise化
-window.loadDataFilePromise = function(file) {
-    return new Promise((resolve, reject) => {
-        const timer = setTimeout(() => reject('timeout'), 1000);
-        loadDataFile(file, (data) => {
-            clearTimeout(timer);
-            resolve(data);
-        });
-    });
-};
+    window.location.href = `search.html?q=${encodeURIComponent(term)}`;
+}
 
-// パンくずリスト生成
+// ==========================================
+// パンくずリスト生成 (高機能版)
+// ==========================================
 window.buildBreadcrumbs = async function(currentFile, currentTitle, isDetail = false) {
     const nav = document.querySelector('.breadcrumbs');
     if (!nav) return;
@@ -169,31 +229,40 @@ window.buildBreadcrumbs = async function(currentFile, currentTitle, isDetail = f
 
     addLink('TOP', 'index.html');
 
+    // パス解析: data/math/data_math.js -> [data, math, data_math.js]
     const parts = currentFile.split('/');
     const parents = [];
     let pathAcc = '';
     
+    // 親ディレクトリを順にたどる
     for (let i = 0; i < parts.length - 1; i++) {
         const part = parts[i];
         if (pathAcc) pathAcc += '/';
         pathAcc += part;
-        if (part === 'data') continue; 
-        const jsFile = `${pathAcc}/data_${part}.js`;
+        
+        if (part === 'data' || part === 'dat') continue; 
+        
+        // 親カテゴリファイルのパスを推測 (例: data/math -> data/math/data_math.js)
+        // JSON環境では .json になるが loadDataFilePromise が吸収する
+        const parentFile = `${pathAcc}/data_${part}.js`;
         
         // 詳細ページ(isDetail=true)の場合は、現在のファイル(カテゴリ)も親としてリンクに追加する
-        if (isDetail || jsFile !== currentFile) {
-            parents.push(jsFile);
+        if (isDetail || parentFile !== currentFile) {
+            parents.push(parentFile);
         }
     }
 
+    // 親カテゴリのタイトルを取得してリンク生成
     for (const file of parents) {
         try {
             const data = await loadDataFilePromise(file);
             const title = data.title || file;
-            // 統合によりすべて category.html へ
             const href = `category.html?file=${file}`;
             addLink(title, href);
-        } catch (e) { console.log(`Breadcrumb skip: ${file}`); }
+        } catch (e) { 
+            // 読み込み失敗時はスキップ
+            console.log(`Breadcrumb skip: ${file}`); 
+        }
     }
 
     const span = document.createElement('span');
@@ -202,18 +271,52 @@ window.buildBreadcrumbs = async function(currentFile, currentTitle, isDetail = f
     nav.appendChild(span);
 };
 
-/**
- * 共通検索実行関数
- * 入力されたクエリで検索結果ページへ遷移します
- * @param {string} query - 検索キーワード
- */
-function executeSearch(query) {
-    if (!query) return;
-    const term = query.trim();
-    if (term.length === 0) return;
+// ==========================================
+// カテゴリパス用パンくずリスト生成 (category.html用)
+// ==========================================
+window.buildBreadcrumbsFromCategory = function(catPath) {
+    const nav = document.querySelector('.breadcrumbs');
+    if (!nav) return;
+    nav.innerHTML = '<a href="index.html">TOP</a>';
+    
+    if (!catPath) return;
 
-    // 検索結果ページへ遷移 (search.htmlがルートにある前提)
-    // 既に search.html にいる場合も再読み込みとして機能します
-    window.location.href = `search.html?q=${encodeURIComponent(term)}`;
-}
+    const parts = catPath.split('/');
+    let accum = "";
+    parts.forEach((p, i) => {
+        nav.appendChild(document.createTextNode(' > '));
+        if(i === parts.length - 1) {
+            const span = document.createElement('span');
+            span.className = 'current-page-name';
+            span.innerText = p;
+            nav.appendChild(span);
+        } else {
+            accum += (i>0 ? "/" : "") + p;
+            const a = document.createElement('a');
+            a.href = `category.html?cat=${encodeURIComponent(accum)}`;
+            a.innerText = p;
+            nav.appendChild(a);
+        }
+    });
+};
 
+// 検索ロジック
+window.performSearch = function(query) {
+    if (!query || !window.db.commands) return [];
+    const lowerQ = query.toLowerCase().trim();
+    const results = [];
+    
+    for (const [key, data] of Object.entries(window.db.commands)) {
+        let score = 0;
+        const lowerKey = key.toLowerCase();
+        
+        if (lowerKey === lowerQ) score += 100;
+        else if (lowerKey.startsWith(lowerQ)) score += 50;
+        else if (lowerKey.includes(lowerQ)) score += 20;
+        else if ((data.description||"").toLowerCase().includes(lowerQ)) score += 5;
+
+        if (score > 0) results.push({ key, data, score });
+    }
+    // スコア順
+    return results.sort((a,b) => b.score - a.score);
+};

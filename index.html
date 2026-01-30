@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LaTeX Command Dictionary</title>
+    <title>LaTeX Cmds</title>
     <link rel="icon" href="images/icon_site.svg" type="image/svg+xml" sizes="any">
     <link rel="apple-touch-icon" href="images/icon.png">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
@@ -11,7 +11,7 @@
     <script src="js/utils.js"></script>
     <link rel="stylesheet" href="css/style.css">
 
-    <style>
+    <style>        
         body {
             min-height: 100vh;
             display: flex;
@@ -20,7 +20,6 @@
             text-align: center;
             padding: 20px 0;
         }
-
         .container { width: 90%; max-width: 600px; padding: 20px; margin: auto; }
         
         .logo-wrapper {
@@ -29,20 +28,26 @@
             justify-content: center;
             gap: 0px;
             margin-bottom: 50px;
-        }
+        }        
         .home-icon {
             height: 84px;
             width: auto;
             filter: drop-shadow(0 2px 4px rgba(0,0,0,0.08));
-        }
+        }        
         .site-logo-text {
             height: 80px;
             width: auto;
             filter: drop-shadow(0 2px 4px rgba(0,0,0,0.08));
             margin-left: 20px;
+        }        
+        .site-desc { 
+            font-size: 1.2rem; 
+            color: #555; 
+            margin-bottom: 50px; 
         }
-
-        .site-desc { font-size: 1.2rem; color: #555; margin-bottom: 50px; }
+        
+        /* これ知らん */
+        .site-title { font-size: 2.5rem; font-weight: bold; color: #4a90e2; }
 
         /* 更新履歴エリア */
         .update-log-container {
@@ -104,17 +109,16 @@
             box-shadow: 0 8px 20px rgba(0,0,0,0.12);
             border-color: #ddd;
         }
-        
+        .nav-card-icon { font-size: 2.5rem; margin-bottom: 10px; }
+        .nav-card-title { font-size: 0.95rem; font-weight: bold; color: #555; }
     </style>
 </head>
-<body class="home">
-
+<body>
     <div class="container">
         <div class="logo-wrapper">
             <img src="images/icon.svg" alt="" class="home-icon">
             <img src="data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' width='250' height='80' viewBox='0 0 250 80'%3e%3ctext x='0' y='50%25' dominant-baseline='middle' text-anchor='start' font-family='sans-serif' font-weight='bold' font-size='40' fill='%232c3e50'%3eLaTeX Cmds %3c/text%3e%3c/svg%3e" alt="LaTeX Dict" class="site-logo-text">
         </div>
-        
         <div class="site-desc">シンプルでわかりやすい LaTeX 数式コマンド集</div>
         
         <div class="search-wrapper">
@@ -123,36 +127,24 @@
         </div>
 
         <div class="nav-grid">
-            <a href="category.html?file=data_root.js" class="nav-card">主なカテゴリー</a>
+            <a href="category.html?cat=Main" class="nav-card">主なカテゴリー</a>
             <a href="#" class="nav-card">トピック</a>
         </div>
-
+        
         <div class="update-log-container" id="update-log-container">
             <div class="update-log-title">Recent Updates</div>
             <ul class="update-list" id="update-list">
                 <li class="update-item" style="color:#888;">Loading updates...</li>
             </ul>
         </div>
-
     </div>
 
     <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            const input = document.getElementById('search-input');
-
-            // 検索機能は一時的に無効化（または後日実装）
-            // setupAutocomplete('search-input', 'search-results', commandDatabase);
-
-            // エンターキーで一覧表示
-            input.addEventListener('keydown', (e) => {
-                if (e.key === 'Enter') {
-                    e.preventDefault();
-                    executeSearch(input.value);
-                }
-            });
+        document.addEventListener("DOMContentLoaded", async function() {
+            // 1. データベース読み込み
+            await window.initDatabase();
 
             // --- GitHub更新履歴の取得 ---
-            // ※ここにあなたのGitHubユーザー名とリポジトリ名を設定してください
             const GITHUB_USER = "Kokokoike"; 
             const GITHUB_REPO = "latex-commands";
 

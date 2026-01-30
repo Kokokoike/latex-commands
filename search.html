@@ -5,11 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Search Results - LaTeX Dictionary</title>
     <link rel="icon" href="images/icon_site.svg" type="image/svg+xml" sizes="any">
-    <link rel="apple-touch-icon" href="images/icon.png">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
     <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
     <script src="js/utils.js"></script>
-    <script src="data_greek.js"></script>
     <link rel="stylesheet" href="css/style.css">
 
     <style>
@@ -39,12 +37,6 @@
         }
 
         /* 検索バーの幅をリスト表示に合わせる */
-        .search-wrapper {
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
         .view-controls,
         .main-results-list:not(.grid-view) {
             max-width: 600px;
@@ -57,102 +49,89 @@
     <header class="top-header"></header>
 
     <div class="container">
-        <div class="search-wrapper">
-            <input type="text" class="search-input" id="search-input" placeholder="コマンドやキーワードで検索..." autocomplete="off">
-            <div class="search-results" id="search-results"></div>
-        </div>
-
+        <h2 style="text-align:left; margin: 20px 0; color:#444;">Search Results: "<span id="query-text"></span>"</h2>
+        
+        <!-- 表示切り替えボタン -->
         <div class="view-controls" id="view-controls">
             <button class="view-btn active" id="btn-list" title="List View">
                 <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
-                    <rect x="4" y="5" width="3" height="3" rx="1"></rect>
-                    <rect x="9" y="5" width="10" height="3" rx="1"></rect>
-                    <rect x="4" y="10" width="3" height="3" rx="1"></rect>
-                    <rect x="9" y="10" width="10" height="3" rx="1"></rect>
-                    <rect x="4" y="15" width="3" height="3" rx="1"></rect>
-                    <rect x="9" y="15" width="10" height="3" rx="1"></rect>
+                    <rect x="4" y="5" width="3" height="3" rx="1"></rect><rect x="9" y="5" width="10" height="3" rx="1"></rect><rect x="4" y="10" width="3" height="3" rx="1"></rect><rect x="9" y="10" width="10" height="3" rx="1"></rect><rect x="4" y="15" width="3" height="3" rx="1"></rect><rect x="9" y="15" width="10" height="3" rx="1"></rect>
                 </svg>
             </button>
             <button class="view-btn" id="btn-grid" title="Grid View">
                 <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
-                    <rect x="4" y="4" width="7" height="7" rx="1"></rect>
-                    <rect x="13" y="4" width="7" height="7" rx="1"></rect>
-                    <rect x="4" y="13" width="7" height="7" rx="1"></rect>
-                    <rect x="13" y="13" width="7" height="7" rx="1"></rect>
+                    <rect x="4" y="4" width="7" height="7" rx="1"></rect><rect x="13" y="4" width="7" height="7" rx="1"></rect><rect x="4" y="13" width="7" height="7" rx="1"></rect><rect x="13" y="13" width="7" height="7" rx="1"></rect>
                 </svg>
             </button>
         </div>
+
         <div class="main-results-list" id="main-results-list"></div>
     </div>
 
     <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            renderCommonHeader();
+        document.addEventListener("DOMContentLoaded", async function() {
+            if (window.renderCommonHeader) window.renderCommonHeader();
+            await window.initDatabase();
 
             const params = new URLSearchParams(window.location.search);
-            const query = params.get('q') || '';
-            const input = document.getElementById('search-input');
-            input.value = query;
-
+            const query = params.get('q');
+            document.getElementById('query-text').innerText = query || "";
             const mainList = document.getElementById('main-results-list');
+            mainList.innerHTML = '';
+
+            // 表示切り替え機能
             const btnList = document.getElementById('btn-list');
             const btnGrid = document.getElementById('btn-grid');
-            const keys = Object.keys(commandDatabase);
-
-            // オートコンプリートのセットアップ
-            setupAutocomplete('search-input', 'search-results', commandDatabase);
-
-            // 検索実行
-            if (query) {
-                const term = query.toLowerCase();
-                const hits = getSearchResults(term, commandDatabase);
-
-                if (hits.length > 0) {
-                    hits.forEach(key => {
-                        const d = commandDatabase[key];
-                        const displayCommand = d.command || key;
-                        const displayDesc = d.description || key.replace(/^\\/, '');
-
-                        const div = document.createElement('div');
-                        div.className = 'list-item';
-                        div.innerHTML = `
-                            <div class="list-preview" id="preview-${key}"></div>
-                            <div class="list-info">
-                                <div class="cmd-row">
-                                    <div class="result-cmd">${key}</div>
-                                    <button class="copy-btn-small">Copy</button>
-                                </div>
-                                <div class="result-desc">${displayDesc}</div>
-                            </div>
-                        `;
-                        
-                        const copyBtn = div.querySelector('.copy-btn-small');
-                        copyBtn.onclick = (e) => {
-                            e.stopPropagation();
-                            copyText(copyBtn, key);
-                        };
-
-                        div.onclick = () => { window.location.href = `detail1.html?id=${key}`; };
-                        mainList.appendChild(div);
-
-                        renderMath(`preview-${key}`, displayCommand);
-                    });
-                } else {
-                    mainList.innerHTML = '<div style="color:#666; padding:20px;">該当するコマンドが見つかりませんでした。</div>';
-                }
-            }
-
-            // 再検索
-            input.addEventListener('keydown', (e) => {
-                if (e.key === 'Enter') {
-                    e.preventDefault();
-                    executeSearch(input.value);
-                }
+            
+            btnList.addEventListener('click', () => {
+                mainList.classList.remove('grid-view');
+                btnList.classList.add('active');
+                btnGrid.classList.remove('active');
+            });
+            btnGrid.addEventListener('click', () => {
+                mainList.classList.add('grid-view');
+                btnGrid.classList.add('active');
+                btnList.classList.remove('active');
             });
 
-            // 表示切り替え
-            btnList.addEventListener('click', () => { mainList.classList.remove('grid-view'); btnList.classList.add('active'); btnGrid.classList.remove('active'); });
-            btnGrid.addEventListener('click', () => { mainList.classList.add('grid-view'); btnGrid.classList.add('active'); btnList.classList.remove('active'); });
+            if (!query) return;
+
+            const results = window.performSearch(query);
+
+            if (results.length === 0) {
+                mainList.innerHTML = '<div style="color:#666; padding:20px;">No results found.</div>';
+            } else {
+                results.forEach(item => {
+                    const key = item.key;
+                    const data = item.data;
+                    
+                    const div = document.createElement('div');
+                    div.className = 'list-item';
+                    const safeId = 'search-res-' + key.replace(/[^a-zA-Z0-9]/g, '');
+
+                    div.innerHTML = `
+                        <div class="list-preview" id="${safeId}"></div>
+                        <div class="list-info">
+                            <div class="cmd-row">
+                                <div class="result-cmd">${key}</div>
+                                <button class="copy-btn-small">Copy</button>
+                            </div>
+                            <div class="result-desc">${data.description || ''}</div>
+                        </div>
+                    `;
+                    
+                    const copyBtn = div.querySelector('.copy-btn-small');
+                    copyBtn.onclick = (e) => {
+                        e.stopPropagation();
+                        window.copyText(copyBtn, key);
+                    };
+
+                    div.onclick = () => location.href = `detail1.html?id=${encodeURIComponent(key)}`;
+                    mainList.appendChild(div);
+
+                    window.renderMath(safeId, key);
+                });
+            }
         });
     </script>
 </body>

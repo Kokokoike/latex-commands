@@ -1,0 +1,1315 @@
+[
+    {
+        "title": "About this document",
+        "children": []
+    },
+    {
+        "title": "Overview of LaTeX",
+        "children": [
+            {
+                "title": "Starting and ending",
+                "children": []
+            },
+            {
+                "title": "Output files",
+                "children": []
+            },
+            {
+                "title": "TeX engines",
+                "children": []
+            },
+            {
+                "title": "Input text",
+                "children": [
+                    {
+                        "title": "Input encodings"
+                    },
+                    {
+                        "title": "Ligatures"
+                    },
+                    {
+                        "title": "Special characters: \\ { } % $ & _ ^ # ~"
+                    }
+                ]
+            },
+            {
+                "title": "LaTeX command syntax",
+                "children": []
+            },
+            {
+                "title": "Environment syntax",
+                "children": []
+            },
+            {
+                "title": "\\DocumentMetadata: Producing tagged PDF output",
+                "children": []
+            },
+            {
+                "title": "CTAN: The Comprehensive TeX Archive Network",
+                "children": []
+            }
+        ]
+    },
+    {
+        "title": "Document classes",
+        "children": [
+            {
+                "title": "Document class options",
+                "children": []
+            },
+            {
+                "title": "\\usepackage: Additional packages",
+                "children": []
+            },
+            {
+                "title": "Class and package creation",
+                "children": [
+                    {
+                        "title": "Class and package structure"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "title": "Fonts",
+        "children": [
+            {
+                "title": "fontenc package",
+                "children": [
+                    {
+                        "title": "\\DeclareFontEncoding"
+                    },
+                    {
+                        "title": "\\DeclareTextAccent"
+                    },
+                    {
+                        "title": "\\DeclareTextAccentDefault"
+                    },
+                    {
+                        "title": "\\DeclareTextCommand & \\ProvideTextCommand"
+                    },
+                    {
+                        "title": "\\DeclareTextCommandDefault & \\ProvideTextCommandDefault"
+                    },
+                    {
+                        "title": "\\DeclareTextComposite"
+                    },
+                    {
+                        "title": "\\DeclareTextCompositeCommand"
+                    },
+                    {
+                        "title": "\\DeclareTextSymbol"
+                    },
+                    {
+                        "title": "\\DeclareTextSymbolDefault"
+                    },
+                    {
+                        "title": "\\LastDeclaredEncoding"
+                    },
+                    {
+                        "title": "\\UseTextSymbol & \\UseTextAccent"
+                    }
+                ]
+            },
+            {
+                "title": "Font styles",
+                "children": []
+            },
+            {
+                "title": "Font sizes",
+                "children": []
+            },
+            {
+                "title": "Low-level font commands",
+                "children": []
+            }
+        ]
+    },
+    {
+        "title": "Layout",
+        "children": [
+            {
+                "title": "\\onecolumn",
+                "children": []
+            },
+            {
+                "title": "\\twocolumn",
+                "children": []
+            },
+            {
+                "title": "\\flushbottom",
+                "children": []
+            },
+            {
+                "title": "\\raggedbottom",
+                "children": []
+            },
+            {
+                "title": "Page layout parameters",
+                "children": []
+            },
+            {
+                "title": "\\baselineskip & \\baselinestretch",
+                "children": []
+            },
+            {
+                "title": "Floats",
+                "children": [
+                    {
+                        "title": "\\caption"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "title": "Sectioning",
+        "children": [
+            {
+                "title": "\\part",
+                "children": []
+            },
+            {
+                "title": "\\chapter",
+                "children": []
+            },
+            {
+                "title": "\\section",
+                "children": []
+            },
+            {
+                "title": "\\subsection",
+                "children": []
+            },
+            {
+                "title": "\\subsubsection, \\paragraph, \\subparagraph",
+                "children": []
+            },
+            {
+                "title": "\\appendix",
+                "children": []
+            },
+            {
+                "title": "\\frontmatter, \\mainmatter, \\backmatter",
+                "children": []
+            },
+            {
+                "title": "\\@startsection: Typesetting sectional unit headings",
+                "children": []
+            }
+        ]
+    },
+    {
+        "title": "Cross references",
+        "children": [
+            {
+                "title": "\\label",
+                "children": []
+            },
+            {
+                "title": "\\pageref",
+                "children": []
+            },
+            {
+                "title": "\\ref",
+                "children": []
+            },
+            {
+                "title": "xr package",
+                "children": []
+            }
+        ]
+    },
+    {
+        "title": "Environments",
+        "children": [
+            {
+                "title": "abstract",
+                "children": []
+            },
+            {
+                "title": "array",
+                "children": []
+            },
+            {
+                "title": "center",
+                "children": [
+                    {
+                        "title": "\\centering"
+                    }
+                ]
+            },
+            {
+                "title": "description",
+                "children": []
+            },
+            {
+                "title": "displaymath",
+                "children": []
+            },
+            {
+                "title": "document",
+                "children": [
+                    {
+                        "title": "\\AtBeginDocument"
+                    },
+                    {
+                        "title": "\\AtEndDocument"
+                    }
+                ]
+            },
+            {
+                "title": "enumerate",
+                "children": []
+            },
+            {
+                "title": "eqnarray",
+                "children": []
+            },
+            {
+                "title": "equation",
+                "children": []
+            },
+            {
+                "title": "figure",
+                "children": []
+            },
+            {
+                "title": "filecontents",
+                "children": []
+            },
+            {
+                "title": "flushleft",
+                "children": [
+                    {
+                        "title": "\\raggedright"
+                    }
+                ]
+            },
+            {
+                "title": "flushright",
+                "children": [
+                    {
+                        "title": "\\raggedleft"
+                    }
+                ]
+            },
+            {
+                "title": "itemize",
+                "children": []
+            },
+            {
+                "title": "letter environment: writing letters",
+                "children": []
+            },
+            {
+                "title": "list",
+                "children": [
+                    {
+                        "title": "\\item: An entry in a list"
+                    },
+                    {
+                        "title": "trivlist: A restricted form of list"
+                    }
+                ]
+            },
+            {
+                "title": "math",
+                "children": []
+            },
+            {
+                "title": "minipage",
+                "children": []
+            },
+            {
+                "title": "picture",
+                "children": [
+                    {
+                        "title": "\\put"
+                    },
+                    {
+                        "title": "\\multiput"
+                    },
+                    {
+                        "title": "\\qbezier"
+                    },
+                    {
+                        "title": "\\graphpaper"
+                    },
+                    {
+                        "title": "\\line"
+                    },
+                    {
+                        "title": "\\linethickness"
+                    },
+                    {
+                        "title": "\\thinlines"
+                    },
+                    {
+                        "title": "\\thicklines"
+                    },
+                    {
+                        "title": "\\circle"
+                    },
+                    {
+                        "title": "\\oval"
+                    },
+                    {
+                        "title": "\\shortstack"
+                    },
+                    {
+                        "title": "\\vector"
+                    },
+                    {
+                        "title": "\\makebox (picture)"
+                    },
+                    {
+                        "title": "\\framebox (picture)"
+                    },
+                    {
+                        "title": "\\frame"
+                    },
+                    {
+                        "title": "\\dashbox"
+                    }
+                ]
+            },
+            {
+                "title": "quotation & quote",
+                "children": []
+            },
+            {
+                "title": "tabbing",
+                "children": [
+                    {
+                        "title": "tabbing first example"
+                    },
+                    {
+                        "title": "tabbing commands"
+                    },
+                    {
+                        "title": "tabbing complex examples"
+                    }
+                ]
+            },
+            {
+                "title": "table",
+                "children": []
+            },
+            {
+                "title": "tabular",
+                "children": [
+                    {
+                        "title": "\\multicolumn"
+                    },
+                    {
+                        "title": "\\vline"
+                    },
+                    {
+                        "title": "\\cline"
+                    },
+                    {
+                        "title": "\\hline"
+                    }
+                ]
+            },
+            {
+                "title": "thebibliography",
+                "children": [
+                    {
+                        "title": "\\bibitem"
+                    },
+                    {
+                        "title": "\\cite"
+                    },
+                    {
+                        "title": "\\nocite"
+                    },
+                    {
+                        "title": "Using BibTeX"
+                    }
+                ]
+            },
+            {
+                "title": "theorem",
+                "children": []
+            },
+            {
+                "title": "titlepage",
+                "children": []
+            },
+            {
+                "title": "verbatim",
+                "children": [
+                    {
+                        "title": "\\verb"
+                    }
+                ]
+            },
+            {
+                "title": "verse",
+                "children": []
+            }
+        ]
+    },
+    {
+        "title": "Line breaking",
+        "children": [
+            {
+                "title": "\\\\",
+                "children": []
+            },
+            {
+                "title": "\\obeycr & \\restorecr",
+                "children": []
+            },
+            {
+                "title": "\\newline",
+                "children": []
+            },
+            {
+                "title": "\\- (discretionary hyphen)",
+                "children": []
+            },
+            {
+                "title": "\\slash: breakable ‘/’",
+                "children": []
+            },
+            {
+                "title": "\\discretionary (generalized hyphenation point)",
+                "children": []
+            },
+            {
+                "title": "\\fussy & \\sloppy",
+                "children": [
+                    {
+                        "title": "sloppypar"
+                    }
+                ]
+            },
+            {
+                "title": "\\hyphenation",
+                "children": []
+            },
+            {
+                "title": "\\linebreak & \\nolinebreak",
+                "children": []
+            }
+        ]
+    },
+    {
+        "title": "Page breaking",
+        "children": [
+            {
+                "title": "\\clearpage & \\cleardoublepage",
+                "children": []
+            },
+            {
+                "title": "\\newpage",
+                "children": []
+            },
+            {
+                "title": "\\enlargethispage",
+                "children": []
+            },
+            {
+                "title": "\\pagebreak & \\nopagebreak",
+                "children": []
+            }
+        ]
+    },
+    {
+        "title": "Footnotes",
+        "children": [
+            {
+                "title": "\\footnote",
+                "children": []
+            },
+            {
+                "title": "\\footnotemark",
+                "children": []
+            },
+            {
+                "title": "\\footnotetext",
+                "children": []
+            },
+            {
+                "title": "Footnotes in section headings",
+                "children": []
+            },
+            {
+                "title": "Footnotes in a table",
+                "children": []
+            },
+            {
+                "title": "Footnotes of footnotes",
+                "children": []
+            }
+        ]
+    },
+    {
+        "title": "Definitions",
+        "children": [
+            {
+                "title": "\\newcommand & \\renewcommand",
+                "children": [
+                    {
+                        "title": "Control sequence, control word and control symbol"
+                    }
+                ]
+            },
+            {
+                "title": "\\providecommand",
+                "children": []
+            },
+            {
+                "title": "\\makeatletter & \\makeatother",
+                "children": []
+            },
+            {
+                "title": "\\@ifstar",
+                "children": []
+            },
+            {
+                "title": "\\newcounter: Allocating a counter",
+                "children": []
+            },
+            {
+                "title": "\\newlength",
+                "children": []
+            },
+            {
+                "title": "\\newsavebox",
+                "children": []
+            },
+            {
+                "title": "\\newenvironment & \\renewenvironment",
+                "children": []
+            },
+            {
+                "title": "\\newtheorem",
+                "children": []
+            },
+            {
+                "title": "\\newfont",
+                "children": []
+            },
+            {
+                "title": "\\protect",
+                "children": []
+            },
+            {
+                "title": "\\ignorespaces & \\ignorespacesafterend",
+                "children": []
+            },
+            {
+                "title": "xspace package",
+                "children": []
+            },
+            {
+                "title": "Class and package commands",
+                "children": [
+                    {
+                        "title": "\\AtBeginDvi & \\AtEndDvi"
+                    },
+                    {
+                        "title": "\\AtEndOfClass & \\AtEndOfPackage"
+                    },
+                    {
+                        "title": "\\CheckCommand"
+                    },
+                    {
+                        "title": "\\ClassError and \\PackageError and other messages"
+                    },
+                    {
+                        "title": "\\CurrentOption"
+                    },
+                    {
+                        "title": "\\DeclareOption"
+                    },
+                    {
+                        "title": "\\DeclareRobustCommand"
+                    },
+                    {
+                        "title": "\\ExecuteOptions"
+                    },
+                    {
+                        "title": "\\IfFileExists & \\InputIfFileExists"
+                    },
+                    {
+                        "title": "\\LoadClass & \\LoadClassWithOptions"
+                    },
+                    {
+                        "title": "\\NeedsTeXFormat"
+                    },
+                    {
+                        "title": "\\OptionNotUsed"
+                    },
+                    {
+                        "title": "\\PassOptionsToClass & \\PassOptionsToPackage"
+                    },
+                    {
+                        "title": "\\ProcessOptions"
+                    },
+                    {
+                        "title": "\\ProvidesClass & \\ProvidesPackage"
+                    },
+                    {
+                        "title": "\\ProvidesFile"
+                    },
+                    {
+                        "title": "\\RequirePackage & \\RequirePackageWithOptions"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "title": "Counters",
+        "children": [
+            {
+                "title": "\\alph \\Alph \\arabic \\roman \\Roman \\fnsymbol: Printing counters",
+                "children": []
+            },
+            {
+                "title": "\\usecounter",
+                "children": []
+            },
+            {
+                "title": "\\value",
+                "children": []
+            },
+            {
+                "title": "\\setcounter",
+                "children": []
+            },
+            {
+                "title": "\\addtocounter",
+                "children": []
+            },
+            {
+                "title": "\\refstepcounter",
+                "children": []
+            },
+            {
+                "title": "\\stepcounter",
+                "children": []
+            },
+            {
+                "title": "\\day & \\month & \\year",
+                "children": []
+            }
+        ]
+    },
+    {
+        "title": "Lengths",
+        "children": [
+            {
+                "title": "Units of length",
+                "children": []
+            },
+            {
+                "title": "\\setlength",
+                "children": []
+            },
+            {
+                "title": "\\addtolength",
+                "children": []
+            },
+            {
+                "title": "\\settodepth",
+                "children": []
+            },
+            {
+                "title": "\\settoheight",
+                "children": []
+            },
+            {
+                "title": "\\settowidth",
+                "children": []
+            },
+            {
+                "title": "\\stretch",
+                "children": []
+            },
+            {
+                "title": "Expressions",
+                "children": []
+            }
+        ]
+    },
+    {
+        "title": "Making paragraphs",
+        "children": [
+            {
+                "title": "\\par",
+                "children": []
+            },
+            {
+                "title": "\\indent & \\noindent",
+                "children": []
+            },
+            {
+                "title": "\\parindent & \\parskip",
+                "children": []
+            },
+            {
+                "title": "Marginal notes",
+                "children": []
+            }
+        ]
+    },
+    {
+        "title": "Math formulas",
+        "children": [
+            {
+                "title": "Subscripts & superscripts",
+                "children": []
+            },
+            {
+                "title": "Math symbols",
+                "children": [
+                    {
+                        "title": "Arrows"
+                    },
+                    {
+                        "title": "\\boldmath & \\unboldmath"
+                    },
+                    {
+                        "title": "Blackboard bold"
+                    },
+                    {
+                        "title": "Calligraphic"
+                    },
+                    {
+                        "title": "Delimiters"
+                    },
+                    {
+                        "title": "Dots, horizontal or vertical"
+                    },
+                    {
+                        "title": "Greek letters"
+                    }
+                ]
+            },
+            {
+                "title": "Math functions",
+                "children": []
+            },
+            {
+                "title": "Math accents",
+                "children": []
+            },
+            {
+                "title": "Over- or under math",
+                "children": []
+            },
+            {
+                "title": "Spacing in math mode",
+                "children": [
+                    {
+                        "title": "\\smash"
+                    },
+                    {
+                        "title": "\\phantom & \\vphantom & \\hphantom"
+                    },
+                    {
+                        "title": "\\mathstrut"
+                    }
+                ]
+            },
+            {
+                "title": "Math styles",
+                "children": []
+            },
+            {
+                "title": "Math miscellany",
+                "children": [
+                    {
+                        "title": "Colon character : & \\colon"
+                    },
+                    {
+                        "title": "\\*"
+                    },
+                    {
+                        "title": "\\frac"
+                    },
+                    {
+                        "title": "\\sqrt"
+                    },
+                    {
+                        "title": "\\stackrel"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "title": "Modes",
+        "children": [
+            {
+                "title": "\\ensuremath",
+                "children": []
+            }
+        ]
+    },
+    {
+        "title": "Page styles",
+        "children": [
+            {
+                "title": "\\maketitle",
+                "children": []
+            },
+            {
+                "title": "\\pagenumbering",
+                "children": []
+            },
+            {
+                "title": "\\pagestyle",
+                "children": []
+            },
+            {
+                "title": "\\thispagestyle",
+                "children": []
+            },
+            {
+                "title": "\\thepage",
+                "children": []
+            }
+        ]
+    },
+    {
+        "title": "Spaces",
+        "children": [
+            {
+                "title": "\\enspace & \\quad & \\qquad",
+                "children": []
+            },
+            {
+                "title": "\\hspace",
+                "children": []
+            },
+            {
+                "title": "\\hfill",
+                "children": []
+            },
+            {
+                "title": "\\hss",
+                "children": []
+            },
+            {
+                "title": "\\spacefactor",
+                "children": [
+                    {
+                        "title": "\\@"
+                    },
+                    {
+                        "title": "\\frenchspacing & \\nonfrenchspacing"
+                    },
+                    {
+                        "title": "\\normalsfcodes"
+                    }
+                ]
+            },
+            {
+                "title": "Backslash-space, \\",
+                "children": []
+            },
+            {
+                "title": "~, \\nobreakspace",
+                "children": []
+            },
+            {
+                "title": "\\thinspace & \\negthinspace",
+                "children": []
+            },
+            {
+                "title": "\\/",
+                "children": []
+            },
+            {
+                "title": "\\hrulefill & \\dotfill",
+                "children": []
+            },
+            {
+                "title": "\\bigskip & \\medskip & \\smallskip",
+                "children": []
+            },
+            {
+                "title": "\\bigbreak & \\medbreak & \\smallbreak",
+                "children": []
+            },
+            {
+                "title": "\\strut",
+                "children": []
+            },
+            {
+                "title": "\\vspace",
+                "children": []
+            },
+            {
+                "title": "\\vfill",
+                "children": []
+            },
+            {
+                "title": "\\addvspace",
+                "children": []
+            }
+        ]
+    },
+    {
+        "title": "Boxes",
+        "children": [
+            {
+                "title": "\\mbox & \\makebox",
+                "children": []
+            },
+            {
+                "title": "\\fbox & \\framebox",
+                "children": []
+            },
+            {
+                "title": "\\parbox",
+                "children": []
+            },
+            {
+                "title": "\\raisebox",
+                "children": []
+            },
+            {
+                "title": "\\sbox & \\savebox",
+                "children": []
+            },
+            {
+                "title": "lrbox",
+                "children": []
+            },
+            {
+                "title": "\\usebox",
+                "children": []
+            }
+        ]
+    },
+    {
+        "title": "Graphics",
+        "children": [
+            {
+                "title": "graphics package options",
+                "children": []
+            },
+            {
+                "title": "graphics package configuration",
+                "children": [
+                    {
+                        "title": "\\graphicspath"
+                    },
+                    {
+                        "title": "\\DeclareGraphicsExtensions"
+                    },
+                    {
+                        "title": "\\DeclareGraphicsRule"
+                    }
+                ]
+            },
+            {
+                "title": "Commands for graphics",
+                "children": [
+                    {
+                        "title": "\\includegraphics"
+                    },
+                    {
+                        "title": "\\rotatebox"
+                    },
+                    {
+                        "title": "\\scalebox"
+                    },
+                    {
+                        "title": "\\resizebox"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "title": "Color",
+        "children": [
+            {
+                "title": "color package options",
+                "children": []
+            },
+            {
+                "title": "Color models",
+                "children": []
+            },
+            {
+                "title": "Commands for color",
+                "children": [
+                    {
+                        "title": "Define colors"
+                    },
+                    {
+                        "title": "Colored text"
+                    },
+                    {
+                        "title": "Colored boxes"
+                    },
+                    {
+                        "title": "Colored pages"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "title": "Special insertions",
+        "children": [
+            {
+                "title": "Printing special characters",
+                "children": []
+            },
+            {
+                "title": "Upper and lower case",
+                "children": []
+            },
+            {
+                "title": "Symbols by font position",
+                "children": []
+            },
+            {
+                "title": "Text symbols",
+                "children": []
+            },
+            {
+                "title": "Accents",
+                "children": [
+                    {
+                        "title": "\\accent"
+                    }
+                ]
+            },
+            {
+                "title": "Additional Latin letters",
+                "children": []
+            },
+            {
+                "title": "inputenc package",
+                "children": []
+            },
+            {
+                "title": "\\rule",
+                "children": []
+            },
+            {
+                "title": "\\today",
+                "children": []
+            }
+        ]
+    },
+    {
+        "title": "Splitting the input",
+        "children": [
+            {
+                "title": "\\endinput",
+                "children": []
+            },
+            {
+                "title": "\\include & \\includeonly",
+                "children": []
+            },
+            {
+                "title": "\\input",
+                "children": []
+            }
+        ]
+    },
+    {
+        "title": "Front/back matter",
+        "children": [
+            {
+                "title": "Table of contents, list of figures, list of tables",
+                "children": [
+                    {
+                        "title": "\\@dottedtocline"
+                    },
+                    {
+                        "title": "\\addcontentsline"
+                    },
+                    {
+                        "title": "\\addtocontents"
+                    },
+                    {
+                        "title": "\\contentsline"
+                    },
+                    {
+                        "title": "\\nofiles"
+                    },
+                    {
+                        "title": "\\numberline"
+                    }
+                ]
+            },
+            {
+                "title": "Indexes",
+                "children": [
+                    {
+                        "title": "Produce the index manually"
+                    },
+                    {
+                        "title": "\\index"
+                    },
+                    {
+                        "title": "makeindex"
+                    },
+                    {
+                        "title": "\\printindex"
+                    }
+                ]
+            },
+            {
+                "title": "Glossaries",
+                "children": [
+                    {
+                        "title": "\\newglossaryentry"
+                    },
+                    {
+                        "title": "\\gls"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "title": "Letters",
+        "children": [
+            {
+                "title": "\\address",
+                "children": []
+            },
+            {
+                "title": "\\cc",
+                "children": []
+            },
+            {
+                "title": "\\closing",
+                "children": []
+            },
+            {
+                "title": "\\encl",
+                "children": []
+            },
+            {
+                "title": "\\location",
+                "children": []
+            },
+            {
+                "title": "\\makelabels",
+                "children": []
+            },
+            {
+                "title": "\\name",
+                "children": []
+            },
+            {
+                "title": "\\opening",
+                "children": []
+            },
+            {
+                "title": "\\ps",
+                "children": []
+            },
+            {
+                "title": "\\signature",
+                "children": []
+            },
+            {
+                "title": "\\telephone",
+                "children": []
+            }
+        ]
+    },
+    {
+        "title": "Input/output",
+        "children": [
+            {
+                "title": "\\openin & \\openout",
+                "children": []
+            },
+            {
+                "title": "\\read",
+                "children": []
+            },
+            {
+                "title": "\\typein",
+                "children": []
+            },
+            {
+                "title": "\\typeout",
+                "children": []
+            },
+            {
+                "title": "\\write",
+                "children": [
+                    {
+                        "title": "\\write and security"
+                    },
+                    {
+                        "title": "\\message"
+                    },
+                    {
+                        "title": "\\wlog"
+                    },
+                    {
+                        "title": "\\write18"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "title": "Command line interface",
+        "children": [
+            {
+                "title": "Command line options",
+                "children": []
+            },
+            {
+                "title": "Command line input",
+                "children": []
+            },
+            {
+                "title": "Jobname",
+                "children": []
+            },
+            {
+                "title": "Recovering from errors",
+                "children": []
+            }
+        ]
+    },
+    {
+        "title": "Appendix A Document templates",
+        "children": [
+            {
+                "title": "A.1 beamer template",
+                "children": []
+            },
+            {
+                "title": "A.2 article template",
+                "children": []
+            },
+            {
+                "title": "A.3 book template",
+                "children": []
+            },
+            {
+                "title": "A.4 Larger book template",
+                "children": []
+            }
+        ]
+    },
+    {
+        "title": "Index",
+        "children": []
+    }
+]
