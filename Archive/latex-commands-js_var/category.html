@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LaTeX Dictionary</title>
+    <link rel="icon" href="images/icon_site.svg" type="image/svg+xml" sizes="any">
+    <link rel="apple-touch-icon" href="images/icon.png">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script src="js/utils.js"></script>
+    <link rel="stylesheet" href="css/style.css">
+
+    <style>
+        body {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            padding-bottom: 40px;
+        }
+
+        .container { width: 90%; max-width: 800px; padding: 20px; margin: auto; margin-top: 0; }
+        
+        .page-title {
+            font-size: var(--main-title-size);
+            font-weight: bold;
+            color: #333;
+            margin: 20px 0 10px 0;
+        }
+
+        .section-divider {
+            border: 0;
+            border-top: 2px solid #eee;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <header class="top-header"></header>
+
+    <div class="container">
+        <nav class="breadcrumbs"></nav>
+        <h1 class="page-title" id="page-title">一覧</h1>
+        <p id="category-desc" style="color:#444; line-height:1.6; margin-bottom: 30px; padding-bottom: 15px; border-bottom: 2px solid #eee;"></p>
+
+        <!-- 表示切り替えボタン -->
+        <div class="view-controls" id="view-controls"></div>
+
+        <!-- グリッド表示を強制するために grid-view クラスを付与 -->
+        <div class="main-results-list grid-view" id="category-list"></div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            renderCommonHeader();
+
+            // --- 表示切り替え機能 ---
+            // ボタンを動的に生成 (Gridデフォルト)
+            document.getElementById('view-controls').innerHTML = `
+                <button class="view-btn" id="btn-list" title="List View">
+                    <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><rect x="4" y="5" width="3" height="3" rx="1"></rect><rect x="9" y="5" width="10" height="3" rx="1"></rect><rect x="4" y="10" width="3" height="3" rx="1"></rect><rect x="9" y="10" width="10" height="3" rx="1"></rect><rect x="4" y="15" width="3" height="3" rx="1"></rect><rect x="9" y="15" width="10" height="3" rx="1"></rect></svg>
+                </button>
+                <button class="view-btn active" id="btn-grid" title="Grid View">
+                    <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><rect x="4" y="4" width="7" height="7" rx="1"></rect><rect x="13" y="4" width="7" height="7" rx="1"></rect><rect x="4" y="13" width="7" height="7" rx="1"></rect><rect x="13" y="13" width="7" height="7" rx="1"></rect></svg>
+                </button>
+            `;
+
+            const btnList = document.getElementById('btn-list');
+            const btnGrid = document.getElementById('btn-grid');
+            
+            function setView(mode) {
+                const lists = document.querySelectorAll('.main-results-list');
+                lists.forEach(list => {
+                    if (mode === 'grid') list.classList.add('grid-view');
+                    else list.classList.remove('grid-view');
+                });
+
+                if (mode === 'grid') {
+                    btnGrid.classList.add('active');
+                    btnList.classList.remove('active');
+                } else {
+                    btnList.classList.add('active');
+                    btnGrid.classList.remove('active');
+                }
+            }
+            btnList.addEventListener('click', () => setView('list'));
+            btnGrid.addEventListener('click', () => setView('grid'));
+
+            // URLパラメータ (?file=...) を取得
+            const params = new URLSearchParams(window.location.search);
+            const file = params.get('file');
+
+            if (!file) {
+                document.getElementById('page-title').innerText = "File Not Specified";
+                return;
+            }
+
+            // データを動的に読み込む
+            loadDataFile(file, function(data) {
+                document.title = `${data.title} - LaTeX Dictionary`;
+                document.getElementById('page-title').innerText = data.title;
+                document.getElementById('category-desc').innerText = data.description;
+
+                // パンくずリスト生成
+                buildBreadcrumbs(file, data.title);
+
+                const listContainer = document.getElementById('category-list');
+
+                // --- 分岐: 目次(big) か コマンド一覧(leaf) か ---
+                if (data.type === 'big') {
+                    // 目次モード: グリッド切り替えボタンは隠す
+                    document.getElementById('view-controls').style.display = 'none';
+                    listContainer.classList.remove('grid-view');
+
+                    if (data.sections && data.sections.length > 0) {
+                        data.sections.forEach((sec, secIdx) => {
+                            const secTitle = document.createElement('div');
+                            secTitle.className = 'section-title';
+                            secTitle.innerText = sec.title;
+                            listContainer.appendChild(secTitle);
+
+                            const listWrapper = document.createElement('div');
+                            listWrapper.className = 'main-results-list';
+                            listContainer.appendChild(listWrapper);
+
+                            sec.items.forEach((item, itemIdx) => {
+                                const div = document.createElement('div');
+                                div.className = 'list-item';
+                                div.innerHTML = `
+                                    <div class="list-preview" id="icon-${secIdx}-${itemIdx}"></div>
+                                    <div class="list-info">
+                                        <div class="cmd-row"><div class="result-cmd">${item.title}</div></div>
+                                        <div class="result-desc">${item.description ? item.description.replace(/\n/g, '') : ''}</div>
+                                    </div>
+                                `;
+                                div.onclick = () => { window.location.href = `category.html?file=${item.file}`; };
+                                listWrapper.appendChild(div);
+
+                                if (item.icon) {
+                                    renderMath(`icon-${secIdx}-${itemIdx}`, item.icon);
+                                }
+                            });
+                        });
+                    }
+                    return; // bigモード終了
+                }
+
+                // --- 以下、leaf (コマンド一覧) モード ---
+                const keys = Object.keys(data.commands);
+
+                // アイテム生成関数
+                function createItem(key, container) {
+                    const d = data.commands[key];
+                    const displayCommand = d.command || key;
+                    const displayDesc = d.description || key.replace(/^\\/, '');
+
+                const div = document.createElement('div');
+                div.className = 'list-item';
+                div.innerHTML = `
+                    <div class="list-preview" id="preview-${key}"></div>
+                    <div class="list-info">
+                        <div class="cmd-row">
+                            <div class="result-cmd">${key}</div>
+                            <button class="copy-btn-small">Copy</button>
+                        </div>
+                        <div class="result-desc">${displayDesc}</div>
+                    </div>
+                `;
+                
+                const copyBtn = div.querySelector('.copy-btn-small');
+                copyBtn.onclick = (e) => {
+                    e.stopPropagation();
+                    copyText(copyBtn, key);
+                };
+
+                    div.onclick = () => { window.location.href = `detail1.html?file=${file}&id=${key}`; };
+                container.appendChild(div);
+
+                renderMath(`preview-${key}`, displayCommand);
+                }
+
+                // セクション定義がある場合の表示処理
+                if (data.sections && Array.isArray(data.sections)) {
+                    // 親コンテナのグリッドクラスを削除
+                    listContainer.className = '';
+                    
+                    let hasItems = false;
+                    let displayedSectionCount = 0;
+
+                    data.sections.forEach(sec => {
+                        // タグによるフィルタリング
+                        const secKeys = keys.filter(key => {
+                            const tags = data.commands[key].tags || [];
+                        const hasRequired = sec.requiredTags.every(t => tags.includes(t));
+                        const hasExcluded = sec.excludedTags ? sec.excludedTags.some(t => tags.includes(t)) : false;
+                        return hasRequired && !hasExcluded;
+                    });
+
+                    if (secKeys.length > 0) {
+                        hasItems = true;
+
+                        if (displayedSectionCount > 0) {
+                            const divider = document.createElement('hr');
+                            divider.className = 'section-divider';
+                            listContainer.appendChild(divider);
+                        }
+
+                        // セクションタイトル
+                        const titleEl = document.createElement('div');
+                        titleEl.className = 'section-title';
+                        titleEl.innerText = sec.title;
+                        listContainer.appendChild(titleEl);
+
+                        // グリッドコンテナ
+                        const gridEl = document.createElement('div');
+                        gridEl.className = 'main-results-list grid-view';
+                        // 現在の表示モードに合わせてクラスを調整
+                        if (btnList.classList.contains('active')) gridEl.classList.remove('grid-view');
+                        
+                        listContainer.appendChild(gridEl);
+
+                        secKeys.forEach(key => createItem(key, gridEl));
+                        displayedSectionCount++;
+                    }
+                });
+
+                    if (!hasItems) {
+                        listContainer.innerHTML = '<div style="color:#666;">該当するコマンドが見つかりませんでした。</div>';
+                    }
+                } else {
+                    // セクション定義がない場合（全表示）
+                    if (keys.length > 0) {
+                        keys.forEach(key => createItem(key, listContainer));
+                    } else {
+                        listContainer.innerHTML = '<div style="color:#666;">コマンドが見つかりませんでした。</div>';
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>

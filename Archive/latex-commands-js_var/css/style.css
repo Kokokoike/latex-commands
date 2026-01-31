@@ -1,0 +1,381 @@
+:root {
+    /* フォントサイズ定義 */
+    --main-title-size: 1.8rem;
+    --main-preview-size: 2.2rem;
+    --section-title-size: 1.2rem;
+    --related-preview-size: 1.5rem;
+    --related-cmd-size: 1.1rem;
+    --example-preview-size: 1.3rem;
+    --label-font-size: 0.9rem;
+    --ui-font-size: 0.8rem;
+    --small-ui-font-size: 0.75rem;
+}
+
+body {
+    font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", sans-serif;
+    background-color: #f4f4f9;
+    margin: 0;
+    color: #333;
+}
+
+/* 検索ボックス共通 */
+.search-wrapper { position: relative; width: 100%; }
+
+.search-input {
+    width: 100%;
+    padding: 20px 30px;
+    font-size: 1.2rem;
+    border: 1px solid #ddd;
+    border-radius: 50px;
+    background-color: white;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    outline: none;
+    box-sizing: border-box;
+}
+
+.search-input:focus {
+    border-color: #4a90e2;
+    box-shadow: 0 4px 10px rgba(74, 144, 226, 0.1);
+}
+
+/* ボタン共通 */
+.copy-btn {
+    background-color: #4a90e2;
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: var(--ui-font-size, 0.8rem);
+    width: 80px;
+    text-align: center;
+    line-height: 1.2;
+    white-space: nowrap;
+}
+.copy-btn.copied { background-color: #2ecc71; cursor: default; }
+
+.copy-btn-small {
+    background-color: #f0f0f0;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 2px 0;
+    width: 60px;
+    text-align: center;
+    font-size: var(--small-ui-font-size, 0.75rem);
+    cursor: pointer;
+    color: #555;
+    transition: all 0.2s;
+    margin-left: 10px;
+}
+.copy-btn-small:hover { background-color: #e0e0e0; }
+.copy-btn-small.copied { background-color: #2ecc71; color: white; border-color: #2ecc71; }
+
+/* タグ */
+.tag {
+    background-color: #e1f0ff;
+    color: #0056b3;
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: var(--ui-font-size, 0.8rem);
+    margin-right: 6px;
+    margin-bottom: 6px;
+    display: inline-block;
+}
+
+/* 検索候補ドロップダウン */
+.search-results {
+    position: absolute; top: 75px; left: 0; right: 0;
+    background: white; border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    overflow: hidden; z-index: 100; display: none;
+    max-height: 300px; overflow-y: auto;
+    border: 1px solid #eee;
+}
+.search-results.active { display: block; }
+
+.result-item {
+    padding: 15px 25px; cursor: pointer; border-bottom: 1px solid #eee;
+    text-align: left; display: flex; justify-content: space-between; align-items: center;
+}
+.result-item:hover { background-color: #f0f8ff; }
+
+.result-cmd { font-weight: bold; font-family: monospace; font-size: 1.1rem; }
+.result-desc { font-size: 0.85rem; color: #666; }
+
+/* --- 検索結果・一覧リスト共通スタイル --- */
+.main-results-list {
+    width: 100%;
+    margin-top: 30px;
+    text-align: left;
+    /* リスト表示時のデフォルト設定（中央寄せ・幅制限） */
+    max-width: 800px;
+    margin-left: auto; margin-right: auto;
+}
+
+.list-item {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    display: flex;
+    align-items: center;
+}
+.list-item:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.12); }
+
+.list-preview {
+    flex: 0 0 100px;
+    text-align: center;
+    font-size: 1.5rem;
+    margin-right: 20px;
+    color: #333;
+}
+.list-info { flex: 1; }
+
+.list-info .result-desc {
+    line-height: 1.5;
+    height: 3em;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+}
+
+/* 追加: 説明文を全文表示する場合のクラス（カテゴリ一覧などで使用） */
+.list-info .result-desc.full-text {
+    height: auto;
+    overflow: visible;
+    display: block;
+    -webkit-line-clamp: unset;
+    white-space: pre-line;
+}
+
+.cmd-row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 4px;
+}
+
+/* グリッド表示用スタイル */
+.main-results-list.grid-view {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 15px;
+    max-width: 100%; /* グリッド時は幅制限を解除して親要素いっぱいに */
+}
+
+.main-results-list.grid-view .list-item {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 15px;
+    margin-bottom: 0;
+}
+
+.main-results-list.grid-view .list-preview { 
+    margin-right: 0; margin-bottom: 10px; min-height: 60px;
+    display: flex; align-items: center; justify-content: center;
+}
+.main-results-list.grid-view .list-info { width: 100%; }
+.main-results-list.grid-view .result-desc { display: none; }
+.main-results-list.grid-view .cmd-row { flex-direction: column; justify-content: center; }
+.main-results-list.grid-view .copy-btn-small { margin-left: 0; margin-top: 10px; }
+
+/* セクションタイトル（共通） */
+.section-title {
+    font-size: var(--section-title-size);
+    font-weight: bold;
+    color: #555;
+    margin: 30px 0 15px 10px;
+    text-align: left;
+    border-bottom: 2px solid transparent;
+    border-left: 10px solid #4a90e2;
+    padding-left: 10px;
+}
+
+/* セクションタイトルの直後のリストはマージンを詰める */
+.section-title + .main-results-list {
+    margin-top: 0;
+}
+
+/* --- 表示切り替えコントロール (共通) --- */
+.view-controls {
+    display: flex;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    justify-content: flex-end;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.view-btn {
+    background: white;
+    border: 1px solid #ddd;
+    padding: 5px 15px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    color: #555;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.view-btn:first-child { border-radius: 4px 0 0 4px; border-right: none; }
+.view-btn:last-child { border-radius: 0 4px 4px 0; }
+.view-btn.active { background-color: #4a90e2; color: white; border-color: #4a90e2; }
+
+/* カテゴリリンク（トップページ用） */
+.category-links {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+    margin-bottom: 40px;
+}
+.cat-card {
+    display: block;
+    background: white;
+    padding: 15px 25px;
+    border-radius: 8px;
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+.cat-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+    color: #4a90e2;
+}
+
+/* --- ヘッダー検索 (On-demand UI) --- */
+.header-search-container {
+    display: flex;
+    align-items: center;
+    background: white;
+    border-radius: 25px;
+    padding: 0 10px;
+    height: 50px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    pointer-events: auto; /* ヘッダーのクリック透過を無効化 */
+    position: absolute;
+    right: 20px;
+    box-sizing: border-box;
+}
+
+#header-search-input {
+    width: 0;
+    border: none;
+    outline: none;
+    background: transparent;
+    opacity: 0;
+    transition: width 0.3s ease, opacity 0.3s ease;
+    padding: 0;
+    font-size: 1.1rem;
+    height: 100%;
+}
+
+.header-search-container.active #header-search-input {
+    width: 240px;
+    opacity: 1;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.search-icon-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #555;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 5px;
+    height: 100%;
+}
+
+.search-icon-btn svg {
+    width: 26px;
+    height: 26px;
+}
+
+/* --- パンくずリスト --- */
+.breadcrumbs {
+    font-size: 0.8rem;
+    color: #999;
+    margin-bottom: 15px;
+    width: 100%;
+    text-align:center;
+}
+
+.breadcrumbs a {
+    color: #999;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.breadcrumbs a:hover {
+    color: #4a90e2;
+}
+
+.current-page-name {
+    color: #555;
+    font-weight: normal;
+}
+
+/* --- ヘッダー共通スタイル --- */
+.top-header {
+    position: relative;
+    width: 100%; height: 80px;
+    background-color: transparent;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 20px; z-index: 1000; box-sizing: border-box;
+    pointer-events: none;
+}
+.top-header > * {
+    pointer-events: auto;
+}
+
+.header-logo-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    pointer-events: auto;
+}
+
+.header-icon {
+    height: 63px;
+    width: auto;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.08));
+}
+
+.header-text {
+    height: 60px;
+    width: auto;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.08));
+    transition: opacity 0.1s ease;
+    opacity: 1;
+}
+
+/* --- ヘッダーアイコンの一括変更 --- */
+.top-header.scrolled .header-text,
+.header-text.top_scrolled {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.site-logo-img:not(.original-logo) {
+    content: url("../images/icon.svg");
+}
+
+.site-logo-img {
+    max-height: 120px; /* 正方形アイコン用に高さを制限 */
+    width: auto;
+}
+
+/* --- Dark Mode Support --- 
+@media (prefers-color-scheme: dark) {*/

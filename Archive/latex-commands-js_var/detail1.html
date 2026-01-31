@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LaTeX Command Dictionary</title>
+    <link rel="icon" href="images/icon_site.svg" type="image/svg+xml" sizes="any">
+    <link rel="apple-touch-icon" href="images/icon.png">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script src="js/utils.js"></script>
+    <link rel="stylesheet" href="css/style.css">
+
+    <style>
+        /* メインエリア */
+        .main-content {
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* コマンドカード */
+        .command-card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            padding: 30px;
+            width: 100%;
+            max-width: 600px;
+            box-sizing: border-box;
+        }
+
+        /* 共通パーツのスタイル */
+        .command-title {
+            font-size: var(--main-title-size);
+            font-weight: bold;
+            color: #333;
+            font-family: monospace;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 10px;
+        }
+
+        .preview-box {
+            background-color: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            padding: 40px;
+            text-align: center;
+            font-size: var(--main-preview-size);
+            margin-bottom: 24px;
+            min-height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .info-section { margin-bottom: 20px; }
+        
+        .info-label {
+            font-weight: bold;
+            font-size: var(--label-font-size);
+            color: #666;
+            display: block;
+            margin-bottom: 6px;
+            /* ▼ 追加: バッジを横並びにする設定 */
+            display: flex;
+            align-items: center;
+        }
+
+        /* 「要数式環境」バッジのデザイン */
+        .badge-math {
+            display: none; /* デフォルトは非表示 */
+            background-color: #fff3cd; /* 薄いオレンジ背景 */
+            color: #856404;            /* 濃い茶色の文字 */
+            border: 1px solid #ffeeba;
+            font-size: var(--small-ui-font-size);
+            padding: 2px 8px;
+            border-radius: 4px;
+            margin-left: 10px;
+            font-weight: normal;
+        }
+        .badge-math.visible { display: inline-block; }
+
+
+        .code-box {
+            background-color: #2d2d2d;
+            color: #ddd;
+            padding: 12px 16px;
+            border-radius: 6px;
+            font-family: monospace;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .code-box code {
+            word-break: break-all;
+            margin-right: 10px;
+        }
+
+        .code-box.light {
+            background-color: #f0f0f0;
+            color: #333;
+            border: 1px solid #ddd;
+        }
+
+        
+        @media (max-width: 768px) {
+            .main-content { padding: 20px; }
+        }
+
+        /* 関連コマンドエリア */
+        .related-container {
+            width: 100%;
+            max-width: 600px;
+            margin-top: 20px;
+        }
+
+        /* 使用例エリア */
+        .examples-section {
+            width: 100%;
+            max-width: 600px;
+            margin-top: 20px;
+        }
+        .example-card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            padding: 20px;
+            margin-bottom: 20px;
+            box-sizing: border-box;
+        }
+        .example-title {
+            font-weight: bold;
+            color: #333;
+            font-size: var(--section-title-size);
+            margin-bottom: 10px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 8px;
+        }
+        .example-preview {
+            margin: 15px 0;
+            text-align: center;
+            font-size: var(--example-preview-size);
+        }
+
+        /* パンくずリストを左揃えに上書き */
+        .breadcrumbs { text-align: left; }
+    </style>
+</head>
+<body>
+
+    <header class="top-header"></header>
+
+    <main class="main-content">
+        <div class="command-card" id="card-container">
+            <nav class="breadcrumbs">
+                <!-- JavaScriptで動的に生成されます -->
+            </nav>
+
+            <div class="command-title" id="disp-title"></div>
+            
+            <div class="preview-box" id="math-preview"></div>
+
+            <div class="info-section">
+                <span class="info-label">コマンド</span>
+                <div class="code-box">
+                    <code id="disp-command"></code>
+                    <button class="copy-btn" id="btn-copy-cmd">Copy</button>
+                </div>
+            </div>
+
+            <div class="info-section">
+                <span class="info-label">必要なパッケージ</span>
+                <div class="code-box light" id="pkg-box"></div>
+            </div>
+
+            <div class="info-section">
+                <span class="info-label">タグ</span>
+                <div id="disp-tags"></div>
+            </div>
+
+            <div class="info-section">
+                <span class="info-label">
+                    説明
+                    <span id="math-badge" class="badge-math">要数式環境</span>
+                </span>
+                <p id="disp-desc" style="color:#444; line-height:1.6;"></p>
+            </div>
+        </div>
+
+        <div class="examples-section" id="examples-section" style="display:none;">
+            <div class="section-title">使用例</div>
+            <div id="examples-list"></div>
+        </div>
+
+        <div class="related-container" id="related-container" style="display:none;">
+            <div class="section-title">関連コマンド</div>
+            <div class="main-results-list grid-view" id="related-grid"></div>
+        </div>
+    </main>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            renderCommonHeader();
+
+            // URLパラメータ (?file=...&id=...) を取得
+            const params = new URLSearchParams(window.location.search);
+            const file = params.get('file');
+            const currentKey = params.get('id');
+            
+            if (!file || !currentKey) {
+                document.getElementById('disp-title').innerText = "Error";
+                document.getElementById('disp-desc').innerText = "ファイルまたはIDが指定されていません。";
+                return;
+            }
+
+            // データを動的に読み込む
+            loadDataFile(file, function(pageData) {
+                const data = pageData.commands[currentKey];
+                if (!data) {
+                    document.getElementById('disp-title').innerText = "Not Found";
+                    return;
+                }
+
+                // --- パンくずリストの構築 (非同期) ---
+                buildBreadcrumbs(file, currentKey, true);
+
+                // コマンドが指定されていない場合はキーを使用
+                const displayCommand = data.command || currentKey;
+
+                // --- 描画処理 ---
+                document.title = `${currentKey} - LaTeX Dictionary`;
+                document.getElementById('disp-title').innerText = currentKey;
+                document.getElementById('disp-command').innerText = displayCommand;
+                document.getElementById('disp-desc').innerText = data.description;
+
+                renderMath("math-preview", displayCommand, { displayMode: true });
+
+                const pkgBox = document.getElementById('pkg-box');
+                if (data.package) {
+                    pkgBox.classList.remove('light');
+                    const pkgCmd = `\\usepackage{${data.package}}`;
+                    pkgBox.innerHTML = `<code>${pkgCmd}</code><button class="copy-btn" onclick="copyText(this, '${pkgCmd.replace(/\\/g, '\\\\')}')">Copy</button>`;
+                } else {
+                    pkgBox.classList.add('light');
+                    pkgBox.innerHTML = `<span style="color:#888; font-style:italic;">なし（標準機能）</span>`;
+                }
+
+                const tagContainer = document.getElementById('disp-tags');
+                tagContainer.innerHTML = '';
+                data.tags.forEach(tag => {
+                    const span = document.createElement('span');
+                    span.className = 'tag';
+                    span.innerText = tag;
+                    tagContainer.appendChild(span);
+                });
+
+                // バッジ表示
+                const mathBadge = document.getElementById('math-badge');
+                if (data.isMathMode) {
+                    mathBadge.classList.add('visible');
+                } else {
+                    mathBadge.classList.remove('visible');
+                }
+
+                // --- 使用例の表示 ---
+                const examplesSection = document.getElementById('examples-section');
+                const examplesList = document.getElementById('examples-list');
+
+                if (data.examples && data.examples.length > 0) {
+                    examplesSection.style.display = 'block';
+                    
+                    const exCard = document.createElement('div');
+                    exCard.className = 'example-card';
+
+                    data.examples.forEach((ex, index) => {
+                        const exContainer = document.createElement('div');
+                        if (index > 0) {
+                            exContainer.style.marginTop = '30px';
+                            exContainer.style.paddingTop = '20px';
+                        }
+                        
+                        // タイトル
+                        const exTitle = document.createElement('div');
+                        exTitle.className = 'example-title';
+                        exTitle.innerText = `${index + 1}. ${ex.title}`;
+                        exContainer.appendChild(exTitle);
+
+                        // KaTeXプレビュー
+                        const exPreview = document.createElement('div');
+                        exPreview.className = 'example-preview';
+                        // renderMathはID指定が必要だが、ここでは動的要素なので直接katexを使うか、IDを振る
+                        // ここではIDを振ってrenderMathを使う形に統一
+                        exPreview.id = `ex-preview-${index}`;
+                        exContainer.appendChild(exPreview);
+                        renderMath(exPreview.id, ex.command, { displayMode: true });
+
+                        // コマンド情報
+                        const cmdSection = document.createElement('div');
+                        cmdSection.className = 'info-section';
+                        cmdSection.innerHTML = '<span class="info-label">コマンド</span>';
+
+                        const exCodeBox = document.createElement('div');
+                        exCodeBox.className = 'code-box';
+                        
+                        const code = document.createElement('code');
+                        code.innerText = ex.command;
+                        exCodeBox.appendChild(code);
+
+                        const copyBtn = document.createElement('button');
+                        copyBtn.className = 'copy-btn';
+                        copyBtn.innerText = 'Copy';
+                        copyBtn.onclick = function() { copyText(this, ex.command); };
+                        exCodeBox.appendChild(copyBtn);
+
+                        cmdSection.appendChild(exCodeBox);
+                        exContainer.appendChild(cmdSection);
+
+                        exCard.appendChild(exContainer);
+                    });
+                    examplesList.appendChild(exCard);
+                }
+
+                // --- 関連コマンドの表示 ---
+                const relatedContainer = document.getElementById('related-container');
+                const relatedGrid = document.getElementById('related-grid');
+                
+                if (data.related && data.related.length > 0) {
+                    relatedContainer.style.display = 'block';
+                    data.related.forEach(relKey => {
+                        // 関連コマンドも同じファイル内にあると仮定
+                        const relData = pageData.commands[relKey];
+                        if (!relData) return;
+
+                        const card = document.createElement('div');
+                        card.className = 'list-item';
+                        card.innerHTML = `
+                            <div class="list-preview"></div>
+                            <div class="list-info">
+                                <div class="cmd-row">
+                                    <div class="result-cmd">${relKey}</div>
+                                    <button class="copy-btn-small">Copy</button>
+                                </div>
+                            </div>
+                        `;
+                        
+                        card.onclick = () => { window.location.href = `detail1.html?file=${file}&id=${relKey}`; };
+
+                        const copyBtn = card.querySelector('.copy-btn-small');
+                        copyBtn.onclick = (e) => {
+                            e.stopPropagation();
+                            copyText(copyBtn, relKey);
+                        };
+
+                        relatedGrid.appendChild(card);
+
+                        // KaTeXレンダリング
+                        // 要素にIDがないため、一時的にIDを付与してrenderMathを呼ぶ
+                        const previewEl = card.querySelector('.list-preview');
+                        const uniqueId = `rel-preview-${relKey.replace(/[^a-zA-Z0-9]/g, '')}`;
+                        previewEl.id = uniqueId;
+                        renderMath(uniqueId, relData.command || relKey);
+                    });
+                }
+
+                document.getElementById('btn-copy-cmd').onclick = function() {
+                    copyText(this, displayCommand);
+                };
+            });
+        });
+    </script>
+</body>
+</html>
