@@ -137,7 +137,7 @@ def main():
                     "package": "",
                     "tags": [],
                     "isMathMode": False,
-                    # "related": []  <-- 削除しました
+                    "related": []
                 }
 
                 # Workshopデータからの補完

@@ -103,14 +103,16 @@
             btnGrid.addEventListener('click', () => setView('grid'));
 
             // データベース読み込み
+            // データベース読み込み
             await window.initDatabase();
 
             const params = new URLSearchParams(window.location.search);
             const catPath = params.get('cat');
 
-            // パンくずリスト生成
+            // --- パンくずリスト生成 ---
             const nav = document.querySelector('.breadcrumbs');
             nav.innerHTML = '<a href="index.html">TOP</a>';
+            
             if (catPath === 'Main') {
                 nav.appendChild(document.createTextNode(' > '));
                 const span = document.createElement('span');
@@ -142,32 +144,41 @@
                 return;
             }
 
-            // 階層探索
+            // --- 階層探索 (items対応版) ---
             let pathArray = [];
             let currentLevel = window.db.structure;
             let currentNode = null;
 
             if (catPath === 'Main') {
                 pathArray = [];
-                currentLevel = window.db.structure;
-                currentNode = { title: "主なカテゴリー", description: "" };
+                // Mainの場合はルート構造そのものをitemsとして扱う
+                currentNode = { 
+                    title: "主なカテゴリー", 
+                    description: "", 
+                    items: window.db.structure 
+                };
             } else {
                 pathArray = catPath.split('/');
+                // 初期化（見つからなかった場合用）
                 currentNode = { title: pathArray[pathArray.length-1] }; 
 
-                // ルートから探索
+                // ルートから順に潜る
                 for (const segment of pathArray) {
                     if (!currentLevel) break;
+                    
+                    // titleが一致するものを探す
                     const found = currentLevel.find(c => c.title === segment);
                     if (found) {
                         currentNode = found;
-                        currentLevel = found.children || [];
+                        // 次の階層へ (children -> items)
+                        currentLevel = found.items || [];
                     } else {
                         currentLevel = []; // 見つからない
                     }
                 }
             }
             
+            // タイトル更新
             document.title = `${currentNode.title || 'Category'} - LaTeX Dictionary`;
             document.getElementById('page-title').innerText = currentNode.title || "Not Found";
             document.getElementById('category-desc').innerText = currentNode.description || "";
@@ -175,69 +186,88 @@
             const listContainer = document.getElementById('category-list');
             listContainer.innerHTML = '';
 
-            // A. サブカテゴリがある場合 (フォルダ表示)
-            if (currentLevel.length > 0) {
-                // リスト表示 (type:big)
+            // items が無い、または空の場合
+            if (!currentNode.items || currentNode.items.length === 0) {
+                listContainer.innerHTML = '<div style="color:#666;">No items found.</div>';
+                return;
+            }
+
+            // ★ 判定: リストの最初の要素が "command" 型かどうか
+            const isCommandList = currentNode.items[0].type === "command";
+
+            // ----------------------------------------------------
+            // A. サブカテゴリ一覧 (フォルダ表示)
+            // ----------------------------------------------------
+            if (!isCommandList) {
                 document.getElementById('view-controls').style.display = 'none';
                 listContainer.classList.remove('grid-view');
 
-                currentLevel.forEach(child => {
+                currentNode.items.forEach(child => {
                     const div = document.createElement('div');
                     div.className = 'list-item';
-                    div.onclick = () => location.href = `category.html?cat=${encodeURIComponent([...pathArray, child.title].join('/'))}`;
+                    
+                    // 次のパスを生成
+                    let nextPath = "";
+                    if (catPath === 'Main') {
+                        nextPath = child.title;
+                    } else {
+                        nextPath = [...pathArray, child.title].join('/');
+                    }
+
+                    div.onclick = () => location.href = `category.html?cat=${encodeURIComponent(nextPath)}`;
+                    
                     div.innerHTML = `
                         <div class="list-preview" style="font-size: 2rem;">📂</div>
                         <div class="list-info">
                             <div class="cmd-row">
                                 <div class="result-cmd" style="color: #333; font-family: inherit;">${child.title}</div>
                             </div>
-                            <div class="result-desc"></div>
+                            <div class="result-desc">${child.description || ""}</div>
                         </div>
                     `;
                     listContainer.appendChild(div);
                 });
             } 
-            // B. 末端 (コマンド一覧表示)
+            // ----------------------------------------------------
+            // B. コマンド一覧 (末端表示)
+            // ----------------------------------------------------
             else {
                 document.getElementById('view-controls').style.display = 'flex';
                 
-                // 逆引きキー作成 (" / "区切り)
-                const dbKey = pathArray.join(' / ');
-                const cmds = window.db.catToCmd[dbKey] || [];
+                // 構造データの items を直接ループして表示
+                currentNode.items.forEach(item => {
+                    const cmdKey = item.title;
+                    // 詳細DBから情報を引く
+                    const data = window.db.commands[cmdKey];
+                    
+                    if(!data) return; // DBにない場合はスキップ
 
-                if (cmds.length === 0) {
-                    listContainer.innerHTML = '<div style="color:#666;">No commands found.</div>';
-                } else {
-                    cmds.forEach(cmdKey => {
-                        const data = window.db.commands[cmdKey];
-                        if(!data) return;
-                        
-                        const div = document.createElement('div');
-                        div.className = 'list-item';
-                        const safeId = 'preview-' + cmdKey.replace(/[^a-zA-Z0-9]/g, '');
-                        
-                        div.innerHTML = `
-                            <div class="list-preview" id="${safeId}"></div>
-                            <div class="list-info">
-                                <div class="cmd-row">
-                                    <div class="result-cmd">${cmdKey}</div>
-                                    <button class="copy-btn-small">Copy</button>
-                                </div>
-                                <div class="result-desc">${data.description || cmdKey}</div>
+                    const div = document.createElement('div');
+                    div.className = 'list-item';
+                    const safeId = 'preview-' + cmdKey.replace(/[^a-zA-Z0-9]/g, '');
+                    
+                    div.innerHTML = `
+                        <div class="list-preview" id="${safeId}"></div>
+                        <div class="list-info">
+                            <div class="cmd-row">
+                                <div class="result-cmd">${cmdKey}</div>
+                                <button class="copy-btn-small">Copy</button>
                             </div>
-                        `;
-                        
-                        const copyBtn = div.querySelector('.copy-btn-small');
-                        copyBtn.onclick = (e) => {
-                            e.stopPropagation();
-                            window.copyText(copyBtn, cmdKey);
-                        };
+                            <div class="result-desc">${data.description || cmdKey}</div>
+                        </div>
+                    `;
+                    
+                    const copyBtn = div.querySelector('.copy-btn-small');
+                    copyBtn.onclick = (e) => {
+                        e.stopPropagation();
+                        window.copyText(copyBtn, cmdKey);
+                    };
 
-                        div.onclick = () => { window.location.href = `detail1.html?id=${encodeURIComponent(cmdKey)}`; };
-                        listContainer.appendChild(div);
-                        window.renderMath(safeId, cmdKey);
-                    });
-                }
+                    div.onclick = () => { window.location.href = `detail1.html?id=${encodeURIComponent(cmdKey)}`; };
+                    listContainer.appendChild(div);
+                    
+                    window.renderMath(safeId, cmdKey);
+                });
             }
         });
     </script>

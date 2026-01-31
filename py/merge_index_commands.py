@@ -1,5 +1,3 @@
-# ccategory_structure.json内へコマンドを集約
-
 import requests
 from bs4 import BeautifulSoup
 import json
@@ -76,7 +74,7 @@ def main():
 
     print(f"Extracted {count} commands across {len(category_map)} categories.")
 
-    # 3. 構造データへの統合（再帰処理・修正版）
+    # 3. 構造データへの統合（修正版）
     
     def inject_commands(nodes):
         for node in nodes:
@@ -84,12 +82,29 @@ def main():
             if "title" not in node:
                 continue
 
+            # --------------------------------------------------
+            # Case A: コマンドノード (type: "command") の場合
+            # --------------------------------------------------
+            if node.get("type") == "command":
+                # relatedを追加（なければ空リスト）
+                if "related" not in node:
+                    node["related"] = []
+                
+                # itemsがあれば削除（コマンドは末端なので子は持たない）
+                if "items" in node:
+                    del node["items"]
+                
+                # これ以上処理しない（再帰もスキップ）
+                continue
+
+            # --------------------------------------------------
+            # Case B: カテゴリノードの場合
+            # --------------------------------------------------
             title = node["title"]
             
-            # --- 修正箇所: itemsキーがなければ作成する安全策 ---
+            # itemsキーがなければ作成
             if "items" not in node:
                 node["items"] = []
-            # --------------------------------------------------
 
             # このカテゴリに対応するコマンドがあれば items に追加
             if title in category_map:
@@ -101,21 +116,18 @@ def main():
                         "description": "",
                         "tag": [],
                         "keywords": [],
-                        "related":[], 
-                        "type": "command"
+                        "type": "command",
+                        "related": [] # ★最初から入れておく
+                        # itemsは入れない
                     }
                     node["items"].append(cmd_node)
+                
+                # 重複追加防止のため辞書から削除（任意）
+                # del category_map[title]
 
             # 子要素があれば再帰的に処理
-            # itemsがリストであることを確認してから再帰
             if len(node["items"]) > 0:
-                # コマンドノード自体は items を持たないので、リストの中身が辞書の場合のみ進むなどのガードも可能だが
-                # 今回は type check で制御してもよい。
-                # ここでは単純に再帰するが、無限ループ防止のため type:command は潜らないようにする
-                
-                # type キーがない、または type が command でないものだけ潜る
-                if node.get("type") != "command":
-                     inject_commands(node["items"])
+                inject_commands(node["items"])
 
     print("Merging commands into structure...")
     inject_commands(structure_data)

@@ -16,17 +16,16 @@ window.initDatabase = async function() {
 
     try {
         // dataフォルダの各JSONファイルを読み込む
-        const [structRes, cmdRes, catRes] = await Promise.all([
+        const [structRes, cmdRes] = await Promise.all([
             fetch('data/category_structure.json'),
-            fetch('data/command_database_full.json'),
-            fetch('data/category_to_commands.json')
+            fetch('data/command_database.json')
         ]);
 
-        if (!structRes.ok || !cmdRes.ok || !catRes.ok) throw new Error("Data load failed");
+        if (!structRes.ok || !cmdRes.ok) throw new Error("Data load failed");
 
         window.db.structure = await structRes.json();
         window.db.commands = await cmdRes.json();
-        window.db.catToCmd = await catRes.json();
+        window.db.catToCmd = null;
         window.db.isLoaded = true;
         return true;
     } catch (error) {
